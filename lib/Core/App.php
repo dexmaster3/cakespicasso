@@ -4,9 +4,17 @@ class Core_App
 {
     public function run()
     {
-        $configuration = Core_Config::getConfig();
+        //Set Config/Request/Router for this http request
+        $configs = Core_Config::getConfig();
         $request = Core_Request::getRequest();
-        $test = Core_Router::getRequestPath();
+        $location = Core_Router::getRoute();
+
+        //Grab relevant deployment
+        $dispatcher = new Core_Dispatcher();
+        $dispatcher->setRouteController();
+        $dispatcher->setActionView();
+        echo $dispatcher->launchView();
+
         echo var_dump($request);
     }
 }

@@ -2,32 +2,41 @@
 
 class Core_Router
 {
-    public static function compareConfiguredPaths()
+    private static $location;
+    private static $initialized = false;
+
+    public static function getRoute()
     {
-        foreach (Core_Config::getConfig() as $module_name => $module_content) {
+        if (!self::$initialized) {
+            self::$initialized = true;
+            self::getRequestPath();
         }
+        return self::$location;
     }
 
-    public static function getRequestPath()
+    private static function getRequestPath()
     {
-        $module = self::findModuleControllerAction();
-        $path = null;
-        if ($path === null) {
-            $path = self::findAltModuleName();
+        $location = self::findModuleControllerAction();
+        if (is_null($location['module'])) {
+            $location['module'] = 'Index';
+        } elseif (is_null($location['controller'])) {
+            $location['controller'] = 'Index';
+        } elseif (is_null($location['action'])) {
+            $location['action'] = 'index';
         }
-        return $path;
+        self::$location = $location;
     }
 
     private function findModuleControllerAction()
     {
         $request_parts = Core_Request::getRequest()->parsed_url;
         $request_query = Core_Request::getRequest()->parsed_query;
-        $module = null;
+        $location = null;
         foreach (Core_Config::getConfig() as $configk => $configv) {
             if (isset($configv->alt_name)) {
                 if (strtolower($configv->alt_name) === strtolower($request_parts['module'])) {
                     $location = array(
-                        'module' => $request_parts['module'],
+                        'module' => $configk,
                         'controller' => $request_parts['controller'],
                         'action' => $request_parts['action'],
                         'params' => $request_query
@@ -36,7 +45,7 @@ class Core_Router
             } else {
                 if (strtolower($configk) === strtolower($request_parts['module'])) {
                     $location = array(
-                        'module' => $request_parts['module'],
+                        'module' => $configk,
                         'controller' => $request_parts['controller'],
                         'action' => $request_parts['action'],
                         'params' => $request_query

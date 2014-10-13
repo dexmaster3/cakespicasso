@@ -1,6 +1,10 @@
 {
     "Cake": {
         "mission": "to provide cake info",
-        "date" : "Oct 10, 2014"
+        "date" : "Oct 10, 2014",
+        "alt_name": "young-fro",
+        "views" : {
+            "index" : "Home"
+        }
     }
 }
