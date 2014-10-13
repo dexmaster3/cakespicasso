@@ -4,7 +4,8 @@
         "date" : "Oct 10, 2014",
         "alt_name": "young-fro",
         "views" : {
-            "index" : "Home"
+            "index" : "Home",
+            "stuff" : "Away"
         }
     }
 }

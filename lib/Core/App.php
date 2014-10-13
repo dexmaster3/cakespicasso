@@ -13,7 +13,9 @@ class Core_App
         $dispatcher = new Core_Dispatcher();
         $dispatcher->setRouteController();
         $dispatcher->setActionView();
-        echo $dispatcher->launchView();
+        $dispatcher->launchView();
+
+        Core_Database::connect(array('localhost', 'cakespicasso', 'dexter', 'dexter'));
 
         echo var_dump($request);
     }

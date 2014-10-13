@@ -18,6 +18,21 @@ echo "<style>
         font-size: 1.7em;
         color:#344E2C;
     }
+    h2 {
+    font-family: 'Lato', sans-serif;
+        font-size: 1.4em;
+        color:#344E2C;
+    }
+    h3 {
+    font-family: 'Lato', sans-serif;
+        font-size: 1.1em;
+        color:#344E2C;
+    }
+    h4 {
+    font-family: 'Lato', sans-serif;
+        font-size: 0.8em;
+        color:#344E2C;
+    }
 </style>";
 echo "<h1>Server</h1>";
 var_dump($_SERVER);

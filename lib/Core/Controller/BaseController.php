@@ -3,6 +3,7 @@
 abstract class Core_Controller_BaseController
 {
     protected $view_file;
+    protected $data = null;
 
     public function setView($action)
     {
@@ -25,10 +26,12 @@ abstract class Core_Controller_BaseController
 
     protected function render($data)
     {
-        $view_string = file_get_contents($this->view_file);
-        foreach ($data as $datak => $datav) {
+        //$view_string = file_get_contents($this->view_file);
+/*        foreach ($data as $datak => $datav) {
             $view_string = str_replace($datak, $datav, $view_string);
-        }
-        return $view_string;
+        }*/
+        //$final_view = str_replace(array_keys($data), array_values($data), $view_string);
+        require_once $this->view_file;
+        return $this->view_file;
     }
 }
