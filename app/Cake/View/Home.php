@@ -1,32 +1,6 @@
 <head>
-<style>
-    header {
-        background-color:black;
-        color:white;
-        text-align:center;
-        padding:5px;
-    }
-    nav {
-        line-height:30px;
-        background-color:#eeeeee;
-        height:300px;
-        width:100px;
-        float:left;
-        padding:5px;
-    }
-    section {
-        width:350px;
-        float:left;
-        padding:10px;
-    }
-    footer {
-        background-color:black;
-        color:white;
-        clear:both;
-        text-align:center;
-        padding:5px;
-    }
-</style>
+    <link rel="stylesheet" type="text/css" href="/assets/dstyles.css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
 <header>
@@ -34,14 +8,25 @@
 </header>
 
 <nav>
-    <?php foreach($data as $datak => $datav): ?>
-        <span><h2><?= $datak ?></h2><h3><?= $datav ?></h3></span>
-    <?php endforeach; ?>
+    <button type="button" class="btn btn-primary">NavButton</button>
+    <a href="/young-fro/Home/adduser" class="btn btn-warning">Add User</a>
 </nav>
 
 <section>
-    <?php if(isset($data->city)): ?>
-    <h1><?= $data->city ?></h1>
+    <table>
+        <tr>
+            <th>Name</th><th>Title</th><th>Rank</th>
+        </tr>
+        <?php foreach($this->data->employees as $employee): ?>
+        <tr>
+            <td><?= $employee['name'] ?></td>
+            <td><?= $employee['title'] ?></td>
+            <td><?= $employee['rank'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php if(isset($this->data->city)): ?>
+    <h1><?= $this->data->city ?></h1>
     <?php else: ?>
     <h1>London</h1>
     <?php endif; ?>

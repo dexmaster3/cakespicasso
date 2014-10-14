@@ -4,18 +4,15 @@ class Cake_Controller_Home extends Core_Controller_BaseController
 {
     public function index($query)
     {
-        //Todo: PDO data fetching here?
-        if (strtolower($query['user']) === "french") {
-            $this->data->London = 'Paris';
-            $this->data->United = "DIVIDED";
-        }
-        else {
-            $data = array(
-                'London' => "United States",
-                'Kingdom' => "STATES"
-            );
-        }
-        if (isset($query['city'])) {
+        $employees = new Cake_Model_Employees();
+        $employees->dropTable();
+        $employees->createTable();
+        $employees->addRow(array( 'name' => 'Dex','title' => 'PHP Pro', 'rank' => 'Specialist'));
+        $employees->addRow(array( 'name' => 'Thomas','title' => 'PHP Beginner', 'rank' => 'Private'));
+        $this->data->employees = $employees->getAll();
+        //TODO: Change the controller so it doesn't have to be URL capitalized, and finish the view part
+
+        if(isset($query['city'])) {
             $this->data->city = $query['city'];
         }
         return $this->render($this->data);

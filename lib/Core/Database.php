@@ -24,11 +24,14 @@ class Core_Database
             return $ex->getMessage();
         }
     }
-    static function insert($data)
+    static public function killConn()
     {
-        $data = array('controller' => 'Home', 'view' => 'Away', 'action' => 'index');
-        $STH = self::$DBH->prepare("insert into controller_views (controller, view, action) value (:controller, :view, :action)");
-        $STH->execute($data);
-        self::$DBH = null;
+        try {
+            self::$DBH = null;
+        }
+        catch(PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
     }
 }
