@@ -17,6 +17,10 @@ class Core_App
 
         Core_Database::connect(array('localhost', 'cakespicasso', 'dexter', 'dexter'));
 
+        $stuff = new Cake_Model_ControllerViews();
+        $crag = $stuff->get('controller_views');
+        echo $crag;
+
         echo var_dump($request);
     }
 }
