@@ -44,4 +44,15 @@ class Core_Request
         parse_str($query, $parsed_query);
         return $parsed_query;
     }
+
+    /**
+     *
+     * Use magic getters/setters to avoid not set exceptions....
+     * @param null $key
+     *
+     * @return null
+     */
+    public function __get($key = null){
+        return isset(self::$request->$key) ? self::$request->$key : null;
+    }
 }

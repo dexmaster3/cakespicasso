@@ -3,7 +3,7 @@
 class Core_Config
 {
     private static $initialized = false;
-    private static $config_names = 'app/*/config.json';
+    private static $config_names = 'app/*/config.json'; //Glob files from include paths so that this isn't hardcoded
     private static $configs;
 
     public static function getConfig()

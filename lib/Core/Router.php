@@ -29,8 +29,8 @@ class Core_Router
 
     private function findModuleControllerAction()
     {
-        $request_parts = Core_Request::getRequest()->parsed_url;
-        $request_query = Core_Request::getRequest()->parsed_query;
+        $request_parts = Core_Request::getRequest()->parsed_url; //Use magic getters/setters
+        $request_query = Core_Request::getRequest()->parsed_query; //Use magic getters/setters to avoid not set exceptions....
         $location = null;
         foreach (Core_Config::getConfig() as $configk => $configv) {
             if (isset($configv->alt_name)) {

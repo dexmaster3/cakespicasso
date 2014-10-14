@@ -28,12 +28,15 @@ class Core_Autoloader
     {
         $className = ltrim($className, '\\');
         $location = explode('_', $className);
-        $paths = explode(PATH_SEPARATOR, get_include_path());
-        foreach ($paths as $path) {
-            $file = $path . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $location) . '.php';
-            if (is_file($file)) {
-                require_once $file;
+            $file = implode(DIRECTORY_SEPARATOR, $location) . '.php';
+            try{
+                if(stream_resolve_include_path($file)){
+                    include $file;
+                } else {
+                    die('File does not exist');
+                }
+            } catch (Exception $e){
+                die($e->getMessage());
             }
-        }
     }
 }

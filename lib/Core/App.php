@@ -11,7 +11,7 @@ class Core_App
 
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
-        $dispatcher->setRouteController();
+        $dispatcher->setRouteController(); //Use magic setters/getters here
         $dispatcher->setActionView();
         $dispatcher->launchView();
 
