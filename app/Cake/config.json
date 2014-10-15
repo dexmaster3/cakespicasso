@@ -4,8 +4,24 @@
         "date" : "Oct 10, 2014",
         "alt_name": "young-fro",
         "views" : {
-            "index" : "Home",
-            "stuff" : "Away"
+            "Home": {
+                "index": "Home.php",
+                "newuser": "Home.php",
+                "adduser": "NewUser.php",
+                "deleteusers": "Home.php",
+                "deleteuser": "Home.php",
+                "seedusers": "Home.php"
+            },
+            "Static": {
+
+            }
+        },
+        "custom_routes": {
+            "database-seeder": {
+                "module": "Cake",
+                "controller": "Home",
+                "action": "seedusers"
+            }
         }
     }
 }

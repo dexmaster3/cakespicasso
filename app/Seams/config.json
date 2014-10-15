@@ -1,0 +1,25 @@
+{
+    "Seams": {
+        "mission": "to provide cms stuff",
+        "date" : "Oct 15, 2014",
+        "alt_name": "cms",
+        "views" : {
+            "Admin": {
+                "index": "index.php",
+                "blank": "blank.php"
+            },
+            "Pages": {
+                "index": "pages_index.php",
+                "create": "pages_create.php",
+                "createpage": "pages_index.php"
+            }
+        },
+        "custom_routes": {
+            "database-seeder": {
+                "module": "Cake",
+                "controller": "Home",
+                "action": "seedusers"
+            }
+        }
+    }
+}

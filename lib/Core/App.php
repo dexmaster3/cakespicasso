@@ -9,16 +9,14 @@ class Core_App
         Core_Request::getRequest();
         Core_Router::getRoute();
 
+        //Seed Database?
+//        $custom_routes = new Core_Model_CustomRoutes();
+//        $custom_routes->createTable();
+
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
         $dispatcher->setRouteController(); //Use magic setters/getters here
         $dispatcher->setActionView();
-        $dispatcher->launchView();
-/*
-        $stuff = new Cake_Model_ViewAssociations();
-        $crag = $stuff->findAllByColumnValue('module', 'Cake');
-        $stuff->dropTable();
-        $stuff->createTable();
-        $stuff->addRow(array( 'module' => 'moddy','view' => 'viewz', 'action' => 'fun'));*/
+        echo $dispatcher->launchView();
     }
 }

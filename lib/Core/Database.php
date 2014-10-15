@@ -13,10 +13,15 @@ class Core_Database
         }
         return self::$DBH;
     }
+    static public function seedDatabase($dbconn)
+    {
+        $credentials = Core_Config::getConfig()->Core->connection_string;
+        $DBH = self::connect($credentials);
+    }
     static public function setConn($dbconn)
     {
         try {
-            self::$DBH = new PDO("mysql:host=$dbconn[0];dbname=$dbconn[1]", $dbconn[2], $dbconn[3]);
+            self::$DBH = new PDO("mysql:host=$dbconn->host;dbname=$dbconn->database", $dbconn->user, $dbconn->password);
             return self::$DBH;
         }
         catch(PDOException $ex) {

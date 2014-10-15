@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="/assets/dstyles.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/dstyles.css">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>

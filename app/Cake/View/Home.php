@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="/assets/dstyles.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/dstyles.css">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -10,6 +10,7 @@
 <nav>
     <button type="button" class="btn btn-primary">NavButton</button>
     <a href="/young-fro/Home/adduser" class="btn btn-warning">Add User</a>
+    <a href="/young-fro/home/deleteusers" class="btn btn-danger">Delete Everyone</a>
 </nav>
 
 <section>
@@ -22,6 +23,7 @@
             <td><?= $employee['name'] ?></td>
             <td><?= $employee['title'] ?></td>
             <td><?= $employee['rank'] ?></td>
+            <td><a href="/young-fro/home/deleteuser?id=<?= $employee['id'] ?>" class="btn btn-danger">Delete</a></td>
         </tr>
         <?php endforeach; ?>
     </table>

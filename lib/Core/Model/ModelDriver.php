@@ -8,7 +8,8 @@ abstract class Core_Model_ModelDriver
 
     protected function startConnection()
     {
-        return Core_Database::connect(array('localhost', 'cakespicasso', 'dexter', 'dexter'));
+        $credentials = Core_Config::getConfig()->Core->connection_string;
+        return Core_Database::connect($credentials);
     }
 
     public function addRow($data)
@@ -23,9 +24,11 @@ abstract class Core_Model_ModelDriver
         $table_keys = implode(', ', $table_keys);
 
         $statement = $this->conn->prepare(
-            "INSERT INTO $this->table ($table_values) value ($table_keys)"
+            "INSERT INTO $this->table ($table_values) value ($table_keys);
+LAST_INSERT_ID();"
         );
-        return $statement->execute($data);
+        $statement->execute($data);
+        return $statement->fetch();
     }
 
     public function getAll()
@@ -46,12 +49,30 @@ abstract class Core_Model_ModelDriver
         $statement->execute();
         return $statement->fetchAll();
     }
+    public function deleteAllByColumnValue($column, $value)
+    {
+        $this->conn = $this->startConnection();
+        $statement = $this->conn->prepare(
+            "DELETE * FROM $this->table WHERE $column = '$value'"
+        );
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 
     public function findById($id)
     {
         $this->conn = $this->startConnection();
         $statement = $this->conn->prepare(
             "SELECT * FROM $this->table WHERE id = $id"
+        );
+        $statement->execute();
+        return $statement->fetch();
+    }
+    public function deleteById($id)
+    {
+        $this->conn = $this->startConnection();
+        $statement = $this->conn->prepare(
+            "DELETE FROM $this->table WHERE id = $id"
         );
         $statement->execute();
         return $statement->fetch();

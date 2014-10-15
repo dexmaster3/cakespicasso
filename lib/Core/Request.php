@@ -16,7 +16,7 @@ class Core_Request
 
     private static function setRequest()
     {
-        self::$request->request_uri = $_SERVER['REQUEST_URI'];
+        self::$request->request_uri = ltrim($_SERVER['REQUEST_URI'], '/');
         self::$request->query = $_SERVER['QUERY_STRING'];
         self::$request->method = $_SERVER['REQUEST_METHOD'];
         self::$request->host = $_SERVER['HTTP_HOST'];
@@ -46,11 +46,10 @@ class Core_Request
     }
 
     /**
-     *
-     * Use magic getters/setters to avoid not set exceptions....
+     * Magic getters/setters to avoid not set exceptions
      * @param null $key
      *
-     * @return null
+     * @return $request->key
      */
     public function __get($key = null){
         return isset(self::$request->$key) ? self::$request->$key : null;

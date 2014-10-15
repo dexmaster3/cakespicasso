@@ -5,33 +5,60 @@ class Cake_Controller_Home extends Core_Controller_BaseController
     public function index($query)
     {
         $employees = new Cake_Model_Employees();
-        $employees->dropTable();
-        $employees->createTable();
-        $employees->addRow(array( 'name' => 'Dex','title' => 'PHP Pro', 'rank' => 'Specialist'));
-        $employees->addRow(array( 'name' => 'Thomas','title' => 'PHP Beginner', 'rank' => 'Private'));
         $this->data->employees = $employees->getAll();
-        //TODO: Change the controller so it doesn't have to be URL capitalized, and finish the view part
 
-        if(isset($query['city'])) {
+        if (isset($query['city'])) {
             $this->data->city = $query['city'];
         }
-        return $this->render($this->data);
+        return $this->render();
     }
-    public function stuff($query)
+    public function seedUsers()
     {
-        //Todo: PDO data fetching here?
-        if (strtolower($query['user']) === "french") {
-            $data = array(
-                'London' => 'CAKES',
-                'United' => 'PICASSO'
-            );
+        $employees = new Cake_Model_Employees();
+        $employees->dropTable();
+        $employees->createTable();
+        $employees->addRow(array('name' => 'Dex', 'title' => 'PHP Pro', 'rank' => 'Specialist'));
+        $employees->addRow(array('name' => 'Thomas', 'title' => 'PHP Beginner', 'rank' => 'Private'));
+        $this->data->employees = $employees->getAll();
+
+        return $this->render();
+    }
+
+    public function deleteUsers()
+    {
+        $employee = new Cake_Model_Employees();
+        $employee->dropTable();
+        $employee->createTable();
+        $this->data->employees = $employee->getAll();
+
+        return $this->render();
+    }
+
+    public function deleteUser($query)
+    {
+        $employee = new Cake_Model_Employees();
+        $employee->deleteById($query['id']);
+        $this->data->employees = $employee->getAll();
+
+        return $this->render();
+    }
+
+    public function newUser($query)
+    {
+        $employee = new Cake_Model_Employees();
+        if (isset($query['name']) && isset($query['title']) && isset($query['rank'])) {
+            $employee->addRow(array(
+                'title' => $query['title'],
+                'rank' => $query['rank'],
+                'name' => $query['name']
+            ));
         }
-        else {
-            $data = array(
-                'London' => "AMERICAN",
-                'Kingdom' => "AMERICA"
-            );
-        }
-        return $this->render($data);
+        $this->data->employees = $employee->getAll();
+        return $this->render();
+    }
+
+    public function addUser()
+    {
+        return $this->render();
     }
 }
