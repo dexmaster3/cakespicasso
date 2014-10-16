@@ -12,7 +12,8 @@ class Core_Model_CustomRoutes extends Core_Model_ModelDriver
     url VARCHAR(255) NOT NULL,
     module VARCHAR(255) NOT NULL,
     controller VARCHAR(255) NOT NULL,
-    action VARCHAR(255) NOT NULL
+    action VARCHAR(255) NOT NULL,
+    remote_id INT NOT NULL
 );";
     }
 }

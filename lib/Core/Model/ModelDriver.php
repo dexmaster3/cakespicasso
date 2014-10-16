@@ -12,23 +12,31 @@ abstract class Core_Model_ModelDriver
         return Core_Database::connect($credentials);
     }
 
+    /**
+     * @param $data Array data that matches SQL columns
+     * @return int added row's ID
+     */
     public function addRow($data)
     {
-        $this->conn = $this->startConnection();
+        if (!empty($data)) {
+            $this->conn = $this->startConnection();
 
-        $table_keys = array_keys($data);
-        $table_values = implode(', ', $table_keys);
-        foreach ($table_keys as &$key) {
-            $key = ":$key";
+            unset($data['id']);
+            $values = ':' . implode(', :', array_keys($data));
+            $keys = implode(', ', array_keys($data));
+            $statement = $this->conn->prepare(
+                "INSERT INTO $this->table ($keys) value ($values);"
+            );
+            $statement->execute($data);
+            $statement = $this->conn->prepare(
+                "SELECT MAX(id) FROM $this->table;"
+            );
+            $statement->execute();
+            $row_id = $statement->fetch();
+            return $row_id[0];
+        } else {
+            return 0;
         }
-        $table_keys = implode(', ', $table_keys);
-
-        $statement = $this->conn->prepare(
-            "INSERT INTO $this->table ($table_values) value ($table_keys);
-LAST_INSERT_ID();"
-        );
-        $statement->execute($data);
-        return $statement->fetch();
     }
 
     public function getAll()
@@ -53,12 +61,26 @@ LAST_INSERT_ID();"
     {
         $this->conn = $this->startConnection();
         $statement = $this->conn->prepare(
-            "DELETE * FROM $this->table WHERE $column = '$value'"
+            "DELETE FROM $this->table WHERE $column = '$value'"
         );
         $statement->execute();
         return $statement->fetchAll();
     }
-
+    public function updateById($id, $data)
+    {
+        $this->conn = $this->startConnection();
+        $new_values = array();
+        foreach ($data as $datak => $datav) {
+            $datav = $this->conn->quote($datav);
+            array_push($new_values, "$datak=$datav");
+        }
+        $new_values = implode(", ", $new_values);
+        $statement = $this->conn->prepare(
+            "UPDATE $this->table SET $new_values WHERE id = $id"
+        );
+        $statement->execute();
+        return $statement->fetch();
+    }
     public function findById($id)
     {
         $this->conn = $this->startConnection();

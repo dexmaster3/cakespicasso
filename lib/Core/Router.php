@@ -32,19 +32,21 @@ class Core_Router
     //ToDo: this will be passed a modules route which contains definitions
     private function findModuleControllerActionDatabase()
     {
+        $request_uri = Core_Request::getRequest()->request_uri;
         $routes = new Core_Model_CustomRoutes();
-        $all_routes = $routes->getAll();
+        $all_routes = $routes->findAllByColumnValue('url', $request_uri);
         foreach($all_routes as $route) {
-            if ($route['url'] === Core_Request::getRequest()->request_uri) {
+            if ($route['url'] === $request_uri) {
                 $location = array(
                     'module' => ucfirst($route['module']),
                     'controller' => ucfirst($route['controller']),
                     'action' => $route['action'],
-                    'params' => Core_Request::getRequest()->parsed_query
+                    'params' => $route['remote_id']
                 );
                 return $location;
             }
         }
+        return null;
     }
     private function findModuleControllerAction()
     {
@@ -85,14 +87,5 @@ class Core_Router
             }
         }
         return $location;
-    }
-    /**
-     * Use magic getters/setters to avoid not set exceptions....
-     * @param null $key
-     *
-     * @return $request->key
-     */
-    public function __get($key = null){
-        return isset(self::$location->$key) ? self::$location->$key : null;
     }
 }

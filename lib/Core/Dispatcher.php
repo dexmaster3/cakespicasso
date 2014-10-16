@@ -33,6 +33,6 @@ class Core_Dispatcher
     public function launchView()
     {
         $action = $this->route['action'];
-        return $this->controller->$action(Core_Request::getRequest()->parsed_query);
+        return $this->controller->$action($this->route['params']);
     }
 }

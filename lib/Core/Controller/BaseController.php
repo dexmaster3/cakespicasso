@@ -30,7 +30,7 @@ abstract class Core_Controller_BaseController
     protected function render($html = null)
     {
         if (!empty($html)) {
-            return $html;
+            echo $html;
         } else {
             require $this->view_file;
             return $this->view_file;

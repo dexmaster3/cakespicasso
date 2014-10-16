@@ -13,11 +13,6 @@ class Core_Database
         }
         return self::$DBH;
     }
-    static public function seedDatabase($dbconn)
-    {
-        $credentials = Core_Config::getConfig()->Core->connection_string;
-        $DBH = self::connect($credentials);
-    }
     static public function setConn($dbconn)
     {
         try {

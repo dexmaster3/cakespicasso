@@ -1,6 +1,6 @@
 <?php
 
-class Seams_Controller_Admin extends Core_Controller_BaseController
+class Pages_Controller_Admin extends Core_Controller_BaseController
 {
     public function index($query)
     {
@@ -12,8 +12,7 @@ class Seams_Controller_Admin extends Core_Controller_BaseController
     }
     public function dropandseedeverything()
     {
-        $pages = new Seams_Model_Pages();
-        $pages->createTable();
-        return "pages table created";
+        $dbseeder = new Core_DatabaseSeeder();
+        $dbseeder->seedDatabase();
     }
 }

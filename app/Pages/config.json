@@ -1,5 +1,5 @@
 {
-    "Seams": {
+    "Pages": {
         "mission": "to provide cms stuff",
         "date" : "Oct 15, 2014",
         "alt_name": "cms",
@@ -11,7 +11,9 @@
             "Pages": {
                 "index": "pages_index.php",
                 "create": "pages_create.php",
-                "createpage": "pages_index.php"
+                "createpage": "pages_index.php",
+                "delete": "pages_index.php",
+                "edit": "pages_create.php"
             }
         },
         "custom_routes": {

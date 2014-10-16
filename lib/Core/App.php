@@ -9,14 +9,10 @@ class Core_App
         Core_Request::getRequest();
         Core_Router::getRoute();
 
-        //Seed Database?
-//        $custom_routes = new Core_Model_CustomRoutes();
-//        $custom_routes->createTable();
-
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
         $dispatcher->setRouteController(); //Use magic setters/getters here
         $dispatcher->setActionView();
-        echo $dispatcher->launchView();
+        $dispatcher->launchView();
     }
 }
