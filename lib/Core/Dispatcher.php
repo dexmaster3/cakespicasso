@@ -2,37 +2,35 @@
 
 class Core_Dispatcher
 {
-    private $route;
-    private $controller;
-
-    public function setRouteController()
+    public function launchView()
     {
-        $this->route = Core_Router::getRoute();
+        $route = Core_Router::getRoute();
+        $controller = $this->createRequestedController($route);
+        $this->setViewForRequest($route, $controller);
 
-        if (class_exists($controller_loc = $this->route['module'] . '_Controller_' . $this->route['controller'])) {
+        $action = $route['action'];
+        return $controller->$action($route['params']);
+    }
+
+    public function createRequestedController($route)
+    {
+        if (class_exists($controller_loc = $route['module'] . '_Controller_' . $route['controller'])) {
             $controller = new $controller_loc;
-            $this->controller = $controller;
-        }
-        else {
+            return $controller;
+        } else {
             echo 'Module->Controller not found';
-            throw new Exception('Module->Controller not found');
+            return new Exception('Module->Controller not found');
         }
     }
-    public function setActionView()
+    public function setViewForRequest($route, $controller)
     {
-        $action = $this->route['action'];
-        if (method_exists($this->controller, $action) && is_callable(array($this->controller, $action))) {
-            $this->controller->setView($action);
+        $action = $route['action'];
+        if (method_exists($controller, $action) && is_callable(array($controller, $action))) {
+            $controller->setView($action);
         }
         else {
             echo 'Module->Controller->action not found';
-            throw new Exception('Module->Controller->action not found');
+            return new Exception('Module->Controller->action not found');
         }
-    }
-
-    public function launchView()
-    {
-        $action = $this->route['action'];
-        return $this->controller->$action($this->route['params']);
     }
 }

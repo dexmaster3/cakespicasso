@@ -7,18 +7,22 @@ abstract class Core_Controller_BaseController
 
     public function setView($action)
     {
+        $config = Core_Config::getConfig();
         $route = Core_Router::getRoute();
+
         $module = $route['module'];
         $controller = $route['controller'];
-        $current_config = Core_Config::getConfig()->$module;
+
+        $current_config = $config->$module;
         $lower_action = strtolower($action);
         $view_for_action = $current_config->views->$controller->$lower_action;
 
+        //ToDo: Abstractify this 4 fun
         if (is_file($view = ROOT . "/app/$module/View/$view_for_action")) {
             $this->view_file = $view;
         }
         else {
-            $no_page = Core_Config::getConfig()->Core->not_found_page;
+            $no_page = $config->Core->not_found_page;
             if (is_file($view = ROOT . "/lib/Core/View/$no_page")) {
                 $this->view_file = $view;
             } else {
@@ -30,9 +34,9 @@ abstract class Core_Controller_BaseController
     protected function render($html = null)
     {
         if (!empty($html)) {
-            echo $html;
+            return $html;
         } else {
-            require $this->view_file;
+            include $this->view_file;
             return $this->view_file;
         }
     }

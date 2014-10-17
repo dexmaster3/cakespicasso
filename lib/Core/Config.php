@@ -21,7 +21,7 @@ class Core_Config
         foreach (explode(PATH_SEPARATOR, get_include_path()) as $path) {
             $config = glob($path . self::$config_names);
             if (!empty($config)) {
-                foreach($config as $single_config) {
+                foreach ($config as $single_config) {
                     $config_data = json_decode(file_get_contents($single_config));
                     foreach ($config_data as $key => $val) {
                         self::$configs->$key = $val;
@@ -29,15 +29,5 @@ class Core_Config
                 }
             }
         }
-    }
-
-    /**
-     * Use magic getters/setters to avoid not set exceptions....
-     * @param null $key
-     *
-     * @return $request->key
-     */
-    public function __get($key = null){
-        return isset(self::$configs->$key) ? self::$configs->$key : null;
     }
 }

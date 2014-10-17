@@ -36,22 +36,10 @@ class Core_Request
         );
         return $url_parts;
     }
+
     private function parseQuery()
     {
-        $parsed_query = null;
-        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        $query = $parsed_url['query'];
-        parse_str($query, $parsed_query);
+        parse_str($_SERVER['QUERY_STRING'], $parsed_query);
         return $parsed_query;
-    }
-
-    /**
-     * Magic getters/setters to avoid not set exceptions
-     * @param null $key
-     *
-     * @return $request->key
-     */
-    public function __get($key = null){
-        return isset(self::$request->$key) ? self::$request->$key : null;
     }
 }

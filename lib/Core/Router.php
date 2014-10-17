@@ -16,23 +16,28 @@ class Core_Router
 
     private static function getRequestPath()
     {
-        $location = self::findModuleControllerAction();
-        if (is_null($location)) {
-            $location = self::findModuleControllerActionDatabase();
+        $app_config = Core_Config::getConfig();
+        $app_request = Core_Request::getRequest();
+
+        $config_match = self::findConfigExactMatch($app_config, $app_request);
+        $db_match = self::findDbExactMatch($app_config, $app_request);
+        $use_request = self::useModuleControllerAction($app_config, $app_request);
+
+        if (isset($config_match)) {
+            self::$location = $config_match;
+        } elseif (isset($db_match)) {
+            self::$location = $db_match;
+        } elseif (isset($use_request)) {
+            self::$location = $use_request;
+        } else {
+            self::$location = false;
         }
-        if (empty($location['module'])) {
-            $location['module'] = 'Index';
-        } elseif (empty($location['controller'])) {
-            $location['controller'] = 'Index';
-        } elseif (empty($location['action'])) {
-            $location['action'] = 'index';
-        }
-        self::$location = $location;
+
+        self::setDefaultIndex();
     }
-    //ToDo: this will be passed a modules route which contains definitions
-    private function findModuleControllerActionDatabase()
+    private function findDbExactMatch($app_config, $app_request)
     {
-        $request_uri = Core_Request::getRequest()->request_uri;
+        $request_uri = $app_request->request_uri;
         $routes = new Core_Model_CustomRoutes();
         $all_routes = $routes->findAllByColumnValue('url', $request_uri);
         foreach($all_routes as $route) {
@@ -48,13 +53,34 @@ class Core_Router
         }
         return null;
     }
-    private function findModuleControllerAction()
+    private function findConfigExactMatch($app_config, $app_request)
     {
-        $request_parts = Core_Request::getRequest()->parsed_url;
-        $request_query = Core_Request::getRequest()->parsed_query;
-        $location = null;
-        foreach (Core_Config::getConfig() as $configk => $configv) {
+        $request_uri = $app_request->request_uri;
+        $request_query = $app_request->parsed_query;
+        foreach ($app_config as $configk => $configv) {
+            if (isset($configv->custom_routes)) {
+                foreach ($configv->custom_routes as $routek => $routev) {
+                    if (strtolower($routek) === strtolower($request_uri)) {
+                        $location = array(
+                            'module' => ucfirst($routev->module),
+                            'controller' => ucfirst($routev->controller),
+                            'action' => $routev->action,
+                            'params' => $request_query
+                        );
+                        return $location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    private function useModuleControllerAction($app_config, $app_request)
+    {
+        $request_parts = $app_request->parsed_url;
+        $request_query = $app_request->parsed_query;
+        foreach ($app_config as $configk => $configv) {
             if (isset($configv->alt_name)) {
+                //Use alternate name
                 if (strtolower($configv->alt_name) === strtolower($request_parts['module'])) {
                     $location = array(
                         'module' => ucfirst($configk),
@@ -62,8 +88,10 @@ class Core_Router
                         'action' => $request_parts['action'],
                         'params' => $request_query
                     );
+                    return $location;
                 }
             } else {
+                //Use regular Module name
                 if (strtolower($configk) === strtolower($request_parts['module'])) {
                     $location = array(
                         'module' => ucfirst($configk),
@@ -71,21 +99,22 @@ class Core_Router
                         'action' => $request_parts['action'],
                         'params' => $request_query
                     );
-                }
-            }
-            if (isset($configv->custom_routes)) {
-                foreach($configv->custom_routes as $routek => $routev) {
-                    if (strtolower($routek) === strtolower(Core_Request::getRequest()->request_uri)) {
-                        $location = array(
-                            'module' => ucfirst($routev->module),
-                            'controller' => ucfirst($routev->controller),
-                            'action' => $routev->action,
-                            'params' => $request_query
-                        );
-                    }
+                    return $location;
                 }
             }
         }
-        return $location;
+        return null;
+    }
+    private function setDefaultIndex()
+    {
+        if (self::$location) {
+            if (empty(self::$location['module'])) {
+                self::$location['module'] = 'Index';
+            } elseif (empty(self::$location['controller'])) {
+                self::$location['controller'] = 'Index';
+            } elseif (empty(self::$location['action'])) {
+                self::$location['action'] = 'index';
+            }
+        }
     }
 }

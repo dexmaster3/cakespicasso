@@ -2,17 +2,19 @@
 
 class Core_App
 {
+    protected $app_config;
+    protected $app_request;
+    protected $app_router;
+
     public function run()
     {
         //Set Config/Request/Router for this http request
-        Core_Config::getConfig();
-        Core_Request::getRequest();
-        Core_Router::getRoute();
+        $this->app_config = Core_Config::getConfig();
+        $this->app_request = Core_Request::getRequest();
+        $this->app_router = Core_Router::getRoute();
 
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
-        $dispatcher->setRouteController(); //Use magic setters/getters here
-        $dispatcher->setActionView();
         $dispatcher->launchView();
     }
 }
