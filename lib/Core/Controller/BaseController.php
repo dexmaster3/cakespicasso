@@ -17,7 +17,7 @@ abstract class Core_Controller_BaseController
         $lower_action = strtolower($action);
         $view_for_action = $current_config->views->$controller->$lower_action;
 
-        //ToDo: Abstractify this 4 fun
+        //ToDo: Abstractify PLS!
         if (is_file($view = ROOT . "/app/$module/View/$view_for_action")) {
             $this->view_file = $view;
         }

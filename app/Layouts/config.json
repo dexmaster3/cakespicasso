@@ -18,6 +18,9 @@
                 "controller": "Pages",
                 "action": "Index"
             }
-        }
+        },
+        "model_seeds": [
+            "Layouts_Model_Layout"
+        ]
     }
 }
