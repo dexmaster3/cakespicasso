@@ -34,10 +34,9 @@ abstract class Core_Controller_BaseController
     protected function render($html = null)
     {
         if (!empty($html)) {
-            return $html;
+            return array($template = false, $html);
         } else {
-            include $this->view_file;
-            return $this->view_file;
+            return array($template = true, $this->view_file, $this->data);
         }
     }
 }

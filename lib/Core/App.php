@@ -6,6 +6,8 @@ class Core_App
     protected $app_request;
     protected $app_router;
 
+    protected $data;
+
     public function run()
     {
         //Set Config/Request/Router for this http request
@@ -15,6 +17,6 @@ class Core_App
 
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
-        $dispatcher->launchView();
+        $dispatcher->getView();
     }
 }

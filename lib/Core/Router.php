@@ -113,7 +113,7 @@ class Core_Router
             } elseif (empty(self::$location['controller'])) {
                 self::$location['controller'] = 'Index';
             } elseif (empty(self::$location['action'])) {
-                self::$location['action'] = 'index';
+                self::$location['action'] = 'Index';
             }
         }
     }

@@ -11,7 +11,8 @@ class Core_DatabaseSeeder
 
         $models = array(
             'Core_Model_CustomRoutes',
-            'Pages_Model_Pages'
+            'Pages_Model_Pages',
+            'Layouts_Model_Layout'
         );
 
         foreach($models as $model) {

@@ -2,14 +2,21 @@
 
 class Core_Dispatcher
 {
-    public function launchView()
+    public function getView()
     {
         $route = Core_Router::getRoute();
         $controller = $this->createRequestedController($route);
         $this->setViewForRequest($route, $controller);
 
         $action = $route['action'];
-        return $controller->$action($route['params']);
+        $result = $controller->$action($route['params']);
+        if ($result[0]) {
+            $this->data = $result[2];
+            include $result[1];
+        }
+        else {
+            echo html_entity_decode($result[1]);
+        }
     }
 
     public function createRequestedController($route)
