@@ -1,6 +1,6 @@
 <?php
 
-class Pages_Model_Pages extends Core_Model_ModelDriver
+class Pages_Model_Pages extends DB_Model_ModelDriver
 {
     protected $table = 'pages';
 

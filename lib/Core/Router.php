@@ -37,21 +37,27 @@ class Core_Router
     }
     private function findDbExactMatch($app_config, $app_request)
     {
-        $request_uri = $app_request->request_uri;
-        $routes = new Core_Model_CustomRoutes();
-        $all_routes = $routes->findAllByColumnValue('url', $request_uri);
-        foreach($all_routes as $route) {
-            if ($route['url'] === $request_uri) {
-                $location = array(
-                    'module' => ucfirst($route['module']),
-                    'controller' => ucfirst($route['controller']),
-                    'action' => $route['action'],
-                    'params' => $route['remote_id']
-                );
-                return $location;
+        try {
+            $request_uri = $app_request->request_uri;
+            $routes = new DB_Model_CustomRoutes();
+            $all_routes = $routes->findAllByColumnValue('url', $request_uri);
+            foreach ($all_routes as $route) {
+                if ($route['url'] === $request_uri) {
+                    $location = array(
+                        'module' => ucfirst($route['module']),
+                        'controller' => ucfirst($route['controller']),
+                        'action' => $route['action'],
+                        'params' => $route['remote_id']
+                    );
+                    return $location;
+                }
             }
+            return null;
         }
-        return null;
+        catch (Exception $ex) {
+            echo $ex->getMessage();
+            return null;
+        }
     }
     private function findConfigExactMatch($app_config, $app_request)
     {

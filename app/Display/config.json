@@ -2,14 +2,10 @@
     "Display": {
         "mission": "to provide cms stuff",
         "date" : "Oct 15, 2014",
-        "alt_name": "display",
         "views" : {
             "Display": {
                 "index": "index.php",
-                "create": "create.php",
-                "createpage": "pages_index.php",
-                "delete": "pages_index.php",
-                "edit": "pages_create.php"
+                "create": "create.php"
             }
         },
         "custom_routes": {

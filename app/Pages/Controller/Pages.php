@@ -6,7 +6,7 @@ class Pages_Controller_Pages extends Core_Controller_BaseController
     {
         if (Core_Request::getRequest()->method === "POST") {
                 $pages = new Pages_Model_Pages();
-                $routes = new Core_Model_CustomRoutes();
+                $routes = new DB_Model_CustomRoutes();
                 $_POST['page_html'] = htmlentities($_POST['page_html']);
             if (!$_POST['id'] > 0) {
                 $page_id = $pages->addRow($_POST);
@@ -55,7 +55,7 @@ class Pages_Controller_Pages extends Core_Controller_BaseController
     {
         $pages = new Pages_Model_Pages();
         $pages->deleteById($params['id']);
-        $cust_routes = new Core_Model_CustomRoutes();
+        $cust_routes = new DB_Model_CustomRoutes();
         $cust_routes->deleteAllByColumnValue('remote_id', $params['id']);
         return $this->index();
     }

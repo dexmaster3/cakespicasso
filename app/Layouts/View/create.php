@@ -30,7 +30,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/layout/layout/index" method="post">
+                    <form action="/layout/layout/post" method="post">
                         <div class="form-group">
                             <label for="page_name">Layout Name</label>
                             <input type="text" class="form-control" id="layout_name" name="layout_name" placeholder="Layout name" value="<?= $this->data->page['layout_name']?>">

@@ -1,6 +1,6 @@
 <?php
 
-class Layouts_Model_Layout extends Core_Model_ModelDriver
+class Layouts_Model_Layout extends DB_Model_ModelDriver
 {
     protected $table = 'layouts';
 

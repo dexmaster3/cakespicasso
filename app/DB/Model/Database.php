@@ -1,6 +1,6 @@
 <?php
 
-class Core_Database
+class DB_Model_Database
 {
     static private $initialized = false;
     static private $DBH;

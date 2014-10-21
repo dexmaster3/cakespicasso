@@ -1,6 +1,6 @@
 <?php
 
-abstract class Core_Model_ModelDriver
+abstract class DB_Model_ModelDriver
 {
     protected $data;
     protected $name;
@@ -8,8 +8,8 @@ abstract class Core_Model_ModelDriver
 
     protected function startConnection()
     {
-        $credentials = Core_Config::getConfig()->Core->connection_string;
-        return Core_Database::connect($credentials);
+        $credentials = Core_Config::getConfig()->DB->connection_string;
+        return DB_Model_Database::connect($credentials);
     }
 
     /**
@@ -19,10 +19,10 @@ abstract class Core_Model_ModelDriver
     public function addRow($data)
     {
         try {
-            if (!empty($data)) {
+            if (!($data['id'] > 0)) {
+                unset($data['id']);
                 $this->conn = $this->startConnection();
 
-                unset($data['id']);
                 $values = ':' . implode(', :', array_keys($data));
                 $keys = implode(', ', array_keys($data));
                 $statement = $this->conn->prepare(
@@ -36,7 +36,7 @@ abstract class Core_Model_ModelDriver
                 $row_id = $statement->fetch();
                 return $row_id[0];
             } else {
-                return 0;
+                return $this->updateById($data['id'], $data);
             }
         }
         catch(PDOException $ex) {

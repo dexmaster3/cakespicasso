@@ -13,8 +13,10 @@ class Core_App
         //Set Config/Request/Router for this http request
         $this->app_config = Core_Config::getConfig();
 
-        $database = new DB_Model_Seed();
-        $database->initializeDatabase($this->app_config->Core->createdb);
+        if (class_exists("DB_Model_Seed")) {
+            $database = new DB_Model_Seed();
+            $database->initializeDatabase();
+        }
 
         $this->app_request = Core_Request::getRequest();
         $this->app_router = Core_Router::getRoute();

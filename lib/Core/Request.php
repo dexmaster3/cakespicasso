@@ -22,6 +22,20 @@ class Core_Request
         self::$request->host = $_SERVER['HTTP_HOST'];
         self::$request->parsed_url = self::parseUrl();
         self::$request->parsed_query = self::parseQuery();
+        self::$request->post = self::parsePost();
+    }
+
+    private function parsePost()
+    {
+        if (!empty($_POST)) {
+            $post_content = array();
+            foreach ($_POST as $postk => $postv) {
+                $post_content[$postk] = $postv;
+            }
+            return $post_content;
+        } else {
+            return null;
+        }
     }
 
     private function parseUrl()

@@ -1,6 +1,6 @@
 <?php
 
-class Core_Model_CustomRoutes extends Core_Model_ModelDriver
+class DB_Model_CustomRoutes extends DB_Model_ModelDriver
 {
     protected $table = 'custom_routes';
 

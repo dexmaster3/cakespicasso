@@ -36,7 +36,7 @@ class Core_Autoloader
             if (stream_resolve_include_path($file)) {
                 include $file;
             } else {
-                throw new Exception('File does not exist');
+                throw new Exception('Autoloaded file/class does not exist');
             }
         } catch (Exception $e) {
             die($e->getMessage());
