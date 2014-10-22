@@ -32,7 +32,7 @@
                         <tr>
                             <th>Layout Name</th>
                             <th>Layout HTML</th>
-                            <th>Layout Parent ID</th>
+                            <th style="display: none;">Layout Parent ID</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -40,19 +40,19 @@
                         <?php foreach($this->data->layouts as $layout): ?>
                             <tr>
                                 <td>
-                                    <?= $layout['layout_name'] ?>
+                                    <a href="/display/display/layout?id=<?= $layout['id'] ?>" class="btn btn-success"><?= $layout['layout_name'] ?></a>
                                 </td>
                                 <td>
                                     <?= $layout['layout_content'] ?>
                                 </td>
-                                <td>
+                                <td style="display: none;">
                                     <?= $layout['layout_parent'] ?>
                                 </td>
                                 <td>
-                                    <a href="/cms/layout/edit?id=<?= $layout['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="/layout/layout/edit?id=<?= $layout['id'] ?>" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="/cms/layout/delete?id=<?= $layout['id'] ?>" class="btn btn-danger">Delete</a>
+                                    <a href="/layout/layout/delete?id=<?= $layout['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

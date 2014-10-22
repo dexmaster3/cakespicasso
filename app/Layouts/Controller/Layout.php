@@ -6,7 +6,7 @@ class Layouts_Controller_Layout extends Core_Controller_BaseController
     {
         $layouts = new Layouts_Model_Layout();
         $this->data->layouts = $layouts->getAll();
-        return $this->render();
+        return $this->render(null, __FUNCTION__);
     }
 
     public function post()

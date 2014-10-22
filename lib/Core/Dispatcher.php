@@ -33,7 +33,7 @@ class Core_Dispatcher
     {
         $action = $route['action'];
         if (method_exists($controller, $action) && is_callable(array($controller, $action))) {
-            $controller->setView($action);
+            //pass
         }
         else {
             echo 'Module->Controller->action not found';
