@@ -24,6 +24,6 @@ class Core_App
 
         //Grab relevant deployment
         $dispatcher = new Core_Dispatcher();
-        $dispatcher->getView();
+        echo $dispatcher->completeRequest();
     }
 }

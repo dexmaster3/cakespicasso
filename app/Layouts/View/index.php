@@ -1,10 +1,3 @@
-<?php require 'head.php'?>
-
-<body>
-
-<div id="wrapper">
-    <?php include 'navbar.php' ?>
-
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -49,10 +42,10 @@
                                     <?= $layout['layout_parent'] ?>
                                 </td>
                                 <td>
-                                    <a href="/layout/layout/edit?id=<?= $layout['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="/admin/admin/layouts?action=edit&id=<?= $layout['id'] ?>" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="/layout/layout/delete?id=<?= $layout['id'] ?>" class="btn btn-danger">Delete</a>
+                                    <a href="/admin/admin/layouts?action=delete&id=<?= $layout['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -66,15 +59,3 @@
     </div>
     <!-- /#page-wrapper -->
 
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery Version 1.11.0 -->
-<script src="/assets/js/jquery-1.11.0.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/assets/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>

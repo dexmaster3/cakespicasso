@@ -6,7 +6,7 @@ class Layouts_Controller_Layout extends Core_Controller_BaseController
     {
         $layouts = new Layouts_Model_Layout();
         $this->data->layouts = $layouts->getAll();
-        return $this->render(null, __FUNCTION__);
+        return $this->render(__FUNCTION__);
     }
 
     public function post()
@@ -15,29 +15,23 @@ class Layouts_Controller_Layout extends Core_Controller_BaseController
         $layouts = new Layouts_Model_Layout();
         $post['layout_content'] = htmlentities($post['layout_content']);
         $layouts->addRow($post);
-        return $this->index();
+        return $this->index(__FUNCTION__);
     }
 
     public function edit($params)
     {
         $layout = new Layouts_Model_Layout();
         $this->data->page = $layout->findById($params['id']);
-        return $this->render();
+        return $this->render(__FUNCTION__);
     }
 
     public function create()
     {
-        return $this->render();
+        return $this->render(__FUNCTION__);
     }
 
     public function blank()
     {
-        return $this->render();
-    }
-
-    public function dropandseedeverything()
-    {
-        $dbseeder = new DB_Model_Seed();
-        $dbseeder->initializeDatabase(true);
+        return $this->render(__FUNCTION__);
     }
 }

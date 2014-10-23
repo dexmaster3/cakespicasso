@@ -5,7 +5,8 @@
         "alt_name": "admin",
         "views" : {
             "Admin": {
-                "index": "index.php"
+                "index": "index.php",
+                "layouts": "index.php"
             }
         },
         "custom_routes": {

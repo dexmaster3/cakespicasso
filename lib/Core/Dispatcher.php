@@ -2,20 +2,18 @@
 
 class Core_Dispatcher
 {
-    public function getView()
+    public function completeRequest()
     {
         $route = Core_Router::getRoute();
-        $controller = $this->createRequestedController($route);
-        $this->setViewForRequest($route, $controller);
-
         $action = $route['action'];
-        $result = $controller->$action($route['params']);
-        if ($result[0]) {
-            $this->data = $result[2];
-            include $result[1];
-        }
-        else {
-            echo html_entity_decode($result[1]);
+
+        $controller = $this->createRequestedController($route);
+        $valid_action = $this->checkValidControllerAction($action, $controller);
+
+        if ($valid_action) {
+            //Calling our actual requested controller action
+            $result = $controller->$action($route['params']);
+            return $result;
         }
     }
 
@@ -29,15 +27,14 @@ class Core_Dispatcher
             return new Exception('Module->Controller not found');
         }
     }
-    public function setViewForRequest($route, $controller)
+
+    public function checkValidControllerAction($action, $controller)
     {
-        $action = $route['action'];
         if (method_exists($controller, $action) && is_callable(array($controller, $action))) {
-            //pass
-        }
-        else {
+            return true;
+        } else {
             echo 'Module->Controller->action not found';
-            return new Exception('Module->Controller->action not found');
+            return false;
         }
     }
 }
