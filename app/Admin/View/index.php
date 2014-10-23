@@ -157,6 +157,7 @@
     </nav>
 
     {{body_content}}
+
 </div>
 <!-- /#wrapper -->
 
