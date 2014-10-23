@@ -5,8 +5,13 @@ class Layouts_Controller_Layout extends Core_Controller_BaseController
     public function index()
     {
         $layouts = new Layouts_Model_Layout();
+        $admin = new Admin_Controller_Admin();
         $this->data->layouts = $layouts->getAll();
-        return $this->render(__FUNCTION__);
+
+        $layout_html = $this->render(__FUNCTION__);
+        $admin_html = $admin->index();
+        $return_html = Admin_AdminHelper::insertBodyContent($admin_html, $layout_html);
+        return $return_html;
     }
 
     public function post()
