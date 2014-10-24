@@ -30,8 +30,7 @@ class Core_Config
                     }
                 }
             }
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             echo $ex->getMessage();
             echo "Check that your config files are valid";
         }

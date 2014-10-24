@@ -55,7 +55,7 @@ abstract class Core_Controller_BaseController
             ob_end_clean();
             return $html_string;
         } else {
-            echo "No view found for that action, check module config";
+            return "No view found for that action, check module config";
         }
     }
 }

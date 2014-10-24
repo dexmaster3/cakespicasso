@@ -1,20 +1,17 @@
 <?php
 
-class Layouts_Controller_Layout extends Core_Controller_BaseController
+class Layouts_Controller_Layout extends Users_Controller_BaseAuth
 {
-    public function index()
+    protected function index()
     {
         $layouts = new Layouts_Model_Layout();
-        $admin = new Admin_Controller_Admin();
         $this->data->layouts = $layouts->getAll();
 
         $layout_html = $this->render(__FUNCTION__);
-        $admin_html = $admin->index();
-        $return_html = Admin_AdminHelper::insertBodyContent($admin_html, $layout_html);
-        return $return_html;
+        return $layout_html;
     }
 
-    public function post()
+    protected function post()
     {
         $post = Core_Request::getRequest()->post;
         $layouts = new Layouts_Model_Layout();
@@ -23,19 +20,14 @@ class Layouts_Controller_Layout extends Core_Controller_BaseController
         return $this->index(__FUNCTION__);
     }
 
-    public function edit($params)
+    protected function edit($params)
     {
         $layout = new Layouts_Model_Layout();
         $this->data->page = $layout->findById($params['id']);
         return $this->render(__FUNCTION__);
     }
 
-    public function create()
-    {
-        return $this->render(__FUNCTION__);
-    }
-
-    public function blank()
+    protected function create()
     {
         return $this->render(__FUNCTION__);
     }

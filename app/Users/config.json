@@ -1,25 +1,25 @@
 {
     "Users": {
         "mission": "to provide user auth and stuff",
-        "date" : "Oct 23, 2014",
+        "date": "Oct 23, 2014",
         "alt_name": "users",
-        "views" : {
+        "views": {
             "User": {
                 "index": "index.php",
                 "register": "index.php",
-                "login": "index.php"
+                "login": "index.php",
+                "logout": "index.php"
             }
         },
         "custom_routes": {
-            "my-custom-json": {
-                "module": "Pages",
-                "controller": "Pages",
-                "action": "Index"
+            "ROOT_REQUEST": {
+                "module": "Users",
+                "controller": "User",
+                "action": "index"
             }
         },
         "model_seeds": {
-            "Users_Model_User": [
-            ]
+            "Users_Model_User": []
         }
     }
 }

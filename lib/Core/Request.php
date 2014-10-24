@@ -16,13 +16,22 @@ class Core_Request
 
     private static function setRequest()
     {
-        self::$request->request_uri = ltrim($_SERVER['REQUEST_URI'], '/');
+        self::$request->request_uri = self::requestUri();
         self::$request->query = $_SERVER['QUERY_STRING'];
         self::$request->method = $_SERVER['REQUEST_METHOD'];
         self::$request->host = $_SERVER['HTTP_HOST'];
         self::$request->parsed_url = self::parseUrl();
         self::$request->parsed_query = self::parseQuery();
         self::$request->post = self::parsePost();
+    }
+
+    private function requestUri()
+    {
+        $uri = ltrim($_SERVER['REQUEST_URI'], '/');
+        if (empty($uri)) {
+            $uri = "ROOT_REQUEST";
+        }
+        return $uri;
     }
 
     private function parsePost()
@@ -48,6 +57,9 @@ class Core_Request
             "controller" => $url[1],
             "action" => $url[2]
         );
+        if (empty($url[0])) {
+            $url_parts = false;
+        }
         return $url_parts;
     }
 

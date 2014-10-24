@@ -32,42 +32,22 @@
 <section id="login">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-xs-12">
                 <div class="form-wrap">
-                    <h1>Registration Form</h1>
-                    <form role="form" action="/users/user/register" method="post" id="login-form" autocomplete="off">
-                        <div class="form-group">
-                            <label for="username" class="sr-only">Email</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="sr-only">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                            <span class="character-checkbox" onclick="showPassword()"></span>
-                            <span class="label">Show password</span>
-                        </div>
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
-                    </form>
-                    <hr>
-                </div>
-            </div> <!-- /.col-md-6 -->
-            <div class="col-md-6">
-                <div class="form-wrap">
-                    <h1>Log In Form</h1>
+                    <h1 id="login-title">Login Form</h1>
+                    <? if (!empty($this->data->message)): ?>
+                        <div class="alert <?= $this->data->message_type ?>"><?= $this->data->message ?></div>
+                    <? endif; ?>
                     <form role="form" action="/users/user/login" method="post" id="login-form" autocomplete="off">
-                        <div class="form-group">
+                        <div class="form-group" id="add-after">
                             <label for="username" class="sr-only">Email</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                            <input type="text" name="username" id="username" class="form-control"
+                                   placeholder="Username">
                         </div>
                         <div class="form-group">
                             <label for="password" class="sr-only">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" id="password" class="form-control"
+                                   placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <span class="character-checkbox" onclick="showPassword()"></span>
@@ -75,11 +55,16 @@
                         </div>
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
                     </form>
+                    <div id="change-form"><a id="change-form-button" onclick="changeForm()">Free Registration Here</a>
+                    </div>
                     <hr>
                 </div>
-            </div> <!-- /.col-md-6 -->
-        </div> <!-- /.row -->
-    </div> <!-- /.container -->
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
 </section>
 
 <footer id="footer">
@@ -92,6 +77,7 @@
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/login.js"></script>
 </body>
 </html>

@@ -29,12 +29,10 @@ class Core_Router
             self::$location = $db_match;
         } elseif (isset($use_request)) {
             self::$location = $use_request;
-        } else {
-            self::$location = false;
         }
-
         self::setDefaultIndex();
     }
+
     private function findDbExactMatch($app_config, $app_request)
     {
         try {
@@ -53,12 +51,12 @@ class Core_Router
                 }
             }
             return null;
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             echo $ex->getMessage();
             return null;
         }
     }
+
     private function findConfigExactMatch($app_config, $app_request)
     {
         $request_uri = $app_request->request_uri;
@@ -66,6 +64,7 @@ class Core_Router
         foreach ($app_config as $configk => $configv) {
             if (isset($configv->custom_routes)) {
                 foreach ($configv->custom_routes as $routek => $routev) {
+                    //ToDo find a better way to handle root requests
                     if (strtolower($routek) === strtolower($request_uri)) {
                         $location = array(
                             'module' => ucfirst($routev->module),
@@ -80,6 +79,7 @@ class Core_Router
         }
         return null;
     }
+
     private function useModuleControllerAction($app_config, $app_request)
     {
         $request_parts = $app_request->parsed_url;
@@ -111,16 +111,17 @@ class Core_Router
         }
         return null;
     }
+
     private function setDefaultIndex()
     {
-        if (self::$location) {
-            if (empty(self::$location['module'])) {
-                self::$location['module'] = 'Index';
-            } elseif (empty(self::$location['controller'])) {
-                self::$location['controller'] = 'Index';
-            } elseif (empty(self::$location['action'])) {
-                self::$location['action'] = 'Index';
-            }
+        if (empty(self::$location['module'])) {
+            self::$location['module'] = 'Index';
+        }
+        if (empty(self::$location['controller'])) {
+            self::$location['controller'] = 'Index';
+        }
+        if (empty(self::$location['action'])) {
+            self::$location['action'] = 'Index';
         }
     }
 }

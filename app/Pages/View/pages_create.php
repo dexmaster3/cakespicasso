@@ -1,4 +1,4 @@
-<?php require 'head.php'?>
+<?php require 'head.php' ?>
 
 <body>
 
@@ -18,7 +18,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i>  <a href="/cms/admin/index">Dashboard</a>
+                            <i class="fa fa-dashboard"></i> <a href="/cms/admin/index">Dashboard</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-file"></i> Blank Page
@@ -33,19 +33,23 @@
                     <form action="/cms/pages/index" method="post">
                         <div class="form-group">
                             <label for="page_name">Page Name</label>
-                            <input type="text" class="form-control" id="page_name" name="page_name" placeholder="Page name" value="<?= $this->data->page['page_name']?>">
+                            <input type="text" class="form-control" id="page_name" name="page_name"
+                                   placeholder="Page name" value="<?= $this->data->page['page_name'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="page_url">Page Url</label>
-                            <input type="text" class="form-control" id="page_url" name="page_url" placeholder="Page url" value="<?= $this->data->page['page_url']?>">
+                            <input type="text" class="form-control" id="page_url" name="page_url" placeholder="Page url"
+                                   value="<?= $this->data->page['page_url'] ?>">
                         </div>
                         <div class="form-group hidden" style="display: none;">
                             <label for="page_url">Page Url</label>
-                            <input type="text" class="form-control" id="page_url" name="id" value="<?= $this->data->page['id']?>">
+                            <input type="text" class="form-control" id="page_url" name="id"
+                                   value="<?= $this->data->page['id'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="page_html">Page Content</label>
-                            <textarea type="text" class="form-control" id="page_html" name="page_html" placeholder="Page content"><?= $this->data->page['page_html'] ?></textarea>
+                            <textarea type="text" class="form-control" id="page_html" name="page_html"
+                                      placeholder="Page content"><?= $this->data->page['page_html'] ?></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Page</button>
                     </form>

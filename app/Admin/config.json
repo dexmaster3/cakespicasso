@@ -1,19 +1,11 @@
 {
     "Admin": {
         "mission": "to provide cms back end",
-        "date" : "Oct 22, 2014",
+        "date": "Oct 22, 2014",
         "alt_name": "admin",
-        "views" : {
+        "views": {
             "Admin": {
-                "index": "index.php",
-                "layouts": "index.php"
-            }
-        },
-        "custom_routes": {
-            "database-seeder": {
-                "module": "Cake",
-                "controller": "Home",
-                "action": "seedusers"
+                "index": "index.php"
             }
         }
     }

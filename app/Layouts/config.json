@@ -1,9 +1,8 @@
 {
     "Layouts": {
         "mission": "to provide cms stuff",
-        "date" : "Oct 15, 2014",
-        "alt_name": "layout",
-        "views" : {
+        "date": "Oct 15, 2014",
+        "views": {
             "Layout": {
                 "index": "index.php",
                 "create": "create.php",

@@ -2,12 +2,13 @@
 
 class Admin_Controller_Admin extends Core_Controller_BaseController
 {
+    /**
+     * This is the main admin layout that gets rendered over any admin content
+     * @param null $query
+     * @return string the Admin html frame
+     */
     public function index($query = null)
     {
-        if(Users_UserHelper::checkAuth()) {
-            return $this->render(__FUNCTION__);
-        } else {
-            return "Login Authentication Error";
-        }
+        return $this->render(__FUNCTION__);
     }
 }

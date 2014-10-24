@@ -38,8 +38,7 @@ abstract class DB_Model_ModelDriver
             } else {
                 return $this->updateById($data['id'], $data);
             }
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
@@ -54,12 +53,12 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetchAll();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function findAllByColumnValue($column, $value)
     {
         try {
@@ -69,12 +68,12 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetchAll();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function deleteAllByColumnValue($column, $value)
     {
         try {
@@ -84,12 +83,12 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetchAll();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function updateById($id, $data)
     {
         try {
@@ -105,12 +104,12 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetch();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function findById($id)
     {
         try {
@@ -120,12 +119,12 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetch();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function deleteById($id)
     {
         try {
@@ -135,8 +134,7 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->fetch();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
@@ -150,20 +148,19 @@ abstract class DB_Model_ModelDriver
                 "DROP TABLE $this->table"
             );
             return $statement->execute();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }
     }
+
     public function createTable()
     {
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare($this->getSchema());
             return $statement->execute();
-        }
-        catch(PDOException $ex) {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
         }

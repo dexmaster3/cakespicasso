@@ -128,11 +128,11 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li <?php if(stripos($_SERVER['REQUEST_URI'], "/cms/pages") !== false): echo 'class="active"'; endif; ?> >
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/cms/pages") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/cms/pages"><i class="fa fa-fw fa-file"></i> Pages</a>
             </li>
-            <li <?php if(stripos($_SERVER['REQUEST_URI'], "/layout/layout") !== false): echo 'class="active"'; endif; ?> >
-                <a href="/layout/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/layouts/layout") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/layouts/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>

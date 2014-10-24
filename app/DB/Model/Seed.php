@@ -20,7 +20,7 @@ class DB_Model_Seed extends DB_Model_ModelDriver
                         $modelinstance->dropTable();
                         $modelinstance->createTable();
                         foreach ($modelv as $row) {
-                            $row_array = (array) $row;
+                            $row_array = (array)$row;
                             $modelinstance->addRow($row_array);
                         }
                     }
@@ -32,7 +32,7 @@ class DB_Model_Seed extends DB_Model_ModelDriver
             $core_config = null;
             $core_config->DB = $config->DB;
             $new_core_config_file = json_encode($core_config, JSON_PRETTY_PRINT);
-            $write_success = file_put_contents(ROOT. '/app/DB/config.json', $new_core_config_file);
+            $write_success = file_put_contents(ROOT . '/app/DB/config.json', $new_core_config_file);
             return $write_success;
         } else {
             return false;

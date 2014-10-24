@@ -1,4 +1,4 @@
-<?php require 'head.php'?>
+<?php require 'head.php' ?>
 
 <body>
 
@@ -37,24 +37,24 @@
                             <th>Delete</th>
                         </tr>
                         </thead>
-                        <?php foreach($this->data->pages as $page): ?>
-                        <tr>
-                            <td>
-                            <?= $page['page_name'] ?>
-                            </td>
-                            <td>
-                            <?= $page['page_url'] ?>
-                            </td>
-                            <td>
-                            <?= $page['page_html'] ?>
-                            </td>
-                            <td>
-                                <a href="/cms/pages/edit?id=<?= $page['id'] ?>" class="btn btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                <a href="/cms/pages/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
+                        <?php foreach ($this->data->pages as $page): ?>
+                            <tr>
+                                <td>
+                                    <?= $page['page_name'] ?>
+                                </td>
+                                <td>
+                                    <?= $page['page_url'] ?>
+                                </td>
+                                <td>
+                                    <?= $page['page_html'] ?>
+                                </td>
+                                <td>
+                                    <a href="/cms/pages/edit?id=<?= $page['id'] ?>" class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="/cms/pages/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </table>
                 </div>

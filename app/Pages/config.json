@@ -1,9 +1,9 @@
 {
     "Pages": {
         "mission": "to provide cms stuff",
-        "date" : "Oct 15, 2014",
+        "date": "Oct 15, 2014",
         "alt_name": "cms",
-        "views" : {
+        "views": {
             "Admin": {
                 "index": "index.php",
                 "blank": "blank.php"
