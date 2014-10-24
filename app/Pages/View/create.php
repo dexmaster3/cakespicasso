@@ -1,10 +1,3 @@
-<?php require 'head.php' ?>
-
-<body>
-
-<div id="wrapper">
-    <?php include 'navbar.php' ?>
-
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -27,7 +20,6 @@
                 </div>
             </div>
             <!-- /.row -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <form action="/cms/pages/index" method="post">
@@ -61,16 +53,3 @@
 
     </div>
     <!-- /#page-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery Version 1.11.0 -->
-<script src="/assets/js/jquery-1.11.0.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/assets/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>

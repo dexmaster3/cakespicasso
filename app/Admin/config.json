@@ -5,7 +5,10 @@
         "alt_name": "admin",
         "views": {
             "Admin": {
-                "index": "index.php"
+                "index": "layout.php"
+            },
+            "Dashboard": {
+                "index": "dashboard.php"
             }
         }
     }

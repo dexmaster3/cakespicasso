@@ -1,8 +1,8 @@
 <?php
 
-class Pages_Controller_Pages extends Core_Controller_BaseController
+class Pages_Controller_Pages extends Users_Controller_BaseAuth
 {
-    public function index()
+    protected function index()
     {
         if (Core_Request::getRequest()->method === "POST") {
             $pages = new Pages_Model_Pages();
@@ -36,31 +36,35 @@ class Pages_Controller_Pages extends Core_Controller_BaseController
         }
     }
 
-    public function show($id)
+    protected function show($id)
     {
         $pages = new Pages_Model_Pages();
         $this->data->page = $pages->findById($id);
         return $this->render($this->data->page['page_html']);
     }
 
-    public function create()
+    protected function create()
     {
         return $this->render();
     }
 
-    public function edit($params)
+    protected function edit($params)
     {
         $pages = new Pages_Model_Pages();
         $this->data->page = $pages->findById($params['id']);
         return $this->render();
     }
 
-    public function delete($params)
+    protected function delete($params)
     {
         $pages = new Pages_Model_Pages();
         $pages->deleteById($params['id']);
         $cust_routes = new DB_Model_CustomRoutes();
         $cust_routes->deleteAllByColumnValue('remote_id', $params['id']);
         return $this->index();
+    }
+    protected function test($params = null)
+    {
+        return $this->render();
     }
 }

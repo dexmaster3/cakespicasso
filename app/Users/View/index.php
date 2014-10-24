@@ -36,7 +36,7 @@
                 <div class="form-wrap">
                     <h1 id="login-title">Login Form</h1>
                     <? if (!empty($this->data->message)): ?>
-                        <div class="alert <?= $this->data->message_type ?>"><?= $this->data->message ?></div>
+                        <div id="alert-banner" class="alert <?= $this->data->message_type ?>"><?= $this->data->message ?></div>
                     <? endif; ?>
                     <form role="form" action="/users/user/login" method="post" id="login-form" autocomplete="off">
                         <div class="form-group" id="add-after">

@@ -106,7 +106,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $_SESSION['user']['username'] ?> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -128,6 +128,9 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/admin/dashboard") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/admin/dashboard"><i class="fa fa-fw fa-tachometer"></i> Dashboard</a>
+            </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/cms/pages") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/cms/pages"><i class="fa fa-fw fa-file"></i> Pages</a>
             </li>

@@ -9,11 +9,12 @@
                 "blank": "blank.php"
             },
             "Pages": {
-                "index": "pages_index.php",
-                "create": "pages_create.php",
-                "createpage": "pages_index.php",
-                "delete": "pages_index.php",
-                "edit": "pages_create.php"
+                "index": "index.php",
+                "create": "create.php",
+                "createpage": "index.php",
+                "delete": "index.php",
+                "edit": "create.php",
+                "test": "sample.php"
             }
         },
         "custom_routes": {

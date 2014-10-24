@@ -19,7 +19,14 @@
             }
         },
         "model_seeds": {
-            "Users_Model_User": []
+            "Users_Model_User": [
+                {
+                    "username": "dexter",
+                    "password": "418cca51f6527d1941bacc227fb888b11257330c2912f1a5c9b00c9eea6d1823",
+                    "salt": "f625964359a801b",
+                    "email": "dexter.caffery@blueacorn.com"
+                }
+            ]
         }
     }
 }

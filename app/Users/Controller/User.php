@@ -18,12 +18,16 @@ class Users_Controller_User extends Core_Controller_BaseController
         } elseif (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
             return $this->index("Please enter a valid email");
         } else {
+            //ToDo: change model base? cant have email duplicates not throw anything
             $found_users = $users_model->findAllByColumnValue('username', $post['username']);
             if (!empty($found_users[0])) {
                 return $this->index(array("alert-danger", "Username already in use"));
             } else {
                 $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
                 $password = hash('sha256', $post['password'] . $salt);
+                for ($test = 0; $test < 999; $test++) {
+                    $password = hash('sha256', $password . $salt);
+                }
                 $post['password'] = $password;
                 $post['salt'] = $salt;
                 $user_id = $users_model->addRow($post);
@@ -45,6 +49,9 @@ class Users_Controller_User extends Core_Controller_BaseController
             $found_users = $users_model->findAllByColumnValue('username', $post['username']);
             if (isset($found_users[0])) {
                 $pw_check = hash('sha256', $post['password'] . $found_users[0]['salt']);
+                for ($test = 0; $test < 999; $test++) {
+                    $pw_check = hash('sha256', $pw_check . $found_users[0]['salt']);
+                }
                 if ($pw_check === $found_users[0]['password']) {
                     $logged_in = true;
                 }
