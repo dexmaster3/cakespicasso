@@ -25,7 +25,7 @@
                     <tr>
                         <th>Layout Name</th>
                         <th>Layout HTML</th>
-                        <th style="display: none;">Layout Parent ID</th>
+                        <th>Author</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -39,8 +39,8 @@
                             <td>
                                 <?= $layout['layout_content'] ?>
                             </td>
-                            <td style="display: none;">
-                                <?= $layout['layout_parent'] ?>
+                            <td>
+                                <?= $layout['layout_author'] ?>
                             </td>
                             <td>
                                 <a href="/admin/admin/layouts?action=edit&id=<?= $layout['id'] ?>"

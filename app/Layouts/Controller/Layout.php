@@ -16,6 +16,7 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
         $post = Core_Request::getRequest()->post;
         $layouts = new Layouts_Model_Layout();
         $post['layout_content'] = htmlentities($post['layout_content']);
+        $post['layout_author'] = $_SESSION['user']['id'];
         $layouts->addRow($post);
         return $this->index(__FUNCTION__);
     }

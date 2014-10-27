@@ -17,6 +17,8 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/assets/js/bootstrap.min.js"></script>
 
+<script src="/assets/js/admin.js"></script>
+
 </body>
 
 </html>

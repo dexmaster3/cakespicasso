@@ -20,6 +20,7 @@ function changeForm() {
             $("#login-title").text("Registration Form");
             $("#login-form").attr('action', '/users/user/register');
             $("#change-form-button").text("Back to Login");
+            $("#btn-login").attr("value", "Create Account!");
         }).fadeIn();
     } else {
         $(".form-wrap").fadeOut(function() {
@@ -27,6 +28,7 @@ function changeForm() {
             $("#login-title").text("Login Form");
             $("#login-form").attr('action', '/users/user/login');
             $("#change-form-button").text("Free Registration Here");
+            $("#btn-login").attr("value", "Log in");
         }).fadeIn();
     }
 }

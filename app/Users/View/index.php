@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="form-wrap">
-                    <h1 id="login-title">Login Form</h1>
+                    <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Login Form</h1></span>
                     <? if (!empty($this->data->message)): ?>
                         <div id="alert-banner" class="alert <?= $this->data->message_type ?>"><?= $this->data->message ?></div>
                     <? endif; ?>

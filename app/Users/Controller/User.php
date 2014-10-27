@@ -63,7 +63,7 @@ class Users_Controller_User extends Core_Controller_BaseController
                 $_SESSION['user'] = $found_users[0];
 //                $layouts = new Layouts_Controller_Layout();  This kept the url (looks bad?)
 //                return $layouts->index();
-                header("Location: /layouts/layout");
+                header("Location: /admin/dashboard");
             }
             return $this->index(array("alert-danger", "Wrong user/password"));
         } else {

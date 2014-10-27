@@ -1,0 +1,59 @@
+.drag-layout {
+    border: 1px solid lightseagreen;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.drag-layout:hover{
+    cursor: pointer;
+}
+
+#layout-output.over {
+    border: 2px dashed gray !important;
+}
+
+.drag-layout h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#layout-output {
+    min-height: 500px;
+    border: 1px solid lightseagreen;
+    padding: 20px;
+    margin: 10px;
+}
+#layout-output .piece-remove {
+    min-height: 10px;
+    min-width: 10px;
+    color: indianred;
+    display: inline-block;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 3px 9px;
+    border: 2px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    background-color: rgb(229, 229, 229);
+}
+#layout-output .piece-remove:hover {
+    cursor: pointer;
+}
+
+#layout-map {
+    border: 1px solid grey;
+}
+
+.data {
+    display: none;
+}
+
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}

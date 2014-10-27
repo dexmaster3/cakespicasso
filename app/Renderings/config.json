@@ -1,0 +1,15 @@
+{
+    "Renderings": {
+        "mission": "to bring together layouts and pages",
+        "date": "Oct 27, 2014",
+        "views": {
+            "Rendering": {
+                "index": "index.php",
+                "save": "index.php"
+            }
+        },
+        "model_seeds": {
+            "Renderings_Model_Rendering": []
+        }
+    }
+}

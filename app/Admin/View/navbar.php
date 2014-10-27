@@ -106,7 +106,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $_SESSION['user']['username'] ?> <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= ucfirst($_SESSION['user']['username']) ?> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -136,6 +136,9 @@
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/layouts/layout") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/layouts/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>
+            </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/renderings/rendering") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/renderings/rendering"><i class="fa fa-fw fa-photo"></i> Renderings</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
