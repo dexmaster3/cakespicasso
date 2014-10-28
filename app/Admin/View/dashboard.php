@@ -1,3 +1,5 @@
+{{body}}
+
 <div id="page-wrapper">
 
 <div class="container-fluid">
@@ -271,6 +273,9 @@
 </div>
 <!-- /#page-wrapper -->
 
+{{/body}}
+
+{{scripts}}
 <!-- jQuery Version 1.11.0 -->
 <script src="/assets/js/jquery-1.11.0.js"></script>
 
@@ -281,3 +286,4 @@
 <script src="/assets/js/plugins/morris/raphael.min.js"></script>
 <script src="/assets/js/plugins/morris/morris.min.js"></script>
 <script src="/assets/js/plugins/morris/morris-data.js"></script>
+{{/scripts}}

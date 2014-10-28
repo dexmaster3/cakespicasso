@@ -4,6 +4,13 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
 {
     protected function index()
     {
+        $rendering_model = new Renderings_Model_Rendering();
+        $renderings = $rendering_model->getAll();
+        $this->data->renderings = array_reverse($renderings);
+        return $this->render();
+    }
+    protected function create()
+    {
         $layout_model = new Layouts_Model_Layout();
         $layout = $layout_model->getAll();
         $this->data->layouts = $layout;

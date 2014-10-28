@@ -1,7 +1,7 @@
 /**
  * Created by dexter on 10/27/14.
  */
-(function() {
+var createRendering = function() {
 
     function pieceDragStart(e) {
         this.style.opacity = '0.5';
@@ -65,4 +65,4 @@
     layoutcontent.addEventListener('dragover', layoutDragOver, false);
     layoutcontent.addEventListener('dragleave', layoutDragLeave, false);
 
-})();
+};

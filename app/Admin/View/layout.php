@@ -19,6 +19,8 @@
 
 <script src="/assets/js/admin.js"></script>
 
+{{scripts_content}}
+
 </body>
 
 </html>

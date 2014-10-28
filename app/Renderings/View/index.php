@@ -6,44 +6,19 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Rendering Setup
-                    <small>Create Rendering</small>
+                    Renderings
+                    <small>View Renderings</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i> <a href="/cms/admin/index">Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
-                    </li>
-                </ol>
+                <a href="/renderings/rendering/create" class="btn btn-success">Create New</a>
             </div>
         </div>
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-lg-5" id="drag-layouts">
-                <h1>Layout Pieces</h1>
-                <hr/>
-                <? foreach($this->data->layouts as $layout): ?>
-                <div class="drag-layout" id="layout<?= $layout['id'] ?>" draggable="true">
-                    <h1><?= $layout['layout_name'] ?></h1>
-                    <?= substr($layout['layout_content'], 0, 100) . ' ...' ?>
-                    <textarea class="data" name="<?= $layout['id'] ?>"><?= $layout['layout_content'] ?></textarea>
-                </div>
+            <div class="col-lg-12">
+                <? foreach($this->data->renderings as $rendering): ?>
+                    <iframe class="rendering" src="/display/display/rendering?id=<?= $rendering['id'] ?>"></iframe>
                 <? endforeach; ?>
-            </div>
-            <div class="col-lg-7">
-                <h1>Desired Layout</h1>
-                <hr/>
-                <form action="/renderings/rendering/save" method="post">
-                    <div class="form-group">
-                        <div id="layout-output">
-
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Page</button>
-                </form>
             </div>
         </div>
 

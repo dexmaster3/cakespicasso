@@ -5,6 +5,7 @@
         "views": {
             "Rendering": {
                 "index": "index.php",
+                "create": "create.php",
                 "save": "index.php"
             }
         },
