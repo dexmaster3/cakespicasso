@@ -36,11 +36,11 @@ class Pages_Controller_Pages extends Users_Controller_BaseAuth
         }
     }
 
-    protected function show($id)
+    protected function show($params)
     {
         $pages = new Pages_Model_Pages();
-        $this->data->page = $pages->findById($id);
-        return $this->render($this->data->page['page_html']);
+        $this->data->page = $pages->findById($params['id']);
+        return $this->renderString($this->data->page['page_html']);
     }
 
     protected function create()
@@ -62,9 +62,5 @@ class Pages_Controller_Pages extends Users_Controller_BaseAuth
         $cust_routes = new DB_Model_CustomRoutes();
         $cust_routes->deleteAllByColumnValue('remote_id', $params['id']);
         return $this->index();
-    }
-    protected function test($params = null)
-    {
-        return $this->render();
     }
 }

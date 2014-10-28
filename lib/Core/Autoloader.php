@@ -39,7 +39,7 @@ class Core_Autoloader
                 throw new Exception('Autoloaded file/class does not exist');
             }
         } catch (Exception $e) {
-            die($e->getMessage());
+            echo $e->getMessage();
         }
     }
 }

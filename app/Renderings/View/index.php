@@ -1,3 +1,5 @@
+{{body}}
+
 <div id="page-wrapper">
 
     <div class="container-fluid">
@@ -27,3 +29,5 @@
 
 </div>
 <!-- /#page-wrapper -->
+
+{{/body}}

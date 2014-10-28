@@ -26,9 +26,7 @@ class Users_Controller_BaseAuth extends Core_Controller_BaseController
         $body_html = parent::render();
         $admin = new Admin_Controller_Admin();
         $admin_html = $admin->index();
-        $admin_wrapped_html = Core_View_ViewDriver::insertBodyContent($admin_html, $body_html);
-        $final_html = Core_View_ViewDriver::insertScripts($body_html, $admin_wrapped_html);
-        //$final_html = Core_View_ViewDriver::insertAny($admin_html, $body_html);
+        $final_html = Core_View_ViewDriver::replaceShivs($admin_html, $body_html);
         return $final_html;
     }
 }

@@ -66,12 +66,8 @@ class Core_Router
                 foreach ($configv->custom_routes as $routek => $routev) {
                     //ToDo find a better way to handle root requests
                     if (strtolower($routek) === strtolower($request_uri)) {
-                        $location = array(
-                            'module' => ucfirst($routev->module),
-                            'controller' => ucfirst($routev->controller),
-                            'action' => $routev->action,
-                            'params' => $request_query
-                        );
+                        $location = get_object_vars($routev);
+                        $location['params'] = $request_query;
                         return $location;
                     }
                 }
@@ -114,14 +110,10 @@ class Core_Router
 
     private function setDefaultIndex()
     {
-        if (empty(self::$location['module'])) {
-            self::$location['module'] = 'Index';
-        }
-        if (empty(self::$location['controller'])) {
-            self::$location['controller'] = 'Index';
-        }
-        if (empty(self::$location['action'])) {
-            self::$location['action'] = 'Index';
+        foreach (self::$location as $loc_k => $loc_v) {
+            if (empty($loc_v) && $loc_k !== 'params') {
+                self::$location[$loc_k] = 'Index';
+            }
         }
     }
 }

@@ -23,8 +23,8 @@ class Core_Dispatcher
             $controller = new $controller_loc;
             return $controller;
         } else {
-            echo 'Module->Controller not found';
-            return new Exception('Module->Controller not found');
+            echo '<br/>Module->Controller not found<br/>';
+            return false;
         }
     }
 
@@ -33,7 +33,7 @@ class Core_Dispatcher
         if (method_exists($controller, $action) && is_callable(array($controller, $action))) {
             return true;
         } else {
-            echo 'Module->Controller->action not found';
+            echo '<br/>Module->Controller->action not found<br/>';
             return false;
         }
     }

@@ -1,8 +1,8 @@
 <?php
 
-class DB_Controller_DB extends Core_Controller_BaseController
+class DB_Controller_DB extends Users_Controller_BaseAuth
 {
-    public function dropandseed()
+    protected function dropandseed()
     {
         $dbseeder = new DB_Model_Seed();
         $dbseeder->initializeDatabase(true);

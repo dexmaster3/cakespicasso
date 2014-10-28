@@ -1,5 +1,6 @@
 <?php
 
+//ToDo: One day i will move away from dynamically generated objects
 class Core_Request
 {
     private static $request;
