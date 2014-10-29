@@ -8,7 +8,7 @@ class Users_UserHelper
         if (isset($_SESSION['user'])) {
             return true;
         } else {
-            header("Location: /");
+            return false;
         }
     }
 }

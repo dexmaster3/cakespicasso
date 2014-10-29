@@ -133,7 +133,7 @@ abstract class DB_Model_ModelDriver
                 "DELETE FROM $this->table WHERE id = $id"
             );
             $statement->execute();
-            return $statement->fetch();
+            return $statement->rowCount();
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();

@@ -29,10 +29,12 @@ class Core_View_ViewDriver
 
     static public function replaceShivs($layout_html, $page_html)
     {
-        $found_match = preg_match_all('/(?:{{([^_]+)_content}})/im', $layout_html, $tag_names);
+        $found_match = preg_match_all('/(?:{{([[:ascii:]]+?)_content}})/im', $layout_html, $tag_names);
         if ($found_match) {
             for ($i = 0; $i < count($tag_names[1]); $i++) {
-                $sub_found = preg_match_all('/(?:{{' . $tag_names[1][$i] . '}}([[:ascii:]]*){{\/' . $tag_names[1][$i] . '}})/im', $page_html, $rep_content);
+                $sub_found = preg_match_all(
+                    '/(?:{{' . $tag_names[1][$i] . '}}([[:ascii:]]*){{\/' . $tag_names[1][$i] . '}})/im'
+                    , $page_html, $rep_content);
                 if ($sub_found) {
                     $layout_html = str_replace($tag_names[0][$i], $rep_content[1][0], $layout_html);
                 } else {

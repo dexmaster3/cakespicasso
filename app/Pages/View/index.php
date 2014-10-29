@@ -10,12 +10,20 @@
                         Pages
                         <small>All current pages</small>
                     </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-file-text-o"></i> <a href="/pages/page">Content</a>
+                        </li>
+                    </ol>
                 </div>
             </div>
             <!-- /.row -->
             <div class="row" style="margin-bottom: 1em;">
                 <div class="col-lg-12">
-                    <a href="/cms/pages/create" class="btn btn-success">Add Page +</a>
+                    <a href="/pages/page/create" class="btn btn-success">Add Page +</a>
                 </div>
             </div>
 
@@ -26,12 +34,13 @@
                         <tr>
                             <th>Page Name</th>
                             <th>Page URL</th>
+                            <th>Rendering Id</th>
                             <th>Page HTML</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
-                        <?php foreach ($this->data->pages as $page): ?>
+                        <? foreach ($this->data->pages as $page): ?>
                             <tr>
                                 <td>
                                     <?= $page['page_name'] ?>
@@ -40,16 +49,19 @@
                                     <?= $page['page_url'] ?>
                                 </td>
                                 <td>
+                                    <?= $page['rendering_id'] ?>
+                                </td>
+                                <td>
                                     <?= $page['page_html'] ?>
                                 </td>
                                 <td>
-                                    <a href="/cms/pages/edit?id=<?= $page['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="/pages/page/edit?id=<?= $page['id'] ?>" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="/cms/pages/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>
+                                    <a href="/pages/page/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <? endforeach; ?>
                     </table>
                 </div>
             </div>

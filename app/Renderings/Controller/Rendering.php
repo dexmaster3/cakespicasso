@@ -31,4 +31,10 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
         $rendering_model->addRow($rendering);
         return $this->index();
     }
+    protected function ajaxshow()
+    {
+        $rendering_model = new Renderings_Model_Rendering();
+        $renderings = $rendering_model->getAll();
+        return $this->returnJson($renderings);
+    }
 }

@@ -32,6 +32,7 @@ abstract class Core_Controller_BaseController
 
     protected function returnJson($data)
     {
+        header("Content-type: application/json");
         $json_encoded = json_encode($data);
         return $json_encoded;
     }

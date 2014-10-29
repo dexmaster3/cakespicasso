@@ -4,9 +4,14 @@ class Users_Controller_User extends Core_Controller_BaseController
 {
     public function index($query = null)
     {
-        $this->data->message_type = $query[0];
-        $this->data->message = $query[1];
-        return $this->render();
+        if(Users_UserHelper::checkAuth()) {
+            header("Location: /admin/dashboard");
+            die("You are logged in");
+        } else {
+            $this->data->message_type = $query[0];
+            $this->data->message = $query[1];
+            return $this->render();
+        }
     }
 
     public function register($query = null)
@@ -64,6 +69,7 @@ class Users_Controller_User extends Core_Controller_BaseController
 //                $layouts = new Layouts_Controller_Layout();  This kept the url (looks bad?)
 //                return $layouts->index();
                 header("Location: /admin/dashboard");
+                die("Login Successful");
             }
             return $this->index(array("alert-danger", "Wrong user/password"));
         } else {

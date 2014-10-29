@@ -40,7 +40,7 @@ class Core_Router
             $routes = new DB_Model_CustomRoutes();
             $all_routes = $routes->findAllByColumnValue('url', $request_uri);
             foreach ($all_routes as $route) {
-                if ($route['url'] === $request_uri) {
+                if (strtolower($route['url']) === strtolower($request_uri)) {
                     $location = array(
                         'module' => ucfirst($route['module']),
                         'controller' => ucfirst($route['controller']),

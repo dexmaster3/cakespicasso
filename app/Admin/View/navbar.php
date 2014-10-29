@@ -131,8 +131,8 @@
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/admin/dashboard") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/admin/dashboard"><i class="fa fa-fw fa-tachometer"></i> Dashboard</a>
             </li>
-            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/cms/pages") !== false): echo 'class="active"'; endif; ?> >
-                <a href="/cms/pages"><i class="fa fa-fw fa-file"></i> Pages</a>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/pages/page") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/pages/page"><i class="fa fa-fw fa-file-text-o"></i> Content</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/layouts/layout") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/layouts/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>

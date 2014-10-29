@@ -13,10 +13,13 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i> <a href="/cms/admin/index">Dashboard</a>
+                        <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-photo"></i> <a href="/renderings/rendering">Renderings</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
+                        <i class="fa fa-file"></i> Edit
                     </li>
                 </ol>
             </div>
@@ -27,11 +30,16 @@
             <div class="col-lg-5" id="drag-layouts">
                 <h1>Layout Pieces</h1>
                 <hr/>
+                <div class="drag-layout" id="contentsection" draggable="true">
+                    <h1>Content</h1>
+                    Your content will be rendered where this is placed
+                    <textarea class="data" name="contentsection">{{content_content}}</textarea>
+                </div>
                 <? foreach($this->data->layouts as $layout): ?>
                 <div class="drag-layout" id="layout<?= $layout['id'] ?>" draggable="true">
                     <h1><?= $layout['layout_name'] ?></h1>
                     <?= substr($layout['layout_content'], 0, 100) . ' ...' ?>
-                    <textarea class="data" name="<?= $layout['id'] ?>"><?= $layout['layout_content'] ?></textarea>
+                    <textarea class="data" name="layout<?= $layout['id'] ?>"><?= $layout['layout_content'] ?></textarea>
                 </div>
                 <? endforeach; ?>
             </div>
@@ -59,6 +67,6 @@
 
 {{scripts}}
 <script>
-    createRendering();
+    renderingPiecesDriver();
 </script>
 {{/scripts}}

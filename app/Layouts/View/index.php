@@ -11,12 +11,21 @@
                     Layouts
                     <small>All layouts</small>
                 </h1>
+
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> <a href="/layouts/layout">Layouts</a>
+                    </li>
+                </ol>
             </div>
         </div>
         <!-- /.row -->
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-lg-12">
-                <a href="/layout/layout/create" class="btn btn-success">Add Page +</a>
+                <a href="/layouts/layout/create" class="btn btn-success">Add Page +</a>
             </div>
         </div>
 
@@ -45,11 +54,11 @@
                                 <?= $layout['layout_author'] ?>
                             </td>
                             <td>
-                                <a href="/admin/admin/layouts?action=edit&id=<?= $layout['id'] ?>"
+                                <a href="/layouts/layout/edit?id=<?= $layout['id'] ?>"
                                    class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <a href="/admin/admin/layouts?action=delete&id=<?= $layout['id'] ?>"
+                                <a href="/layouts/layout/delete?id=<?= $layout['id'] ?>"
                                    class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

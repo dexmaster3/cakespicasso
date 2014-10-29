@@ -11,6 +11,17 @@ class Display_Controller_Display extends Core_Controller_BaseController
         return $this->render($return_layout);
     }
 
+    public function content($query)
+    {
+        $content_model = new Pages_Model_Page();
+        $content = $content_model->findById($query['id']);
+        $rendering_model = new Renderings_Model_Rendering();
+        $rendering = $rendering_model->findById($content['rendering_id']);
+        $rendering_string = html_entity_decode($rendering['html_string']);
+        $rendering_string = str_replace("{{content_content}}", html_entity_decode($content['page_html']), $rendering_string);
+        return $this->renderString($rendering_string);
+    }
+
     public function layout($query)
     {
         $layout_model = new Layouts_Model_Layout();

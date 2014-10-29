@@ -2,13 +2,12 @@
     "Pages": {
         "mission": "to provide cms stuff",
         "date": "Oct 15, 2014",
-        "alt_name": "cms",
         "views": {
             "Admin": {
                 "index": "index.php",
                 "blank": "blank.php"
             },
-            "Pages": {
+            "Page": {
                 "index": "index.php",
                 "create": "create.php",
                 "createpage": "index.php",
@@ -25,7 +24,7 @@
             }
         },
         "model_seeds": {
-            "Pages_Model_Pages": [
+            "Pages_Model_Page": [
                 {
                     "page_name": "hosanna",
                     "page_url": "praise-hosanna",

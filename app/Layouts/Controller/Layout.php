@@ -28,6 +28,13 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
         return $this->render(__FUNCTION__);
     }
 
+    protected function delete($params)
+    {
+        $layout_model = new Layouts_Model_Layout();
+        $rows_deleted = $layout_model->deleteById($params['id']);
+        return $this->index();
+    }
+
     protected function create()
     {
         return $this->render(__FUNCTION__);
