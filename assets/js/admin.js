@@ -121,20 +121,51 @@ var renderingPiecesDriver = function() {
     layoutcontent.addEventListener('dragleave', layoutDragLeave, false);
 
 };
-var node;
+
+//ToDo: Switch to regular for loop, (pagination)
 var contentRenderFrames = function() {
     $.ajax({
         url: "/renderings/rendering/ajaxshow",
         type: "GET",
         dataType: "json"
-    }).success(function(data, status, jqXHR){
-        data.forEach.call(data, function(item) {
-            node = document.createElement('iframe');
-            node.setAttribute("src", "/display/display/rendering?id="+item['id']);
-            node.setAttribute("id", "rendering-sample-"+item['id']);
-            console.log(node);
-            $("#renderings-modal").append(node);
-        });
-        $(".modal").modal('show');
-    })
+    }).success(function(data, status, jqXHR) {
+        var first = true;
+        for (i = 0; i < data.length; i++) {
+            var node = document.createElement('iframe');
+            node.setAttribute("src", "/display/display/rendering?id=" + data[i]['id']);
+            node.setAttribute("id", "rendering-sample-" + data[i]['id']);
+            node.setAttribute("data-id", data[i]['id']);
+            node.setAttribute("class", "rendering-sample");
+            if (first) {
+                node.setAttribute("style", "display:initial;");
+                node.classList.add("active");
+                first = false;
+            } else {
+                node.setAttribute("style", "display:none;");
+            }
+            $("#renderings-modal-body").append(node);
+            var paginate = document.createElement('li');
+            paginate.innerHTML = "<a onclick='changeiframe("+data[i]['id']+");'>" + (i + 1) + "</a>";
+            $("ul.pagination").append(paginate);
+            $("#renderings-modal .save").click(function(){
+                $("form #rendering_id").val($(".rendering-sample.active").attr("data-id"));
+                $("#renderings-modal").modal('hide');
+            });
+        }
+    });
+};
+
+var changeiframe = function(iframeid) {
+    var allframes = document.getElementsByClassName("rendering-sample");
+    [].forEach.call(allframes, function(frame) {
+        frame.setAttribute("style", "display:none;");
+        frame.classList.remove("active");
+    });
+    var iframe = document.getElementById("rendering-sample-" + iframeid);
+    iframe.setAttribute("style", "display:initial;");
+    iframe.classList.add("active");
+}
+
+var showRenderingsModal = function() {
+    $("#renderings-modal").modal('show');
 };

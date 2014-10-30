@@ -13,6 +13,7 @@
 
     <!-- Custom CSS -->
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="/assets/css/datepicker.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

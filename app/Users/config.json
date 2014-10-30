@@ -9,6 +9,10 @@
                 "register": "index.php",
                 "login": "index.php",
                 "logout": "index.php"
+            },
+            "Profile": {
+                "index": "profileIndex.php",
+                "edit": "profileEdit.php"
             }
         },
         "custom_routes": {

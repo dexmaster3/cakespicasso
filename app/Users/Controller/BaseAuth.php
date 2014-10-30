@@ -12,8 +12,12 @@ class Users_Controller_BaseAuth extends Core_Controller_BaseController
     public function __call($method, $arguments)
     {
         if (method_exists($this, $method)) {
-            Users_UserHelper::checkAuth();
-            return call_user_func_array(array($this, $method), $arguments);
+            if(Users_UserHelper::checkAuth()) {
+                return call_user_func_array(array($this, $method), $arguments);
+            } else {
+                header("Location: /");
+                return $this->renderString("Your session expired: relog");
+            }
         }
     }
 

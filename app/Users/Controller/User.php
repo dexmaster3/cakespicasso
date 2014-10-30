@@ -53,21 +53,16 @@ class Users_Controller_User extends Core_Controller_BaseController
         if (!empty($post['username']) && !empty($post['password'])) {
             $found_users = $users_model->findAllByColumnValue('username', $post['username']);
             if (isset($found_users[0])) {
+                //$logged_in = Users_UserHelper::checkPassword($found_users[0], $post['password']);
                 $pw_check = hash('sha256', $post['password'] . $found_users[0]['salt']);
                 for ($test = 0; $test < 999; $test++) {
                     $pw_check = hash('sha256', $pw_check . $found_users[0]['salt']);
                 }
-                if ($pw_check === $found_users[0]['password']) {
-                    $logged_in = true;
-                }
+                $logged_in = $pw_check === $found_users[0]['password'];
             }
             if ($logged_in) {
                 session_start();
-                unset($found_users[0]['salt']);
-                unset($found_users[0]['password']);
                 $_SESSION['user'] = $found_users[0];
-//                $layouts = new Layouts_Controller_Layout();  This kept the url (looks bad?)
-//                return $layouts->index();
                 header("Location: /admin/dashboard");
                 die("Login Successful");
             }

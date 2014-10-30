@@ -11,7 +11,8 @@ class Layouts_Model_Layout extends DB_Model_ModelDriver
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     layout_name VARCHAR(255) NOT NULL,
     layout_author INT,
-    layout_content TEXT NOT NULL
+    layout_content TEXT NOT NULL,
+    date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );";
     }
 }

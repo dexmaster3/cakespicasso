@@ -13,23 +13,23 @@
             "DB_Model_CustomRoutes": [
                 {
                     "url": "praise-hosanna",
-                    "module": "Pages",
-                    "controller": "Pages",
-                    "action": "Show",
+                    "module": "Display",
+                    "controller": "Display",
+                    "action": "content",
                     "remote_id": 1
                 },
                 {
                     "url": "my-shoe-prices",
-                    "module": "Pages",
-                    "controller": "Pages",
-                    "action": "Show",
+                    "module": "Display",
+                    "controller": "Display",
+                    "action": "content",
                     "remote_id": 2
                 },
                 {
                     "url": "my-pants-page",
-                    "module": "Pages",
-                    "controller": "Pages",
-                    "action": "Show",
+                    "module": "Display",
+                    "controller": "Display",
+                    "action": "content",
                     "remote_id": 3
                 }
             ]

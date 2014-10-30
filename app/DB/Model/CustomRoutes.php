@@ -13,7 +13,8 @@ class DB_Model_CustomRoutes extends DB_Model_ModelDriver
     module VARCHAR(255) NOT NULL,
     controller VARCHAR(255) NOT NULL,
     action VARCHAR(255) NOT NULL,
-    remote_id INT NOT NULL
+    remote_id INT NOT NULL,
+    date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );";
     }
 }

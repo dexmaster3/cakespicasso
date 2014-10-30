@@ -42,7 +42,7 @@
                             <label for="rendering_id">Rendering Id</label>
                             <input type="text" class="form-control" id="rendering_id" name="rendering_id" placeholder="Rendering Id"
                                    value="<?= $this->data->page['rendering_id'] ?>">
-                            <a class="btn btn-primary" href="#">Show Options</a>
+                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="showRenderingsModal();">Show Options</a>
                         </div>
                         <div class="form-group hidden" style="display: none;">
                             <label for="page_url">Page Url</label>
@@ -58,19 +58,22 @@
                     </form>
                 </div>
             </div>
-            <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal fade" id="renderings-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                         </div>
-                        <div class="modal-body" id="renderings-modal">
-
+                        <div class="modal-body" id="renderings-modal-body">
+                            <nav>
+                                <ul class="pagination">
+                                </ul>
+                            </nav>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary save">Select Rendering</button>
                         </div>
                     </div>
                 </div>

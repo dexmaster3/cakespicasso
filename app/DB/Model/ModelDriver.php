@@ -22,13 +22,23 @@ abstract class DB_Model_ModelDriver
             if (!($data['id'] > 0)) {
                 unset($data['id']);
                 $this->conn = $this->startConnection();
-
-                $values = ':' . implode(', :', array_keys($data));
-                $keys = implode(', ', array_keys($data));
+                $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
+                $allowed_fields = array();
+                $filtered_data = array();
+                foreach ($columns as $column) {
+                    array_push($allowed_fields, $column['Field']);
+                }
+                foreach ($data as $datak => $datav) {
+                    if (in_array($datak, $allowed_fields)) {
+                        $filtered_data[$datak] = $datav;
+                    }
+                }
+                $values = ':' . implode(', :', array_keys($filtered_data));
+                $keys = implode(', ', array_keys($filtered_data));
                 $statement = $this->conn->prepare(
                     "INSERT INTO $this->table ($keys) value ($values);"
                 );
-                $statement->execute($data);
+                $statement->execute($filtered_data);
                 $statement = $this->conn->prepare(
                     "SELECT MAX(id) FROM $this->table;"
                 );
@@ -92,11 +102,19 @@ abstract class DB_Model_ModelDriver
     public function updateById($id, $data)
     {
         try {
+            unset($data['id']);
             $this->conn = $this->startConnection();
+            $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
             $new_values = array();
+            $allowed_fields = array();
+            foreach ($columns as $column) {
+                array_push($allowed_fields, $column['Field']);
+            }
             foreach ($data as $datak => $datav) {
                 $datav = $this->conn->quote($datav);
-                array_push($new_values, "$datak=$datav");
+                if (in_array($datak, $allowed_fields)) {
+                    array_push($new_values, "$datak=$datav");
+                }
             }
             $new_values = implode(", ", $new_values);
             $statement = $this->conn->prepare(

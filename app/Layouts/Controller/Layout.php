@@ -18,7 +18,9 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
         $post['layout_content'] = htmlentities($post['layout_content']);
         $post['layout_author'] = $_SESSION['user']['id'];
         $layouts->addRow($post);
-        return $this->index(__FUNCTION__);
+        //ToDo: Better way to code these redirects?
+        header("Location: /layouts/layout");
+        return $this->renderString("Post Success");
     }
 
     protected function edit($params)
