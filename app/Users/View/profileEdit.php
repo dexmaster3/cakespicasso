@@ -29,7 +29,6 @@
             <div class="col-lg-12">
                 <form enctype="multipart/form-data" action="/users/profile/save" method="post">
                     <div class="form-group">
-                        <? var_dump($this->data->user) ?>
                         <label for="username">User Name</label>
                         <input type="text" class="form-control" id="username" name="username" value="<?= $this->data->user['username'] ?>">
                     </div>
@@ -45,21 +44,21 @@
                     <div class="form-group">
                         <label for="gender">Gender</label>
                         <select class="form-control" id="gender" name="gender">
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option <? if($this->data->user['gender'] === "Male"): echo 'selected="selected"'; endif; ?>>Male</option>
+                            <option <? if($this->data->user['gender'] === "Female"): echo 'selected="selected"'; endif; ?>>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="birthday">Birthday</label>
-                        <input type="text" class="form-control" id="birthday" name="birthday">
+                        <input type="text" class="form-control" id="birthday" name="birthday" value="<?= date('m/d/Y', strtotime($this->data->user['birthday'])) ?>">
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="">
+                        <input type="text" class="form-control" id="address" name="address" value="<?= $this->data->user['address'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="">
+                        <input type="text" class="form-control" id="phone" name="phone" value="<?= $this->data->user['phone'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="old_password">Old Password</label>

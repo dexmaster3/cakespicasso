@@ -57,6 +57,14 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="rendering-frame-sample">
+
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- /.container-fluid -->
 

@@ -81,7 +81,7 @@ $(function () {
     });
 
     // Line Chart
-    Morris.Line({
+ /*   Morris.Line({
         // ID of the element in which to draw the chart.
         element: 'morris-line-chart',
         // Chart data records -- each entry in this array corresponds to a point on
@@ -191,8 +191,8 @@ $(function () {
         smooth: false,
         resize: true
     });
-
-    // Bar Chart
+*/
+/*    // Bar Chart
     Morris.Bar({
         element: 'morris-bar-chart',
         data: [{
@@ -221,7 +221,7 @@ $(function () {
         xLabelAngle: 35,
         hideHover: 'auto',
         resize: true
-    });
+    });*/
 
 
 });

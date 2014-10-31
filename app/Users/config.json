@@ -12,7 +12,9 @@
             },
             "Profile": {
                 "index": "profileIndex.php",
-                "edit": "profileEdit.php"
+                "edit": "profileEdit.php",
+                "showall": "profileShow.php",
+                "show": "profileIndex.php"
             }
         },
         "custom_routes": {
@@ -28,13 +30,23 @@
                     "username": "dex",
                     "password": "330ccac2c030906358339d4540621c9337ebc846e4b151614f39ccb50936784d",
                     "salt": "70c49bcd7e3290cc",
-                    "email": "dexter.caffery@blueacorn.com"
+                    "email": "dexter.caffery@blueacorn.com",
+                    "birthday": "1989-08-03 00:00:00",
+                    "gender": "Male",
+                    "address": "1450 Whatever Road",
+                    "phone": "203-555-4422",
+                    "about": "Currently created the CakesPicasso CMS"
                 },
                 {
                     "username": "shark",
                     "password": "3a5494306fa75191d9e61c1237686c373ac092ffddccb450959c3b3cf51f35a5",
                     "salt": "4c198fff7e0538a7",
-                    "email": "spirit.dancing@shark.com"
+                    "email": "spirit.dancing@shark.com",
+                    "birthday": "1969-12-23 00:00:00",
+                    "gender": "Female",
+                    "address": "1200 Good Prayer Lane",
+                    "phone": "666-666-5666",
+                    "about": "I love to give dancing lessons"
                 },
                 {
                     "username": "doug",

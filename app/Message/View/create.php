@@ -8,15 +8,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Profile
-                    <small>Edit</small>
+                    Message
+                    <small>Send</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li>
                         <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-file-text-o"></i> <a href="/users/profile">Profile</a>
+                        <i class="fa fa-envelope-o"></i> <a href="/message/message/create">Message</a>
                     </li>
                 </ol>
             </div>
@@ -33,45 +33,50 @@
                         <div class="row">
                             <div class="col-md-3 col-lg-3" align="center">
                                 <? if(empty($this->data->user['avatar'])): ?>
-                                <img alt="User Pic" src="http://placehold.it/150x150" class="profile-image img-circle">
+                                    <img alt="User Pic" src="http://placehold.it/150x150" class="profile-image img-circle">
                                 <? else: ?>
-                                <img alt="User Pic" src="/assets/img/upload/<?= $this->data->user['avatar'] ?>" class="profile-image img-circle">
+                                    <img alt="User Pic" src="/assets/img/upload/<?= $this->data->user['avatar'] ?>" class="profile-image img-circle">
                                 <? endif; ?>
                             </div>
                             <div class=" col-md-9 col-lg-9 ">
+                                <form role="form" method="POST" action="/message/message/sendmessage">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>Date of Birth</td>
-                                        <td><?= date('M j, Y', strtotime($this->data->user['birthday'])) ?></td>
+                                        <td>Send To</td>
+                                        <td>
+                                            <select class="form-control" name="sentto">
+                                                <? foreach($this->data->users as $user): ?>
+                                                <option value="<?= $user['id'] ?>"><?= $user['username'] ?></option>
+                                                <? endforeach; ?>
+                                            </select>
+                                        </td>
                                     </tr>
 
                                     <tr>
                                     <tr>
-                                        <td>Gender</td>
-                                        <td><?= $this->data->user['gender'] ?></td>
+                                        <td>Subject</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="subject">
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Home Address</td>
-                                        <td><?= $this->data->user['address'] ?></td>
+                                        <td>Body</td>
+                                        <td>
+                                            <textarea class="form-control" name="body"></textarea>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Email</td>
-                                        <td><?= $this->data->user['email'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone Number</td>
-                                        <td><?= $this->data->user['phone'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>About Me</td>
-                                        <td><?= $this->data->user['about'] ?></td>
+                                        <td>Attachment</td>
+                                        <td>
+                                            <input class="form-control" name="attachment" type="file">
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
 
-                                <a href="#" class="btn btn-primary">Unused Button 1</a>
-                                <a href="#" class="btn btn-primary">Other Unused Button</a>
+                                <button type="submit" class="btn btn-primary">Send Message <i class="fa fa-fw fa-envelope"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>

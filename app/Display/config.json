@@ -6,12 +6,15 @@
             "Display": {
                 "index": "index.php",
                 "create": "create.php"
+            },
+            "Browser": {
+                "index": "browser.php"
             }
         },
         "custom_routes": {
-            "my-custom-json": {
-                "module": "Pages",
-                "controller": "Pages",
+            "browser": {
+                "module": "Display",
+                "controller": "Browser",
                 "action": "Index"
             }
         }

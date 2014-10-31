@@ -28,13 +28,9 @@ class Users_Controller_User extends Core_Controller_BaseController
             if (!empty($found_users[0])) {
                 return $this->index(array("alert-danger", "Username already in use"));
             } else {
-                $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
-                $password = hash('sha256', $post['password'] . $salt);
-                for ($test = 0; $test < 999; $test++) {
-                    $password = hash('sha256', $password . $salt);
-                }
-                $post['password'] = $password;
-                $post['salt'] = $salt;
+                $new_pass = Users_UserHelper::getPassword($post['password']);
+                $post['password'] = $new_pass['password'];
+                $post['salt'] = $new_pass['salt'];
                 $user_id = $users_model->addRow($post);
                 if ($user_id > 0) {
                     return $this->index(array("alert-success", "User Succesfully Created!"));
@@ -53,12 +49,7 @@ class Users_Controller_User extends Core_Controller_BaseController
         if (!empty($post['username']) && !empty($post['password'])) {
             $found_users = $users_model->findAllByColumnValue('username', $post['username']);
             if (isset($found_users[0])) {
-                //$logged_in = Users_UserHelper::checkPassword($found_users[0], $post['password']);
-                $pw_check = hash('sha256', $post['password'] . $found_users[0]['salt']);
-                for ($test = 0; $test < 999; $test++) {
-                    $pw_check = hash('sha256', $pw_check . $found_users[0]['salt']);
-                }
-                $logged_in = $pw_check === $found_users[0]['password'];
+                $logged_in = Users_UserHelper::checkPassword($found_users[0], $post['password']);
             }
             if ($logged_in) {
                 session_start();

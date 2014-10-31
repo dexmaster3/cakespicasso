@@ -116,6 +116,7 @@ var renderingPiecesDriver = function() {
         layout.addEventListener('dragend', pieceDragEnd, false);
     });
     layoutcontent.addEventListener('drop', layoutDrop, false);
+    //layoutcontent.addEventListener('drop', realtimeRenderings, false);
     layoutcontent.addEventListener('dragenter', layoutDragEnter, false);
     layoutcontent.addEventListener('dragover', layoutDragOver, false);
     layoutcontent.addEventListener('dragleave', layoutDragLeave, false);
@@ -164,8 +165,16 @@ var changeiframe = function(iframeid) {
     var iframe = document.getElementById("rendering-sample-" + iframeid);
     iframe.setAttribute("style", "display:initial;");
     iframe.classList.add("active");
-}
+};
 
 var showRenderingsModal = function() {
     $("#renderings-modal").modal('show');
+};
+
+var realtimeRenderings = function() {
+    var alllayouts = $(".drag-layout textarea");
+    $("#rendering-frame-sample").innerHTML = "";
+    [].forEach.call(alllayouts, function(layout){
+        $("#rendering-frame-sample").html(decodeURI(layout.innerHTML));
+    })
 };

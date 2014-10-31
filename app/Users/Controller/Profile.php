@@ -40,4 +40,16 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
         header("Location: /users/profile");
         return $this->renderString("Post Success");
     }
+    protected function showAll($query)
+    {
+        $users_model = new Users_Model_User();
+        $this->data->users = $users_model->getAll();
+        return $this->render();
+    }
+    protected function show($query = null)
+    {
+        $user_model = new Users_Model_User();
+        $this->data->user = $user_model->findById($query['id']);
+        return $this->render();
+    }
 }

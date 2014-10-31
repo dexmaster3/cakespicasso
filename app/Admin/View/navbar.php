@@ -16,6 +16,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu message-dropdown">
+                <? foreach($this->data->messages as $message): ?>
                 <li class="message-preview">
                     <a href="#">
                         <div class="media">
@@ -25,54 +26,19 @@
 
                             <div class="media-body">
                                 <h5 class="media-heading">
-                                    <strong>John Smith</strong>
+                                    <strong><?= $message['sentfrom'] ?></strong>
                                 </h5>
 
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
+                                <p class="small text-muted"><i class="fa fa-clock-o"></i> <?= $message['date_modified'] ?></p>
                                 <h5 class="media-heading">
-                                    <strong>John Smith</strong>
+                                    <strong><i class="fa fa-fw fa-flag-o"></i> <?= $message['subject'] ?></strong>
                                 </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                <p><?= $message['body'] ?></p>
                             </div>
                         </div>
                     </a>
                 </li>
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
-                                <h5 class="media-heading">
-                                    <strong>John Smith</strong>
-                                </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                <? endforeach; ?>
                 <li class="message-footer">
                     <a href="#">Read All New Messages</a>
                 </li>
@@ -116,7 +82,7 @@
                     <a href="/users/profile/inbox"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                 </li>
                 <li>
-                    <a href="/users/profile/edit"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                    <a href="/users/profile/edit"><i class="fa fa-fw fa-gear"></i> Edit Profile</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -139,6 +105,9 @@
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/renderings/rendering") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/renderings/rendering"><i class="fa fa-fw fa-photo"></i> Renderings</a>
+            </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile/showall") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/users/profile/showall"><i class="fa fa-fw fa-user"></i> Users</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>

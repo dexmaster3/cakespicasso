@@ -1,0 +1,14 @@
+{
+    "Message": {
+        "mission": "handle messaging system",
+        "date": "Oct 31, 2014",
+        "views": {
+            "Message": {
+                "create": "create.php"
+            }
+        },
+        "model_seeds": {
+            "Message_Model_Message": []
+        }
+    }
+}

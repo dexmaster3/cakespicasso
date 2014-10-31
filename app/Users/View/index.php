@@ -71,6 +71,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
+                <a href="/browser" style="font-size: 20px;margin: 10px;color: #428bca;">Not a Memeber? Check out our public pages!</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
                 <p>Cakes Picasso &copy; - 2014</p>
             </div>
         </div>

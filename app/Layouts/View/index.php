@@ -45,7 +45,7 @@
                         <tr>
                             <td>
                                 <a href="/display/display/layout?id=<?= $layout['id'] ?>"
-                                   class="btn btn-success"><?= $layout['layout_name'] ?></a>
+                                   class="btn btn-default"><?= $layout['layout_name'] ?></a>
                             </td>
                             <td>
                                 <?= $layout['layout_content'] ?>

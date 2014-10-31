@@ -46,7 +46,7 @@
                                     <?= $page['page_name'] ?>
                                 </td>
                                 <td>
-                                    <?= $page['page_url'] ?>
+                                    <a class="btn btn-default" target="_blank" href="/<?= $page['page_url'] ?>"><?= $page['page_url'] ?></a>
                                 </td>
                                 <td>
                                     <?= $page['rendering_id'] ?>
