@@ -14,7 +14,7 @@ class Display_Controller_Display extends Core_Controller_BaseController
     public function content($query)
     {
         $content_model = new Pages_Model_Page();
-        $content = $content_model->findById($query['id']);
+        $content = $content_model->findById($query);
         $rendering_model = new Renderings_Model_Rendering();
         $rendering = $rendering_model->findById($content['rendering_id']);
         $rendering_string = html_entity_decode($rendering['html_string']);

@@ -45,6 +45,7 @@ class Pages_Controller_Page extends Users_Controller_BaseAuth
 
     protected function create()
     {
+        $this->data->page = null;
         return $this->render();
     }
 

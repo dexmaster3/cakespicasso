@@ -35,14 +35,14 @@
                     "gender": "Male",
                     "address": "1450 Whatever Road",
                     "phone": "203-555-4422",
-                    "about": "Currently created the CakesPicasso CMS"
+                    "about": "Currently creating the CakesPicasso CMS"
                 },
                 {
                     "username": "shark",
                     "password": "3a5494306fa75191d9e61c1237686c373ac092ffddccb450959c3b3cf51f35a5",
                     "salt": "4c198fff7e0538a7",
                     "email": "spirit.dancing@shark.com",
-                    "birthday": "1969-12-23 00:00:00",
+                    "birthday": "1972-07-23 00:00:00",
                     "gender": "Female",
                     "address": "1200 Good Prayer Lane",
                     "phone": "666-666-5666",
@@ -52,19 +52,34 @@
                     "username": "doug",
                     "password": "fa4f35b68dd3b1afc76d1b66c2ee7b4a10525b37cdee0598c92474c85010c251",
                     "salt": "7467492b6e57e5ca",
-                    "email": "djdouggpound@yahoo.com"
+                    "email": "djdouggpound@yahoo.com",
+                    "birthday": "2003-02-12 00:00:00",
+                    "gender": "Male",
+                    "address": "1211 Good Prayer Lane",
+                    "phone": "666-666-5666",
+                    "about": "DJ Douggpound in the mix"
                 },
                 {
                     "username": "skott",
                     "password": "db0abcecc7fcf7f8fdba58f4b52c7e75462b350b50e2e466cf32d5bd33e15139",
                     "salt": "21825fd11f3f6f5f",
-                    "email": "skott@morningprayer.com"
+                    "email": "skott@morningprayer.com",
+                    "birthday": "1972-07-23 00:00:00",
+                    "gender": "Female",
+                    "address": "1200 Good Prayer Lane",
+                    "phone": "666-666-5666",
+                    "about": "praise hosanna"
                 },
                 {
                     "username": "behr",
                     "password": "d2d01b3bccbf5f8c88d02df0417506e75634ad3af36e283bcdf37052ce7e967d",
                     "salt": "40ca985e31d96379",
-                    "email": "behr@morningprayer.com"
+                    "email": "behr@morningprayer.com",
+                    "birthday": "1972-07-23 00:00:00",
+                    "gender": "Female",
+                    "address": "1200 Good Prayer Lane",
+                    "phone": "666-666-5666",
+                    "about": "praise rang dipkin"
                 }
             ]
         }

@@ -8,7 +8,7 @@ class Message_Model_Message extends DB_Model_ModelDriver
     {
         return "CREATE TABLE $this->table
 (
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    message_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     subject VARCHAR(255),
     attachment VARCHAR(255),
     body  TEXT,
@@ -16,5 +16,20 @@ class Message_Model_Message extends DB_Model_ModelDriver
     sentto INT NOT NULL,
     date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );";
+    }
+
+    public function findAllMessagesForUserId($userid)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table LEFT JOIN users ON messages.sentfrom = users.id WHERE sentto = $userid;"
+            );
+            $statement->execute();
+            return $statement->fetchAll();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
     }
 }

@@ -55,7 +55,7 @@
                                     <?= $page['page_html'] ?>
                                 </td>
                                 <td>
-                                    <a href="/pages/page/edit?id=<?= $page['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="/pages/page/edit?id=<?= $page['id'] ?>" class="btn btn-warning">Edit</a>
                                 </td>
                                 <td>
                                     <a href="/pages/page/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>

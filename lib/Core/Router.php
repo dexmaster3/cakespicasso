@@ -33,7 +33,7 @@ class Core_Router
         self::setDefaultIndex();
     }
 
-    private function findDbExactMatch($app_config, $app_request)
+    private static function findDbExactMatch($app_config, $app_request)
     {
         try {
             $request_uri = $app_request->request_uri;
@@ -57,7 +57,7 @@ class Core_Router
         }
     }
 
-    private function findConfigExactMatch($app_config, $app_request)
+    private static function findConfigExactMatch($app_config, $app_request)
     {
         $request_uri = $app_request->request_uri;
         $request_query = $app_request->parsed_query;
@@ -76,7 +76,7 @@ class Core_Router
         return null;
     }
 
-    private function useModuleControllerAction($app_config, $app_request)
+    private static function useModuleControllerAction($app_config, $app_request)
     {
         $request_parts = $app_request->parsed_url;
         $request_query = $app_request->parsed_query;
@@ -108,7 +108,7 @@ class Core_Router
         return null;
     }
 
-    private function setDefaultIndex()
+    private static function setDefaultIndex()
     {
         foreach (self::$location as $loc_k => $loc_v) {
             if (empty($loc_v) && $loc_k !== 'params') {

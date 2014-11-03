@@ -49,7 +49,7 @@
                                 <? if(empty($user['avatar'])): ?>
                             <img style="width: 50px;" src="http://placehold.it/50x50"/>
                             <? else: ?>
-                                <img style="width: 50px;" src="/assets/img/upload/<?= $user['avatar'] ?>"/>
+                                <img style="width: 50px;" src="/assets/upload/<?= $user['avatar'] ?>"/>
                             <? endif ?>
                             </td>
                             <td>

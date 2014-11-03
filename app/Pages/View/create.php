@@ -88,7 +88,12 @@
     {{/body}}
 
 {{scripts}}
+<script src="/assets/js/ckeditor/ckeditor.js"></script>
+<script src="/assets/js/ckeditor/adapters/jquery.js"></script>
 <script>
     contentRenderFrames();
+    $(document).ready(function() {
+        var test = $('textarea#page_html').ckeditor();
+    });
 </script>
 {{/scripts}}

@@ -39,6 +39,7 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
 
     protected function create()
     {
+        $this->data->page = null;
         return $this->render(__FUNCTION__);
     }
 }

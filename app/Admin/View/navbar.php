@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index">Cakes Picasso Admin (aka Young-Fro)</a>
+        <a class="navbar-brand" href="/">Cakes Picasso Admin (aka Young-Fro)</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -16,9 +16,14 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
                     class="caret"></b></a>
             <ul class="dropdown-menu message-dropdown">
+                <? if(empty($this->data->messages)): ?>
+                <li class="message-footer">
+                    <a href="#">You have No messages</a>
+                </li>
+                <? else: ?>
                 <? foreach($this->data->messages as $message): ?>
                 <li class="message-preview">
-                    <a href="#">
+                    <a href="/message/message/view?id=<?= $message['message_id'] ?>">
                         <div class="media">
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
@@ -26,10 +31,10 @@
 
                             <div class="media-body">
                                 <h5 class="media-heading">
-                                    <strong><?= $message['sentfrom'] ?></strong>
+                                    <strong><?= ucfirst($message['username']) ?></strong>
                                 </h5>
 
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> <?= $message['date_modified'] ?></p>
+                                <p class="small text-muted"><i class="fa fa-clock-o"></i> <?= date("M j, g:ia", strtotime($message['date_modified'])) ?></p>
                                 <h5 class="media-heading">
                                     <strong><i class="fa fa-fw fa-flag-o"></i> <?= $message['subject'] ?></strong>
                                 </h5>
@@ -40,8 +45,9 @@
                 </li>
                 <? endforeach; ?>
                 <li class="message-footer">
-                    <a href="#">Read All New Messages</a>
+                    <a href="/message/message/all">Read All New Messages</a>
                 </li>
+                <? endif; ?>
             </ul>
         </li>
         <li class="dropdown">
@@ -79,7 +85,7 @@
                     <a href="/users/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="/users/profile/inbox"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                    <a href="/message/message"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                 </li>
                 <li>
                     <a href="/users/profile/edit"><i class="fa fa-fw fa-gear"></i> Edit Profile</a>
@@ -97,6 +103,9 @@
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/admin/dashboard") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/admin/dashboard"><i class="fa fa-fw fa-tachometer"></i> Dashboard</a>
             </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/browser") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/browser"><i class="fa fa-fw fa-list-ul"></i> Browser</a>
+            </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/pages/page") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/pages/page"><i class="fa fa-fw fa-file-text-o"></i> Content</a>
             </li>
@@ -105,6 +114,9 @@
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/renderings/rendering") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/renderings/rendering"><i class="fa fa-fw fa-photo"></i> Renderings</a>
+            </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/message/message") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/message/message"><i class="fa fa-fw fa-envelope"></i> Messages</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile/showall") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/users/profile/showall"><i class="fa fa-fw fa-user"></i> Users</a>

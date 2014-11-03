@@ -22,10 +22,11 @@ class Users_Controller_BaseAuth extends Core_Controller_BaseController
     }
 
     /**
-     * This function is to extend the functionality of the base renderer, but wrapps the auth HTML
+     * This function is to extend the functionality of the base renderer, but wraps the auth HTML
+     * @param string $calling_function to be used if from other instantiated controller
      * @return mixed|string
      */
-    public function render()
+    public function render($calling_function = null)
     {
         $body_html = parent::render();
         $admin = new Admin_Controller_Admin();

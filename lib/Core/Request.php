@@ -1,6 +1,5 @@
 <?php
 
-//ToDo: One day i will move away from dynamically generated objects
 class Core_Request
 {
     private static $request;
@@ -17,6 +16,7 @@ class Core_Request
 
     private static function setRequest()
     {
+        self::$request = new stdClass();
         self::$request->request_uri = self::requestUri();
         self::$request->query = $_SERVER['QUERY_STRING'];
         self::$request->method = $_SERVER['REQUEST_METHOD'];
@@ -26,7 +26,7 @@ class Core_Request
         self::$request->post = self::parsePost();
     }
 
-    private function requestUri()
+    private static function requestUri()
     {
         $uri = ltrim($_SERVER['REQUEST_URI'], '/');
         if (empty($uri)) {
@@ -35,7 +35,7 @@ class Core_Request
         return $uri;
     }
 
-    private function parsePost()
+    private static function parsePost()
     {
         if (!empty($_POST)) {
             $post_content = array();
@@ -48,11 +48,17 @@ class Core_Request
         }
     }
 
-    private function parseUrl()
+    private static function parseUrl()
     {
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
         $url_only = $parsed_url['path'];
         $url = explode('/', ltrim($url_only, '/'));
+        if (empty($url[0]))
+            $url[0] = null;
+        if (empty($url[1]))
+            $url[1] = null;
+        if (empty($url[2]))
+            $url[2] = null;
         $url_parts = array(
             "module" => $url[0],
             "controller" => $url[1],
@@ -64,7 +70,7 @@ class Core_Request
         return $url_parts;
     }
 
-    private function parseQuery()
+    private static function parseQuery()
     {
         parse_str($_SERVER['QUERY_STRING'], $parsed_query);
         return $parsed_query;

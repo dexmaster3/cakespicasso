@@ -55,7 +55,7 @@
                             </td>
                             <td>
                                 <a href="/layouts/layout/edit?id=<?= $layout['id'] ?>"
-                                   class="btn btn-primary">Edit</a>
+                                   class="btn btn-warning">Edit</a>
                             </td>
                             <td>
                                 <a href="/layouts/layout/delete?id=<?= $layout['id'] ?>"

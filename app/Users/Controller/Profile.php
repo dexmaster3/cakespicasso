@@ -19,7 +19,7 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
     protected function save($query)
     {
         $post = Core_Request::getRequest()->post;
-        $uploaddir = ROOT . "/assets/img/upload/";
+        $uploaddir = ROOT . "/assets/upload/";
         $uploadfile = time() . "_" . basename($_FILES['avatar']['name']);
         if(move_uploaded_file($_FILES['avatar']['tmp_name'], $uploaddir . $uploadfile)) {
             $post['avatar'] = $uploadfile;

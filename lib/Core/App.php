@@ -10,6 +10,9 @@ class Core_App
 
     public function run()
     {
+        //Best to set the session before anything else
+        session_start();
+
         //Set Config/Request/Router for this http request
         $this->app_config = Core_Config::getConfig();
 

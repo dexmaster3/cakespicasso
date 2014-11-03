@@ -4,7 +4,11 @@
         "date": "Oct 31, 2014",
         "views": {
             "Message": {
-                "create": "create.php"
+                "create": "create.php",
+                "view": "view.php",
+                "all": "showall.php",
+                "index": "showall.php",
+                "sendmessage": "showall.php"
             }
         },
         "model_seeds": {

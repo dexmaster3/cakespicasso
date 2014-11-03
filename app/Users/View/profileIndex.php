@@ -35,7 +35,7 @@
                                 <? if(empty($this->data->user['avatar'])): ?>
                                 <img alt="User Pic" src="http://placehold.it/150x150" class="profile-image img-circle">
                                 <? else: ?>
-                                <img alt="User Pic" src="/assets/img/upload/<?= $this->data->user['avatar'] ?>" class="profile-image img-circle">
+                                <img alt="User Pic" src="/assets/upload/<?= $this->data->user['avatar'] ?>" class="profile-image img-circle">
                                 <? endif; ?>
                             </div>
                             <div class=" col-md-9 col-lg-9 ">
@@ -69,23 +69,9 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
-                                <a href="#" class="btn btn-primary">Unused Button 1</a>
-                                <a href="#" class="btn btn-primary">Other Unused Button</a>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary" href="/message/message/create"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                            <a href="edit" data-original-title="Edit this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
-                    </div>
-
                 </div>
             </div>
         </div>

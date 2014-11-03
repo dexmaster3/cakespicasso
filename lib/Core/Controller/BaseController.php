@@ -3,7 +3,12 @@
 abstract class Core_Controller_BaseController
 {
     protected $view_file;
-    protected $data = null;
+    protected $data;
+
+    public function __construct()
+    {
+        $this->data = new stdClass();
+    }
 
     public function setView($action)
     {

@@ -15,10 +15,11 @@ class Core_Config
         return self::$configs;
     }
 
-    private function setConfig()
+    private static function setConfig()
     {
         //ToDo: maybe possible to use include path here, but when two files, path only returns one (default functionality?)
         try {
+            self::$configs = new stdClass();
             foreach (explode(PATH_SEPARATOR, get_include_path()) as $path) {
                 $config = glob($path . self::$config_names);
                 if (!empty($config)) {
