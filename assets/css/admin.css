@@ -29,7 +29,7 @@
 
 }
 
-.drag-layout:hover{
+.drag-layout:hover, #layout-output .piece-remove:hover, .modal .pagination:hover, .form-items{
     cursor: pointer;
 }
 
@@ -57,9 +57,6 @@
     border: 2px solid rgb(219, 219, 219);
     border-radius: 10px;
     background-color: rgb(229, 229, 229);
-}
-#layout-output .piece-remove:hover {
-    cursor: pointer;
 }
 
 #layout-map {
@@ -93,10 +90,6 @@
     height: 500px;
 }
 
-.modal .pagination:hover {
-    cursor: pointer;
-}
-
 .rendering-sample {
     width: 100%;
     height: 400px;
@@ -107,6 +100,11 @@
 }
 .profile-name {
     text-align: center;
+}
+
+.form-items li {
+    padding: 5px 12px;
+    background-color: #b7eeb3;
 
 }
 

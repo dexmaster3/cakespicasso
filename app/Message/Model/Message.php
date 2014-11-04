@@ -8,7 +8,7 @@ class Message_Model_Message extends DB_Model_ModelDriver
     {
         return "CREATE TABLE $this->table
 (
-    message_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     subject VARCHAR(255),
     attachment VARCHAR(255),
     body  TEXT,
@@ -23,7 +23,7 @@ class Message_Model_Message extends DB_Model_ModelDriver
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare(
-                "SELECT * FROM $this->table LEFT JOIN users ON messages.sentfrom = users.id WHERE sentto = $userid;"
+                "SELECT *, messages.id as message_id FROM $this->table LEFT JOIN users ON messages.sentfrom = users.id WHERE sentto = $userid;"
             );
             $statement->execute();
             return $statement->fetchAll();

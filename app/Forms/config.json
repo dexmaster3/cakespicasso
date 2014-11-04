@@ -1,0 +1,20 @@
+{
+    "Forms": {
+        "mission": "to provide form creation",
+        "date": "Nov 4, 2014",
+        "views": {
+            "Form": {
+                "index": "index.php",
+                "create": "create.php"
+            }
+        },
+        "model_seeds": {
+            "Forms_Model_Form": [
+                {
+                    "form_name": "hosanna",
+                    "form_html": "praise-hosanna"
+                }
+            ]
+        }
+    }
+}

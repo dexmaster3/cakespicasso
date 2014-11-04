@@ -43,8 +43,8 @@ abstract class DB_Model_ModelDriver
                     "SELECT MAX(id) FROM $this->table;"
                 );
                 $statement->execute();
-                $row_id = $statement->fetch();
-                return $row_id[0];
+                $row_id = $statement->fetch(PDO::FETCH_ASSOC);
+                return $row_id['id'];
             } else {
                 return $this->updateById($data['id'], $data);
             }
@@ -62,7 +62,7 @@ abstract class DB_Model_ModelDriver
                 "SELECT * FROM $this->table"
             );
             $statement->execute();
-            return $statement->fetchAll();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -77,7 +77,7 @@ abstract class DB_Model_ModelDriver
                 "SELECT * FROM $this->table WHERE $column = '$value'"
             );
             $statement->execute();
-            return $statement->fetchAll();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -92,7 +92,7 @@ abstract class DB_Model_ModelDriver
                 "DELETE FROM $this->table WHERE $column = '$value'"
             );
             $statement->execute();
-            return $statement->fetchAll();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -121,7 +121,7 @@ abstract class DB_Model_ModelDriver
                 "UPDATE $this->table SET $new_values WHERE id = $id"
             );
             $statement->execute();
-            return $statement->fetch();
+            return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -136,7 +136,7 @@ abstract class DB_Model_ModelDriver
                 "SELECT * FROM $this->table WHERE id = $id"
             );
             $statement->execute();
-            return $statement->fetch();
+            return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();

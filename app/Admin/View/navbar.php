@@ -109,6 +109,9 @@
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/pages/page") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/pages/page"><i class="fa fa-fw fa-file-text-o"></i> Content</a>
             </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/forms/form") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/forms/form"><i class="fa fa-fw fa-pencil"></i> Forms</a>
+            </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/layouts/layout") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/layouts/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>
             </li>

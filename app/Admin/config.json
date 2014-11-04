@@ -5,7 +5,8 @@
         "alt_name": "admin",
         "views": {
             "Admin": {
-                "index": "layout.php"
+                "index": "layout.php",
+                "noadmin": "publayout.php"
             },
             "Dashboard": {
                 "index": "dashboard.php"
