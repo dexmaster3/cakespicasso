@@ -33,13 +33,13 @@
                 <div class="drag-layout" id="contentsection" draggable="true">
                     <h1>Content</h1>
                     Your content will be rendered where this is placed
-                    <textarea class="data" name="contentsection">{{content_content}}</textarea>
+                    <textarea class="data" name="contentsection[]">{{content_content}}</textarea>
                 </div>
                 <? foreach($this->data->layouts as $layout): ?>
                 <div class="drag-layout" id="layout<?= $layout['id'] ?>" draggable="true">
                     <h1><?= $layout['layout_name'] ?></h1>
                     <?= substr($layout['layout_content'], 0, 100) . ' ...' ?>
-                    <textarea class="data" name="layout<?= $layout['id'] ?>"><?= $layout['layout_content'] ?></textarea>
+                    <textarea class="data" name="layout[]"><?= $layout['layout_content'] ?></textarea>
                 </div>
                 <? endforeach; ?>
             </div>

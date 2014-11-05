@@ -29,7 +29,7 @@
 
 }
 
-.drag-layout:hover, #layout-output .piece-remove:hover, .modal .pagination:hover, .form-items{
+.drag-layout:hover, #layout-output .piece-remove:hover, .modal .pagination:hover, .form-items li{
     cursor: pointer;
 }
 

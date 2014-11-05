@@ -1,47 +1,113 @@
 /**
  * Created by dexter on 11/4/14.
  */
-function dragFormHandler (elements, dropzone) {
-    function dragStart(e) {
-        this.style.opacity = '0.5';
+function dragFormHandler () {
+    var fieldNumber = 0;
+    var fieldData = {};
 
-        e.dataTransfer.effectAllowed = 'copy';
-        e.dataTransfer.setData('text/html', this.dataset.view);
-        console.log(this.dataset);
-        e.dataTransfer.setData('class', this.classList);
-        e.dataTransfer.setData('id', this.id);
-    }
+    function bindPopover(e) {
+        $("#popover-save").click(onSaveClick);
+        $("#popover-delete").click(onDeleteClick);
+        $("#popover-cancel").click(function(e){
+            document.getElementById("popover-window").style.display = "none";
+        });
+        $(e).click(function(e) {e.stopPropagation();});
 
-    function drop(e) {
-        e.dataTransfer.effectAllowed = 'copy';
-        $(this).append(e.dataTransfer.getData('text/html'));
-        console.log(e.dataTransfer.getData('text/html'));
-    }
-    function over(e) {
-        if (e.preventDefault) {
-            e.preventDefault();
+        function onDeleteClick(e) {
+            e.stopPropagation();
+            var curr_id = $("#popover-window").data('id');
+            delete fieldData[curr_id];
+            $.each($(".form-item"), function(i, data) {
+                if ($(data).data('id') == curr_id) {
+                    $(data).remove();
+                }
+            });
+            console.log(fieldData);
         }
-        e.dataTransfer.dropEffect = 'copy';
-        return false;
+
+        function onSaveClick(e) {
+            e.stopPropagation();
+            var curr_id = $("#popover-window").data('id');
+            var curr_data = $("#popover-window input").serializeArray();
+            $.each(curr_data, function(i, data){
+                fieldData[curr_id][data['name']] = data['value'];
+            });
+            console.log(fieldData);
+        }
     }
-    function bindElement(element) {
-        element.addEventListener('dragstart', dragStart, false);/*
-        insert.addEventListener('dragover', usedPieceDragOver, false);
-        insert.addEventListener('dragenter', usedPieceDragEnter, false);
-        insert.addEventListener('dragleave', usedPieceDragLeave, false);
-        insert.addEventListener('dragend', usedPieceDragEnd, false);
-        insert.addEventListener('drop', usedPieceDrop, false);*/
+
+    function bindAddedField(e) {
+        e.addEventListener('click', onclick, false);
+
+        function onclick(e) {
+            e.stopPropagation();
+            var data_now = fieldData[$(this).data('id')];
+            var popover = $("#popover-window");
+            popover.show();
+            popover.css({position: "absolute", "top": e.pageY - 180, "left": e.pageX + 100});
+            $(".pop-name#name").val(data_now['name']);
+            $(".pop-label#label").val(data_now['label']);
+            $(".pop-placeholder#placeholder").val(data_now['placeholder']);
+            popover.data(fieldData[$(this).data('id')]);
+
+        }
+    }
+    function bindDraggableElement(element) {
+        element.addEventListener('dragstart', dragStart, false);
+        element.addEventListener('dragend', dragEnd, false);
+
+        function dragStart(e) {
+            this.style.opacity = '0.5';
+            e.dataTransfer.effectAllowed = 'copy';
+            e.dataTransfer.setData('text/html', this.dataset.view);
+            e.dataTransfer.setData('name', this.dataset.name);
+            e.dataTransfer.setData('label', this.dataset.label);
+            e.dataTransfer.setData('type', this.dataset.type);
+            e.dataTransfer.setData('placeholder', this.dataset.placeholder);
+        }
+        function dragEnd(e) {
+            this.style.opacity = '';
+        }
     }
     function bindDropzone(e) {
         e.addEventListener('dragover', over, false);
         e.addEventListener('drop', drop, false);
+
+        function drop(e) {
+            e.dataTransfer.effectAllowed = 'copy';
+            fieldNumber += 1;
+            var inptype = e.dataTransfer.getData('type');
+            var label = e.dataTransfer.getData('label');
+            var name = e.dataTransfer.getData('name');
+            var placeholder = e.dataTransfer.getData('placeholder');
+
+            $(this).append(e.dataTransfer.getData('text/html'));
+            $(this).children(".form-item:last").data('id', fieldNumber);
+            fieldData[fieldNumber] = {"id": fieldNumber, "label": label, "type": inptype, "name": name, "placeholder": placeholder};
+            bindAddedField($(".form-item:last", this).get(0));
+        }
+        function over(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'copy';
+            return false;
+        }
     }
 
 
-    [].forEach.call(elements, function(element){
-        bindElement(element);
+    //Remove our popup unless clicked on relevant fields
+    $(document).click(function(){
+        document.getElementById("popover-window").style.display = "none";
     });
-    bindDropzone(dropzone);
+    //Bind all form element types to drag
+    [].forEach.call($(".form-items li"), function(element){
+        bindDraggableElement(element);
+    });
+    //Bind dropzone to be droppable
+    bindDropzone(document.getElementById('form-preview'));
+    //Bind popover to save/delete
+    bindPopover(document.getElementById('popover-window'));
 }
 
-dragFormHandler($(".form-items li"), $("div.form-preview").get(0));
+dragFormHandler();

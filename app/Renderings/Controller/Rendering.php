@@ -21,7 +21,13 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
         $post = Core_Request::getRequest()->post;
         $rendering_model = new Renderings_Model_Rendering();
         $full_html = "";
-        foreach ($post as $key => $val){
+
+        //Array value flattener
+        $output = array();
+        array_walk_recursive($post, function ($current) use (&$output) {
+            $output[] = $current;
+        });
+        foreach ($output as $val){
             $full_html .= $val;
         }
         $rendering = array(

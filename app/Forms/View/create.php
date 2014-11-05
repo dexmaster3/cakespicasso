@@ -41,29 +41,41 @@
                     <div class="form-group">
                         <label>Form Elements</label>
                         <ul class="list-inline form-items">
-                            <li draggable="true" data-view="<div class='form-item'><label>Text Input</label>
-                            <input type='text' class='form-control'></div>">Text Input</li>
-                            <li draggable="true">Text Area</li>
-                            <li draggable="true">Radio Buttons</li>
-                            <li draggable="true">Select Dropper</li>
-                            <li draggable="true">Button</li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Text Input" data-type="text" data-name="text_one" data-view="<div class='form-item'><label>Text Input</label>
+                            <input type='text' class='form-control'></div>">Text Input
+                            </li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Textarea Input" data-type="textarea" data-name="textarea_one" data-view="<div class='form-item'><label>Textarea Input</label>
+                            <textarea class='form-control'></textarea></div>">Text Area</li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Radio Input" data-type="radio" data-name="radio_one" data-view="<div class='form-item radio'>
+                            <label><input name='radio_opts' type='radio' value='opt1' checked>Option 1</label><label><input name='radio_opts' type='radio' value='opt2'>Option 2</label><label><input name='radio_opts' type='radio' value='opt2'>Option 3</label></div>">Radio Buttons</li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Select Input" data-type="select" data-name="select_one" data-view="<div class='form-item'><label>Select Input</label>
+                            <select class='form-control'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option></div>">Select Dropper</li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Button Input" data-type="button" data-name="button_one" data-view="<div class='form-item'><label>Button</label>
+                            <button type='button' class='btn btn-primary'>Press Me</button></div>">Button</li>
                         </ul>
                     </div>
                     <div class="form-group">
                         <label for="form_name">Form Name</label>
-                        <div class="form-preview form-control" style="min-height: 100px;">
+
+                        <div id="form-preview" class="form-control" style="min-height: 100px;height:100%;">
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="form_html">Form Html Translation</label>
-                        <textarea rows="10" class="form-control" id="form_html" name="form_html"><?= $this->data->page['form_html'] ?></textarea>
+                        <textarea rows="10" class="form-control" id="form_html"
+                                  name="form_html"><?= $this->data->page['form_html'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Page</button>
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="renderings-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal fade" id="renderings-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -89,6 +101,28 @@
 
 </div>
 <!-- /#page-wrapper -->
+
+<div id="popover-window" class="popover right" style="top: 14.5px; left: 800px; display: none;">
+    <div class="arrow"></div>
+    <h3 class="popover-title">Text Input</h3>
+    <div class="popover-content">
+            <div id="popover-form" class="form-group">
+                <label> ID / Name </label>
+                <input class="pop-name form-control" data-type="input" type="text" name="name" id="name" value="text_one">
+                <label> Label Text </label>
+                <input class="pop-label form-control" data-type="input" type="text" name="label" id="label" value="Text Input">
+                <label>Placeholder </label>
+                <input class="pop-placeholder form-control" data-type="input" type="text" name="placeholder" id="placeholder" value="placeholder">
+                <label class="checkbox control-group" style="margin-left: 22px;">
+                    <input type="checkbox" data-type="checkbox" class="form-inline" name="required" id="required">Required
+                </label>
+                <hr>
+                <a href="javascript:void(0);" id="popover-save" class="btn btn-primary">Save</a>
+                <a href="javascript:void(0);" id="popover-delete" class="btn btn-danger">Delete</a>
+                <a href="javascript:void(0);" id="popover-cancel" class="btn btn-default">Cancel</a>
+            </div>
+    </div>
+</div>
 
 {{/body}}
 
