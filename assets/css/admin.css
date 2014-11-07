@@ -105,7 +105,16 @@
 .form-items li {
     padding: 5px 12px;
     background-color: #b7eeb3;
+    margin: 5px;
+    border-radius: 3px;
+}
 
+.form-item {
+    margin-bottom: 10px;
+}
+
+#form-preview {
+    background-color: beige;
 }
 
 [draggable] {

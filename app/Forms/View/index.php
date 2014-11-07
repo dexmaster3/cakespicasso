@@ -58,7 +58,4 @@
 {{/body}}
 
 {{scripts}}
-<script src="/assets/js/ckeditor/ckeditor.js"></script>
-<script src="/assets/js/ckeditor/adapters/jquery.js"></script>
-<script src="/assets/js/forms.js"></script>
 {{/scripts}}

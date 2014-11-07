@@ -43,8 +43,8 @@ abstract class DB_Model_ModelDriver
                     "SELECT MAX(id) FROM $this->table;"
                 );
                 $statement->execute();
-                $row_id = $statement->fetch(PDO::FETCH_ASSOC);
-                return $row_id['id'];
+                $row_id = $statement->fetch();
+                return $row_id[0];
             } else {
                 return $this->updateById($data['id'], $data);
             }
