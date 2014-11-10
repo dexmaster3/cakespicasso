@@ -41,21 +41,31 @@
                     <div class="form-group">
                         <label>Form Elements</label>
                         <ul class="list-inline form-items">
-                            <li draggable="true" data-placeholder="Placeholder" data-label="Text Input" data-type="text" data-name="text_one" data-view="<div class='form-item'><label>Text Input</label>
-                            <input type='text' class='form-control'></div>">Text Input
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Text Input" data-type="text"
+                                data-name="text_one" data-view="<div class='form-item'><label>Text Input</label>
+                            <input name='text_one' type='text' class='form-control'></div>">Text Input
                             </li>
-                            <li draggable="true" data-placeholder="Placeholder" data-label="Textarea Input" data-type="textarea" data-name="textarea_one" data-view="<div class='form-item'><label>Textarea Input</label>
-                            <textarea class='form-control'></textarea></div>">Text Area</li>
-                            <li draggable="true" data-placeholder="Placeholder" data-label="Radio Input" data-type="radio" data-name="radio_one" data-view="<div class='form-item'>
-                            <label><input name='radio_opts' type='radio' value='opt1' checked>Option 1</label><label><input name='radio_opts' type='radio' value='opt2'>Option 2</label><label><input name='radio_opts' type='radio' value='opt2'>Option 3</label></div>">Radio Buttons</li>
-                            <li draggable="true" data-placeholder="Placeholder" data-label="Select Input" data-type="select" data-name="select_one" data-view="<div class='form-item'><label>Select Input</label>
-                            <select class='form-control'>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Textarea Input"
+                                data-type="textarea" data-name="textarea_one" data-view="<div class='form-item'><label>Textarea Input</label>
+                            <textarea name='textarea_one' class='form-control'></textarea></div>">Text Area
+                            </li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Radio Input"
+                                data-type="radio" data-name="radio_one" data-view="<div class='form-item'>
+                            <label><input name='radio_opts' type='radio' value='opt1' checked>Option 1</label><label><input name='radio_opts' type='radio' value='opt2'>Option 2</label><label><input name='radio_opts' type='radio' value='opt3'>Option 3</label></div>">
+                                Radio Buttons
+                            </li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Select Input"
+                                data-type="select" data-name="select_one" data-view="<div class='form-item'><label>Select Input</label>
+                            <select name='select_one' class='form-control'>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
-                            <option>4</option></select></div>">Select Dropper</li>
-                            <li draggable="true" data-placeholder="Placeholder" data-label="Button Input" data-type="button" data-name="button_one" data-view="<div class='form-item'>
-                            <button type='button' class='btn btn-primary'>Submit</button></div>">Button</li>
+                            <option>4</option></select></div>">Select Dropper
+                            </li>
+                            <li draggable="true" data-placeholder="Placeholder" data-label="Button Input"
+                                data-type="button" data-name="button_one" data-view="<div class='form-item'>
+                            <button type='button' class='btn btn-primary'>Submit</button></div>">Button
+                            </li>
                         </ul>
                     </div>
                     <div class="form-group">
@@ -83,36 +93,32 @@
 <div id="popover-window" class="popover right" style="top: 14.5px; left: 800px; display: none;">
     <div class="arrow"></div>
     <h3 class="popover-title">Text Input</h3>
+
     <div class="popover-content">
-            <div id="popover-form" class="form-group">
-                <label for="name" id="label-name"> Field ID/Name
+        <div id="popover-form" class="form-group">
+            <label for="name" id="label-name"> Field ID/Name
                 <input class="pop-name form-control cereal" type="text" name="name" id="name" value="text_one">
-                </label>
-                <label for="label" id="label-label"> Label
+            </label>
+            <label for="label" id="label-label"> Label
                 <input class="pop-label form-control cereal" type="text" name="label" id="label" value="Text Input">
-                </label>
-                <label for="choices" id="label-choices"> Choices
+            </label>
+            <label for="choices" id="label-choices"> Choices
                 <textarea class="pop-choices form-control cereal" name="choices" id="choices"></textarea>
-                </label>
-                <label for="placeholder" id="label-placeholder"> Placeholder
-                <input class="pop-placeholder form-control cereal" type="text" name="placeholder" id="placeholder" value="placeholder">
-                </label>
-                <hr>
-                <a href="javascript:void(0);" id="popover-save" class="btn btn-primary">Save</a>
-                <a href="javascript:void(0);" id="popover-delete" class="btn btn-danger">Delete</a>
-                <a href="javascript:void(0);" id="popover-cancel" class="btn btn-default">Cancel</a>
-            </div>
+            </label>
+            <label for="placeholder" id="label-placeholder"> Placeholder
+                <input class="pop-placeholder form-control cereal" type="text" name="placeholder" id="placeholder"
+                       value="placeholder">
+            </label>
+            <hr>
+            <a href="javascript:void(0);" id="popover-save" class="btn btn-primary">Save</a>
+            <a href="javascript:void(0);" id="popover-delete" class="btn btn-danger">Delete</a>
+            <a href="javascript:void(0);" id="popover-cancel" class="btn btn-default">Cancel</a>
+        </div>
     </div>
 </div>
 
 {{/body}}
 
 {{scripts}}
-<script src="/assets/js/ckeditor/ckeditor.js"></script>
-<script src="/assets/js/ckeditor/adapters/jquery.js"></script>
 <script src="/assets/js/forms.js"></script>
 {{/scripts}}
-
-{{madupstuff}}
-
-{{/madmadupstuff}}

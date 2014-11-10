@@ -27,25 +27,32 @@
                 <a href="/forms/form/create" class="btn btn-success">Create +</a>
             </div>
         </div>
-        <div class="modal fade" id="renderings-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body" id="renderings-modal-body">
-                        <nav>
-                            <ul class="pagination">
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary save">Select Rendering</button>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Form Name</th>
+                        <th>Form HTML</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <? foreach ($this->data->forms as $form): ?>
+                        <tr id="form-item-<?= $form['id'] ?>">
+                            <td><?= $form['id'] ?></td>
+                            <td>
+                                <?= $form['form_name'] ?>
+                            </td>
+                            <td>
+                                <?= $form['form_html'] ?>
+                            </td>
+                            <td>
+                                <a onclick="deleteForm(<?= $form['id'] ?>);" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <? endforeach; ?>
+                </table>
             </div>
         </div>
 
@@ -58,4 +65,25 @@
 {{/body}}
 
 {{scripts}}
+<script>
+    function deleteForm(form_id) {
+        $.ajax({
+            url: "/Forms/Form/delete?id=" + form_id,
+            type: "DELETE",
+            success: function(data, status, xhr){
+                if (data.success) {
+                    $.notify("Form deleted!", "success");
+                    $("tr#form-item-" + form_id).fadeOut(600, function(){
+                        this.remove();
+                    });
+                } else {
+                    $.notify("Error deleting: " + data.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                $.notify("Error deleting: " + error);
+            }
+        })
+    }
+</script>
 {{/scripts}}

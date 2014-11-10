@@ -35,6 +35,7 @@
                             <th>Page Name</th>
                             <th>Page URL</th>
                             <th>Rendering Id</th>
+                            <th>Form Id</th>
                             <th>Page HTML</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -50,6 +51,9 @@
                                 </td>
                                 <td>
                                     <?= $page['rendering_id'] ?>
+                                </td>
+                                <td>
+                                    <?= $page['form_id'] ?>
                                 </td>
                                 <td>
                                     <?= $page['page_html'] ?>

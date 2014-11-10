@@ -28,7 +28,7 @@ class Users_Controller_BaseAuth extends Core_Controller_BaseController
      */
     public function render($calling_function = null)
     {
-        $body_html = parent::render();
+        $body_html = parent::render($calling_function);
         $admin = new Admin_Controller_Admin();
         $admin_html = $admin->index();
         $final_html = Core_View_ViewDriver::replaceShivs($admin_html, $body_html);

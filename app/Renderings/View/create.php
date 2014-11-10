@@ -35,6 +35,11 @@
                     Your content will be rendered where this is placed
                     <textarea class="data" name="contentsection[]">{{content_content}}</textarea>
                 </div>
+                <div class="drag-layout" id="formsection" draggable="true">
+                    <h1>Form</h1>
+                    Your form will be rendered where this is placed if you select one
+                    <textarea class="data" name="formsection[]">{{form_content}}</textarea>
+                </div>
                 <? foreach($this->data->layouts as $layout): ?>
                 <div class="drag-layout" id="layout<?= $layout['id'] ?>" draggable="true">
                     <h1><?= $layout['layout_name'] ?></h1>

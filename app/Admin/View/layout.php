@@ -16,6 +16,7 @@
 
 <!-- jQuery Version 1.11.0 -->
 <script src="/assets/js/jquery-1.11.0.js"></script>
+<script src="/assets/js/notify.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/assets/js/bootstrap.min.js"></script>

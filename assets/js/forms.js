@@ -7,6 +7,7 @@ var DragFormHandler = (function () {
     pub.fieldData = {};
     pub.fieldNumber = 0;
     pub.htmlData = '';
+    pub.formName = '';
 
     function makeReadable(oldCode) {
         var readableHTML = oldCode;
@@ -34,7 +35,7 @@ var DragFormHandler = (function () {
         return readableHTML;
     }
 
-    function updateHtmlTranslation() {
+    function updateHtmlTranslation(callback) {
         var html_frame = $("#form_html");
         var current_html = $("#form-preview").html();
         current_html = makeReadable(current_html.trim());
@@ -42,6 +43,19 @@ var DragFormHandler = (function () {
         current_html = current_html.replace('type="button"', 'type="submit"');
         html_frame.val(current_html);
         pub.htmlData = current_html;
+        pub.formName = $("#form_name").val();
+        if (callback) {
+            callback();
+        }
+    }
+
+    function wrapForm(callback) {
+        var formstart = "<form action='/forms/formdata/post' method='post'>{{form_id_replace}}";
+        var formend = "</form>";
+        pub.htmlData = formstart + pub.htmlData + formend;
+        if (callback) {
+            callback();
+        }
     }
 
     function bindPopover(e) {
@@ -61,14 +75,12 @@ var DragFormHandler = (function () {
                 $.each(options, function (i, option) {
                     var html = "<label><input name='" + opt_name + "' type='radio' value='" + option + "'>" + option + "</label>";
                     $.each($(".form-item"), function (i, data) {
-                        par
                         if ($(data).data('id') == curr_id) {
                             if (clear) {
                                 $(data).empty();
                                 clear = false;
                             }
                             $(data).append(html);
-                            par
                         }
                     });
                 });
@@ -91,6 +103,7 @@ var DragFormHandler = (function () {
                 $.each(form_item, function (i, data) {
                     if ($(data).data('id') == curr_id) {
                         $(data).find("label").html(pub.fieldData[curr_id]['label']);
+                        $(data).find("select").attr('name', pub.fieldData[curr_id]['name']);
                     }
                 });
             } else if (pub.fieldData[curr_id]['type'] == 'text') {
@@ -152,9 +165,11 @@ var DragFormHandler = (function () {
             if (data_now['type'] == 'text' || data_now['type'] == 'textarea') {
                 $("#label-placeholder").show();
                 $("#label-choices").hide();
+                $("#label-name").show();
             } else if (data_now['type'] == 'radio' || data_now['type'] == 'select') {
                 $("#label-placeholder").hide();
                 $("#label-choices").show();
+                $("#label-name").show();
             } else if (data_now['type'] == 'button') {
                 $("#label-placeholder").hide();
                 $("#label-choices").hide();
@@ -166,7 +181,6 @@ var DragFormHandler = (function () {
     function bindDraggableElement(element) {
         element.addEventListener('dragstart', function (e) {
             this.style.opacity = '0.5';
-           // e.dataTransfer.effectAllowed = 'copy';
             e.dataTransfer.setData('text/html', this.dataset.view);
             e.dataTransfer.setData('name', this.dataset.name);
             e.dataTransfer.setData('label', this.dataset.label);
@@ -229,22 +243,38 @@ var DragFormHandler = (function () {
 
     //Bind popover to save/delete
     bindPopover(document.getElementById('popover-window'));
-    $("#form-submitter").click(updateHtmlTranslation);
 
-    //Bind submit event
-    $("#form-submit").click(function () {
-        $.ajax({
-            url: 'Forms/Form/postedform',
-            type: 'POST',
-            data: pub.htmlData,
-            dataType: 'html/text',
-            success: function () {
-                console.log('ajax sent successfully');
-            }
-        })
+    //Bind submit event ajax
+    $("#form-submitter").click(function () {
+        updateHtmlTranslation(function() {
+            wrapForm(function () {
+                $.ajax({
+                    url: '/Forms/Form/save',
+                    type: 'POST',
+                    data: {
+                        form_html: pub.htmlData,
+                        form_name: pub.formName
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.success) {
+                            $.notify("Form created!", "success");
+                            setTimeout(function () {
+                                window.location.href = '/Forms/Form';
+                            }, 1800);
+                        } else {
+                            $.notify("Error processing: " + data.success);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $.notify("Ajax Error", "error");
+                        console.log(error);
+                    }
+                });
+            });
+        });
     });
 
     return pub;
 }());
 
-var formDragPage = DragFormHandler;
+var dragFormHandler = DragFormHandler;

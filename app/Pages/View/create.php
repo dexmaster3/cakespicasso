@@ -39,6 +39,12 @@
                                    value="<?= $this->data->page['page_url'] ?>">
                         </div>
                         <div class="form-group">
+                            <label for="form_id">Form Id</label>
+                            <input type="text" class="form-control" id="form_id" name="form_id" placeholder="Form Id"
+                                   value="<?= $this->data->page['form_id'] ?>">
+                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="void(0);">Show Options</a>
+                        </div>
+                        <div class="form-group">
                             <label for="rendering_id">Rendering Id</label>
                             <input type="text" class="form-control" id="rendering_id" name="rendering_id" placeholder="Rendering Id"
                                    value="<?= $this->data->page['rendering_id'] ?>">

@@ -17,8 +17,14 @@ class Display_Controller_Display extends Core_Controller_BaseController
         $content = $content_model->findById($query);
         $rendering_model = new Renderings_Model_Rendering();
         $rendering = $rendering_model->findById($content['rendering_id']);
+        $form_model = new Forms_Model_Form();
+        $form = $form_model->findById($content['form_id']);
         $rendering_string = html_entity_decode($rendering['html_string']);
         $rendering_string = str_replace("{{content_content}}", html_entity_decode($content['page_html']), $rendering_string);
+        if ($form) {
+            $new_form_html = Forms_FormHelper::insertFormId($form);
+            $rendering_string = str_replace("{{form_content}}", $new_form_html, $rendering_string);
+        }
         return $this->renderString($rendering_string);
     }
 
