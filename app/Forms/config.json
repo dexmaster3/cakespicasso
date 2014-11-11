@@ -12,11 +12,8 @@
             "Forms_Model_Form": [
                 {
                     "form_name": "hosanna",
-                    "form_html": "<form action='/forms/formdata/post' method='post'><div class='form-item'><label>Text Input</label><input type='text' class='form-control'></div><div class='form-item'><label>Textarea Input</label><textarea class='form-control'></textarea></div><div class='form-item'><label><input name='radio_opts' type='radio' value='opt1' checked=''>Option 1</label><label><input name='radio_opts' type='radio' value='opt2'>Option 2</label><label><input name='radio_opts' type='radio' value='opt2'>Option 3</label></div><div class='form-item'><label>Select Input</label><select class='form-control'><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div class='form-item'><button type='submit' class='btn btn-primary'>Submit</button></div></form>"
+                    "form_html": "<form action='/forms/formdata/post' method='post'>{{form_id_replace}}<div class='form-item'><label>Text Input</label><input name='text_one' type='text' class='form-control'></div><div class='form-item'><label>Textarea Input</label><textarea name='textarea_one' class='form-control'></textarea></div><div class='form-item'><label><input name='radio_opts' type='radio' value='opt1' checked='>Option 1</label><label><input name='radio_opts' type='radio' value='opt2'>Option 2</label><label><input name='radio_opts' type='radio' value='opt3'>Option 3</label></div><div class='form-item'><label>Select Input</label><select name='select_one' class='form-control'><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div class='form-item'><button type='submit' class='btn btn-primary'>Submit</button></div></form>"
                 }
-            ],
-            "Forms_Model_Formdata": [
-
             ]
         }
     }

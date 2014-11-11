@@ -1,6 +1,6 @@
 <?php
 
-class Forms_Model_Formdata extends DB_Model_ModelEAVDriver
+class Display_Model_Formdata extends DB_Model_ModelEAVDriver
 {
     protected $table = 'formdatas';
 

@@ -33,12 +33,9 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div class="form-wrap">
+                <div class="form-wrap" id="login-wrap">
                     <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Login Form</h1></span>
-                    <? if (!empty($this->data->message)): ?>
-                        <div id="alert-banner" class="alert <?= $this->data->message_type ?>"><?= $this->data->message ?></div>
-                    <? endif; ?>
-                    <form role="form" action="/users/user/login" method="post" id="login-form" autocomplete="off">
+                    <div role="form" id="login-form">
                         <div class="form-group" id="add-after">
                             <label for="username" class="sr-only">Email</label>
                             <input type="text" name="username" id="username" class="form-control"
@@ -46,16 +43,44 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="sr-only">Password</label>
-                            <input type="password" name="password" id="password" class="form-control"
+                            <input type="password" name="password" id="password" class="form-control password"
                                    placeholder="Password">
                         </div>
                         <div class="checkbox">
-                            <span class="character-checkbox" onclick="showPassword()"></span>
+                            <span class="character-checkbox" onclick="LoginHandler.showPassword()"></span>
                             <span class="label">Show password</span>
                         </div>
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
-                    </form>
-                    <div id="change-form"><a id="change-form-button" onclick="changeForm()">Free Registration Here</a>
+                        <button type="button" id="btn-login" class="btn btn-custom btn-lg btn-block">Log In</button>
+                    </div>
+                    <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Free Registration Here</a>
+                    </div>
+                    <hr>
+                </div>
+                <div class="form-wrap" id="register-wrap" style="display: none;">
+                    <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Registration Form</h1></span>
+                    <div role="form" id="register-form">
+                        <div class="form-group">
+                            <label for="username" class="sr-only">Username</label>
+                            <input type="text" name="username" id="username" class="form-control"
+                                   placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                   placeholder="Email@domain.tld">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" name="password" id="password" class="form-control password"
+                                   placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <span class="character-checkbox" onclick="LoginHandler.showPassword()"></span>
+                            <span class="label">Show password</span>
+                        </div>
+                        <button type="button" id="btn-register" class="btn btn-custom btn-lg btn-block">Register</button>
+                    </div>
+                    <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Back to Login</a>
                     </div>
                     <hr>
                 </div>
@@ -81,7 +106,8 @@
         </div>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/assets/js/jquery-1.11.0.js"></script>
+<script src="/assets/js/notify.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/login.js"></script>
 </body>

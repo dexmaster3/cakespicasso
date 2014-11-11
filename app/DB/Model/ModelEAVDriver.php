@@ -13,37 +13,39 @@ abstract class DB_Model_ModelEAVDriver
     }
 
     /**
-     * @param $data Array data that matches SQL columns
+     * @param $data Array any sort of data for the EAV table
      * @return int added row's ID
      */
     public function addRow($data)
     {
         try {
-            if (($data['entity'] > 0)) {
-                $this->conn = $this->startConnection();
-                $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
-                $entity_id = null;
-                foreach ($columns as $column) {
-                    array_push($allowed_fields, $column['Field']);
-                }
-                $entity_id = $data['entity'];
-                unset($data['entity']);
-                foreach ($data as $data_item_k => $data_item_v) {
-                    $sql_data = array(
-                        "entity" => $entity_id,
-                        "attribute" => $data_item_k,
-                        "value" => $data_item_v
-                    );
-                    $values = ':' . implode(', :', array_keys($sql_data));
-                    $keys = implode(', ', array_keys($sql_data));
-                    $statement = $this->conn->prepare(
-                        "INSERT INTO $this->table ($keys) value ($values);"
-                    );
-                    $sql_success = $statement->execute($sql_data);
-                }
+            $this->conn = $this->startConnection();
+            $max_entity_st = $this->conn->prepare(
+                "SELECT MAX(entity) FROM $this->table;"
+            );
+            $max_entity_st->execute();
+            $max_entity = $max_entity_st->fetch();
+            $max_entity_no = $max_entity[0] + 1;
+
+            $total_data = array();
+            $insert_data = array();
+            $n = 0;
+            foreach ($data as $data_item_k => $data_item_v) {
+                $total_data[] = "(:entity$n, :attribute$n, :value$n)";
+                $insert_data["entity$n"] = $max_entity_no;
+                $insert_data["attribute$n"] = $data_item_k;
+                $insert_data["value$n"] = $data_item_v;
+                $n++;
+            }
+            if (!empty($insert_data)) {
+                $ready_data = implode(', ', $total_data);
+                $stmt = $this->conn->prepare(
+                    "INSERT INTO $this->table (entity, attribute, value) VALUES $ready_data;"
+                );
+                $stmt->execute($insert_data);
                 return true;
             } else {
-                return "No entity ID set";
+                return false;
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -59,66 +61,18 @@ abstract class DB_Model_ModelEAVDriver
                 "SELECT * FROM $this->table"
             );
             $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-            return $ex->getMessage();
-        }
-    }
-
-    public function findAllByColumnValue($column, $value)
-    {
-        try {
-            $this->conn = $this->startConnection();
-            $statement = $this->conn->prepare(
-                "SELECT * FROM $this->table WHERE $column = '$value'"
-            );
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-            return $ex->getMessage();
-        }
-    }
-
-    public function deleteAllByColumnValue($column, $value)
-    {
-        try {
-            $this->conn = $this->startConnection();
-            $statement = $this->conn->prepare(
-                "DELETE FROM $this->table WHERE $column = '$value'"
-            );
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-            return $ex->getMessage();
-        }
-    }
-
-    public function updateById($id, $data)
-    {
-        try {
-            unset($data['id']);
-            $this->conn = $this->startConnection();
-            $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
-            $new_values = array();
-            $allowed_fields = array();
-            foreach ($columns as $column) {
-                array_push($allowed_fields, $column['Field']);
-            }
-            foreach ($data as $datak => $datav) {
-                $datav = $this->conn->quote($datav);
-                if (in_array($datak, $allowed_fields)) {
-                    array_push($new_values, "$datak=$datav");
+            $entities = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $ret_entities = array();
+            foreach ($entities as $entity) {
+                if (array_key_exists($entity['entity'], $ret_entities)) {
+                    $ret_entities[$entity['entity']][$entity['attribute']] = $entity['value'];
+                } else {
+                    $ret_entities[$entity['entity']] = array(
+                        $entity['attribute'] => $entity['value']
+                    );
                 }
             }
-            $new_values = implode(", ", $new_values);
-            $statement = $this->conn->prepare(
-                "UPDATE $this->table SET $new_values WHERE id = $id"
-            );
-            $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            return $ret_entities;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -130,10 +84,15 @@ abstract class DB_Model_ModelEAVDriver
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare(
-                "SELECT * FROM $this->table WHERE id = $id"
+                "SELECT * FROM $this->table WHERE entity = $id"
             );
             $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            $entity = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $ret_entity = array();
+            foreach ($entity as $eav) {
+                $ret_entity[$eav['attribute']] = $eav['value'];
+            }
+            return $ret_entity;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();
@@ -145,7 +104,7 @@ abstract class DB_Model_ModelEAVDriver
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare(
-                "DELETE FROM $this->table WHERE id = $id"
+                "DELETE FROM $this->table WHERE entity = $id"
             );
             $statement->execute();
             return $statement->rowCount();

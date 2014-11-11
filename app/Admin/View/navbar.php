@@ -92,7 +92,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="/users/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a style="cursor: pointer;" onclick="LogoutHandler.doLogout();"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -111,6 +111,9 @@
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/forms/form") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/forms/form"><i class="fa fa-fw fa-pencil"></i> Forms</a>
+            </li>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/display/formdata") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/display/formdata"><i class="fa fa-fw fa-book"></i> Form Data</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/layouts/layout") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/layouts/layout"><i class="fa fa-fw fa-edit"></i> Layouts</a>

@@ -9,6 +9,9 @@
             },
             "Browser": {
                 "index": "browser.php"
+            },
+            "Formdata": {
+                "index": "formindex.php"
             }
         },
         "custom_routes": {
@@ -17,6 +20,11 @@
                 "controller": "Browser",
                 "action": "Index"
             }
+        },
+        "model_seeds": {
+            "Display_Model_Formdata": [
+
+            ]
         }
     }
 }

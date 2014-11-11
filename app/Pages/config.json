@@ -28,12 +28,16 @@
                 {
                     "page_name": "hosanna",
                     "page_url": "praise-hosanna",
-                    "page_html": "Praise our celestial Hosanna, and praise Rang"
+                    "page_html": "Praise our celestial Hosanna, and praise Rang",
+                    "rendering_id": 1,
+                    "form_id": 1
                 },
                 {
                     "page_name": "shoes",
                     "page_url": "my-shoe-prices",
-                    "page_html": "Welcome to my shoe store, with prices!"
+                    "page_html": "Welcome to my shoe store, with prices!",
+                    "rendering_id": 1,
+                    "form_id": 1
                 },
                 {
                     "page_name": "pantspage",
