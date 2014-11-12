@@ -2,6 +2,7 @@
 
 class Forms_FormHelper
 {
+    //ToDo: Json parsing Logic could go here, to avoid saving as HTML
     static public function insertFormId($form)
     {
         $form_html = html_entity_decode($form['form_html']);

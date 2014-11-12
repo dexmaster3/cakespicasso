@@ -34,6 +34,7 @@ var loginHandler = (function () {
     function sendLogin() {
         var inputs = $("#login-form input");
         var data = inputs.serializeArray();
+        data.push({name: "ajax", value: "true"});
         $.ajax({
             url: "/users/user/login",
             method: "POST",
@@ -61,6 +62,7 @@ var loginHandler = (function () {
     function sendRegister() {
         var inputs = $("#register-form input");
         var data = inputs.serializeArray();
+        data.push({name: "ajax", value: "true"});
         $.ajax({
             url: "/users/user/register",
             method: "POST",
@@ -85,17 +87,15 @@ var loginHandler = (function () {
         });
     }
 
-    //TODO: use built in form functionality and inhibit that
     //Login bindings
-    $(document).keypress(function (ev) {
-        if (ev.which == 13 && loginShowing) {
-            sendLogin();
-        } else if (ev.which == 13 && !loginShowing) {
-            sendRegister();
-        }
+    $("#register-form").submit(function(ev){
+        ev.preventDefault();
+        sendRegister();
     });
-    $("#btn-login").on('click', sendLogin);
-    $("#btn-register").on('click', sendRegister);
+    $("#login-form").submit(function(ev){
+        ev.preventDefault();
+        sendLogin();
+    });
 
     $("#login-form input").first().focus();
 

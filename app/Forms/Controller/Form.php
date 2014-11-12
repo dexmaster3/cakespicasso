@@ -43,4 +43,10 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
         }
         return $this->returnJson($form);
     }
+    protected function ajaxshow($query = null)
+    {
+        $form_model = new Forms_Model_Form();
+        $forms = $form_model->getAll();
+        return $this->returnJson($forms);
+    }
 }

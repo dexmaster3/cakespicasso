@@ -8,7 +8,8 @@
                 "index": "index.php",
                 "register": "index.php",
                 "login": "index.php",
-                "logout": "index.php"
+                "logout": "index.php",
+                "showregister": "register.php"
             },
             "Profile": {
                 "index": "profileIndex.php",

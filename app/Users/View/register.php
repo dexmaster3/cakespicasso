@@ -34,32 +34,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <? if(!empty($this->data->message['message'])): ?>
-                <div class="alert alert-danger"><?= $this->data->message['message'] ?></div>
+                    <div class="alert alert-danger"><?= $this->data->message['message'] ?></div>
                 <? endif; ?>
-                <div class="form-wrap" id="login-wrap">
-                    <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Login Form</h1></span>
-                    <form role="form" id="login-form" action="/users/user/login" method="POST">
-                        <div class="form-group" id="add-after">
-                            <label for="username" class="sr-only">Email</label>
-                            <input type="text" name="username" id="username" class="form-control"
-                                   placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="sr-only">Password</label>
-                            <input type="password" name="password" id="password" class="form-control password"
-                                   placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                            <span class="character-checkbox" onclick="LoginHandler.showPassword()"></span>
-                            <span class="label">Show password</span>
-                        </div>
-                        <button type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block">Log In</button>
-                    </form>
-                    <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Free Registration Here</a>
-                    </div>
-                    <hr>
-                </div>
-                <div class="form-wrap" id="register-wrap" style="display: none;">
+                <div class="form-wrap" id="register-wrap">
                     <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Registration Form</h1></span>
                     <form role="form" id="register-form" action="/users/user/register" method="POST">
                         <div class="form-group">

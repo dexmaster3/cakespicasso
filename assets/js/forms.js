@@ -50,7 +50,7 @@ var DragFormHandler = (function () {
     }
 
     function wrapForm(callback) {
-        var formstart = "<form action='/forms/formdata/post' method='post'>{{form_id_replace}}";
+        var formstart = "<form action='/display/formdata/post' method='post'><span style='display:none;'>{{form_id_replace}}</span>";
         var formend = "</form>";
         pub.htmlData = formstart + pub.htmlData + formend;
         if (callback) {
@@ -111,6 +111,7 @@ var DragFormHandler = (function () {
                     if ($(data).data('id') == curr_id) {
                         $(data).find("label").html(pub.fieldData[curr_id]['label']);
                         $(data).find("input").attr('placeholder', pub.fieldData[curr_id]['placeholder']);
+                        $(data).find("input").attr('name', pub.fieldData[curr_id]['name']);
                     }
                 });
             } else if (pub.fieldData[curr_id]['type'] == 'textarea') {
@@ -118,6 +119,7 @@ var DragFormHandler = (function () {
                     if ($(data).data('id') == curr_id) {
                         $(data).find("label").html(pub.fieldData[curr_id]['label']);
                         $(data).find("textarea").html(pub.fieldData[curr_id]['placeholder']);
+                        $(data).find("textarea").attr('name', pub.fieldData[curr_id]['name']);
                     }
                 });
             } else if (pub.fieldData[curr_id]['type'] == 'button') {

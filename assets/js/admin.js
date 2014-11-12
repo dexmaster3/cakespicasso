@@ -167,9 +167,55 @@ var changeiframe = function(iframeid) {
     iframe.classList.add("active");
 };
 
+var contentRenderForms = function() {
+    $.ajax({
+        url: "/forms/form/ajaxshow",
+        type: "GET",
+        dataType: "json"
+    }).success(function(data, status, jqXHR) {
+        var first = true;
+        for (i = 0; i < data.length; i++) {
+            var node = document.createElement('div');
+            node.setAttribute("id", "forms-sample-" + data[i]['id']);
+            node.setAttribute("data-id", data[i]['id']);
+            node.setAttribute("class", "rendering-sample");
+            if (first) {
+                node.setAttribute("style", "display:initial;");
+                node.classList.add("active");
+                first = false;
+            } else {
+                node.setAttribute("style", "display:none;");
+            }
+            $("#renderings-modal-body").append(node);
+            var paginate = document.createElement('li');
+            paginate.innerHTML = "<a onclick='changeforms("+data[i]['id']+");'>" + (i + 1) + "</a>";
+            $("ul.pagination").append(paginate);
+            $("#renderings-modal .save").click(function(){
+                $("form #rendering_id").val($(".rendering-sample.active").attr("data-id"));
+                $("#renderings-modal").modal('hide');
+            });
+        }
+    });
+};
+
+var changeforms = function(iframeid) {
+    var allframes = document.getElementsByClassName("rendering-sample");
+    [].forEach.call(allframes, function(frame) {
+        frame.setAttribute("style", "display:none;");
+        frame.classList.remove("active");
+    });
+    var iframe = document.getElementById("rendering-sample-" + iframeid);
+    iframe.setAttribute("style", "display:initial;");
+    iframe.classList.add("active");
+};
+
 var showRenderingsModal = function() {
     $("#renderings-modal").modal('show');
 };
+
+var showFormsModal = function(){
+    $("#forms-modal").modal('show');
+}
 
 var realtimeRenderings = function() {
     var alllayouts = $(".drag-layout textarea");

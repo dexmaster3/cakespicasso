@@ -27,20 +27,18 @@
                 <? foreach ($this->data->formdatas as $form): ?>
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th>Field Name</th>
-                            <th>Entered Data</th>
-                        </tr>
-                        </thead>
-                        <tbody>
                         <? if (array_key_exists('form_id', $form)): ?>
                             <? foreach ($this->data->forms as $formie): ?>
-                                <tr>
-                                    <td>Form Name</td>
-                                    <td><?= $formie['form_name'] ?></td>
-                                </tr>
+                                <? if($form['form_id'] == $formie['id']): ?>
+                                    <tr>
+                                        <th>Form Name</th>
+                                        <th><?= $formie['form_name'] ?></th>
+                                    </tr>
+                                <? endif; ?>
                             <? endforeach; ?>
                         <? endif; ?>
+                        </thead>
+                        <tbody>
                         <? foreach ($form as $key => $val): ?>
                             <tr>
                                 <td><?= $key ?></td>

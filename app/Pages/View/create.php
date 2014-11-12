@@ -42,7 +42,7 @@
                             <label for="form_id">Form Id</label>
                             <input type="text" class="form-control" id="form_id" name="form_id" placeholder="Form Id"
                                    value="<?= $this->data->page['form_id'] ?>">
-                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="void(0);">Show Options</a>
+                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="showFormsModal();">Show Options</a>
                         </div>
                         <div class="form-group">
                             <label for="rendering_id">Rendering Id</label>
@@ -80,6 +80,26 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-primary save">Select Rendering</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="forms-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body" id="forms-modal-body">
+                            <nav>
+                                <ul class="pagination">
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary save">Select Form</button>
                         </div>
                     </div>
                 </div>
