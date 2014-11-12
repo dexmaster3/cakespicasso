@@ -42,13 +42,13 @@
                             <label for="form_id">Form Id</label>
                             <input type="text" class="form-control" id="form_id" name="form_id" placeholder="Form Id"
                                    value="<?= $this->data->page['form_id'] ?>">
-                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="showFormsModal();">Show Options</a>
+                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="FormsPreview.showFormsModal();">Show Options</a>
                         </div>
                         <div class="form-group">
                             <label for="rendering_id">Rendering Id</label>
                             <input type="text" class="form-control" id="rendering_id" name="rendering_id" placeholder="Rendering Id"
                                    value="<?= $this->data->page['rendering_id'] ?>">
-                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="showRenderingsModal();">Show Options</a>
+                            <a style="margin-top: 5px;" class="btn btn-primary" onclick="RenderingsPreview.showRenderingsModal();">Show Options</a>
                         </div>
                         <div class="form-group hidden" style="display: none;">
                             <label for="page_url">Page Url</label>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="modal-body" id="renderings-modal-body">
                             <nav>
-                                <ul class="pagination">
+                                <ul class="pagination renderings">
                                 </ul>
                             </nav>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="modal-body" id="forms-modal-body">
                             <nav>
-                                <ul class="pagination">
+                                <ul class="pagination forms">
                                 </ul>
                             </nav>
                         </div>
@@ -116,10 +116,12 @@
 {{scripts}}
 <script src="/assets/js/ckeditor/ckeditor.js"></script>
 <script src="/assets/js/ckeditor/adapters/jquery.js"></script>
+<script src="/assets/js/pages.js"></script>
 <script>
-    contentRenderFrames();
+    RenderingsPreview.contentRenderFrames();
+    FormsPreview.contentRenderForms();
     $(document).ready(function() {
-        var test = $('textarea#page_html').ckeditor();
+        var ckedit = $('textarea#page_html').ckeditor();
     });
 </script>
 {{/scripts}}

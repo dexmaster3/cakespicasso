@@ -41,12 +41,12 @@ var loginHandler = (function () {
             data: data,
             success: function (data, status, xhr) {
                 if (data.success) {
-                    $.notify(data.message, 'success');
+                    $.notify(data.message, data.type);
                     setTimeout(function () {
-                        window.location.href = "/admin/dashboard";
+                        window.location.href = data.redirect;
                     }, 1200)
                 } else {
-                    $.notify(data.message, 'error');
+                    $.notify(data.message, data.type);
                     inputs.val('');
                     inputs.first().focus();
                 }
@@ -69,12 +69,12 @@ var loginHandler = (function () {
             data: data,
             success: function (data, status, xhr) {
                 if (data.success) {
-                    $.notify(data.message, 'success');
+                    $.notify(data.message, data.type);
                     setTimeout(function () {
-                        window.location.href = "/";
+                        window.location.href = data.redirect;
                     }, 2000)
                 } else {
-                    $.notify(data.message, 'error');
+                    $.notify(data.message, data.type);
                     inputs.val('');
                     inputs.first().focus();
                 }

@@ -27,7 +27,7 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <form action="/forms/form/index" method="post">
+                <form id="forms-create-form" action="/forms/form/save" method="post">
                     <div class="form-group">
                         <label for="form_name">Form Name</label>
                         <input type="text" class="form-control" id="form_name" name="form_name"
@@ -80,7 +80,7 @@
                         <textarea rows="10" class="form-control" id="form_html"
                                   name="form_html"><?= $this->data->page['form_html'] ?></textarea>
                     </div>
-                    <button id="form-submitter" type="button" class="btn btn-primary">Submit Page</button>
+                    <button id="form-submitter" type="submit" class="btn btn-primary">Submit Page</button>
                 </form>
             </div>
         </div>

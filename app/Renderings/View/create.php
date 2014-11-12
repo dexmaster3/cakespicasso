@@ -79,7 +79,5 @@
 {{/body}}
 
 {{scripts}}
-<script>
-    renderingPiecesDriver();
-</script>
+<script src="/assets/js/renderings.js"></script>
 {{/scripts}}

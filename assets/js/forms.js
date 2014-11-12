@@ -247,29 +247,33 @@ var DragFormHandler = (function () {
     bindPopover(document.getElementById('popover-window'));
 
     //Bind submit event ajax
-    $("#form-submitter").click(function () {
+    var form = $("#forms-create-form");
+
+    form.submit(function(ev){
+        ev.preventDefault();
+        var action = form.attr('action');
+        var method = form.attr('method');
         updateHtmlTranslation(function() {
             wrapForm(function () {
                 $.ajax({
-                    url: '/Forms/Form/save',
-                    type: 'POST',
+                    url: action,
+                    type: method,
                     data: {
                         form_html: pub.htmlData,
                         form_name: pub.formName
                     },
                     success: function (data, status, xhr) {
                         if (data.success) {
-                            $.notify("Form created!", "success");
+                            $.notify(data.message, "success");
                             setTimeout(function () {
-                                window.location.href = '/Forms/Form';
+                                window.location.href = data.redirect;
                             }, 1800);
                         } else {
-                            $.notify("Error processing: " + data.success);
+                            $.notify("Error processing: " + data.message, "error");
                         }
                     },
                     error: function (xhr, status, error) {
-                        $.notify("Ajax Error", "error");
-                        console.log(error);
+                        $.notify("Ajax Error: " + error, "error");
                     }
                 });
             });

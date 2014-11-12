@@ -110,9 +110,12 @@ class Core_Router
 
     private static function setDefaultIndex()
     {
-        foreach (self::$location as $loc_k => $loc_v) {
-            if (empty($loc_v) && $loc_k !== 'params') {
-                self::$location[$loc_k] = 'Index';
+        $curr_location = self::$location;
+        if (is_array($curr_location)) {
+            foreach ($curr_location as $loc_k => $loc_v) {
+                if (empty($loc_v) && $loc_k !== 'params') {
+                    self::$location[$loc_k] = 'Index';
+                }
             }
         }
     }

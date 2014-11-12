@@ -25,7 +25,8 @@ class Users_Controller_User extends Core_Controller_BaseController
         if (empty($post['username']) || empty($post['password']) || empty($post['email'])) {
             $this->data->message = array(
                 "success" => false,
-                "message" => "Fill out the required fields"
+                "message" => "Fill out the required fields",
+                "type" => "warn"
             );
             if ($post['ajax']) {
                 return $this->returnJson($this->data->message);
@@ -35,7 +36,8 @@ class Users_Controller_User extends Core_Controller_BaseController
         } elseif (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
             $this->data->message = array(
                 "success" => false,
-                "message" => "Please enter a valid email"
+                "message" => "Please enter a valid email",
+                "type" => "warn"
             );
             if ($post['ajax']) {
                 return $this->returnJson($this->data->message);
@@ -48,7 +50,8 @@ class Users_Controller_User extends Core_Controller_BaseController
             if (!empty($found_users[0])) {
                 $this->data->message = array(
                     "success" => false,
-                    "message" => "Username already in use"
+                    "message" => "Username already in use",
+                    "type" => "error"
                 );
                 if ($post['ajax']) {
                     return $this->returnJson($this->data->message);
@@ -63,7 +66,9 @@ class Users_Controller_User extends Core_Controller_BaseController
                 if ($user_id > 0) {
                     $this->data->message = array(
                         "success" => true,
-                        "message" => "User created! Please log in"
+                        "message" => "User created! Please log in",
+                        "type" => "success",
+                        "redirect" => "/"
                     );
                     if ($post['ajax']) {
                         return $this->returnJson($this->data->message);
@@ -73,7 +78,8 @@ class Users_Controller_User extends Core_Controller_BaseController
                 } else {
                     $this->data->message = array(
                         "success" => false,
-                        "message" => "Error creating user"
+                        "message" => "Error creating user",
+                        "type" => "error"
                     );
                     if ($post['ajax']) {
                         return $this->returnJson($this->data->message);
@@ -101,7 +107,9 @@ class Users_Controller_User extends Core_Controller_BaseController
                 $usersname = $found_users[0]['username'];
                 $this->data->message = array(
                     "success" => true,
-                    "message" => "Welcome back $usersname"
+                    "message" => "Welcome back $usersname",
+                    "type" => "success",
+                    "redirect" => "/admin/dashboard"
                 );
                 if ($post['ajax']) {
                     return $this->returnJson($this->data->message);
@@ -112,7 +120,8 @@ class Users_Controller_User extends Core_Controller_BaseController
             } else {
                 $this->data->message = array(
                     "success" => false,
-                    "message" => "Wrong Username or Password"
+                    "message" => "Wrong Username or Password",
+                    "type" => "error"
                 );
                 if ($post['ajax']) {
                     return $this->returnJson($this->data->message);
@@ -123,7 +132,8 @@ class Users_Controller_User extends Core_Controller_BaseController
         } else {
             $this->data->message = array(
                 "success" => false,
-                "message" => "Enter both Username and Password"
+                "message" => "Enter both Username and Password",
+                "type" => "warn"
             );
             if ($post['ajax']) {
                 return $this->returnJson($this->data->message);

@@ -37,6 +37,7 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
         if ($form_id) {
             $form->success = true;
             $form->message = "Row added ID: " . $form_id;
+            $form->redirect = "/Forms/Form";
         } else {
             $form->success = false;
             $form->message = "Error adding form";
