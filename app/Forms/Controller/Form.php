@@ -22,9 +22,11 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
             $form_model = new Forms_Model_Form();
             $delete_data->message = "Rows deleted: " . $form_model->deleteById($query['id']);
             $delete_data->success = true;
+            $delete_data->type = "success";
         } else {
             $delete_data->message = "Row ID not set";
             $delete_data->success = false;
+            $delete_data->type = "error";
         }
         return $this->returnJson($delete_data);
     }
@@ -38,9 +40,11 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
             $form->success = true;
             $form->message = "Row added ID: " . $form_id;
             $form->redirect = "/Forms/Form";
+            $form->type = "success";
         } else {
             $form->success = false;
             $form->message = "Error adding form";
+            $form->type = "error";
         }
         return $this->returnJson($form);
     }

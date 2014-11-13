@@ -8,8 +8,6 @@ class Users_Controller_User extends Core_Controller_BaseController
             header("Location: /admin/dashboard");
             die("You are logged in");
         } else {
-            $this->data->message_type = $query[0];
-            $this->data->message = $query[1];
             return $this->render(__FUNCTION__);
         }
     }
@@ -102,7 +100,9 @@ class Users_Controller_User extends Core_Controller_BaseController
                 $logged_in = Users_UserHelper::checkPassword($found_users[0], $post['password']);
             }
             if ($logged_in) {
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['user'] = $found_users[0];
                 $usersname = $found_users[0]['username'];
                 $this->data->message = array(
@@ -145,7 +145,9 @@ class Users_Controller_User extends Core_Controller_BaseController
 
     public function logout($query = null)
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         unset($_SESSION['user']);
         return $this->returnJson(array(
             "message" => "Goodbye",

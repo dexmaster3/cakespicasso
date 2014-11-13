@@ -1,6 +1,6 @@
 <?php
 
-class Message_Model_Message extends DB_Model_ModelDriver
+class Messages_Model_Message extends DB_Model_ModelDriver
 {
     protected $table = 'messages';
 

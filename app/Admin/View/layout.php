@@ -17,7 +17,7 @@
 <script src="/assets/js/jquery-1.11.0.js"></script>
 <script src="/assets/js/notify.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/pages.js"></script>
+<script src="/assets/js/ajaxhandle.js"></script>
 <script src="/assets/js/logout.js"></script>
 
 {{scripts_content}}

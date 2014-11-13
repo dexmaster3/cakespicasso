@@ -19,7 +19,7 @@ abstract class DB_Model_ModelDriver
     public function addRow($data)
     {
         try {
-            if (!($data['id'] > 0)) {
+            if (!isset($data['id']) || !($data['id'] > 0)) {
                 unset($data['id']);
                 $this->conn = $this->startConnection();
                 $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
@@ -38,7 +38,7 @@ abstract class DB_Model_ModelDriver
                 $statement = $this->conn->prepare(
                     "INSERT INTO $this->table ($keys) value ($values);"
                 );
-                $statement->execute($filtered_data);
+                $state_ran = $statement->execute($filtered_data);
                 $statement = $this->conn->prepare(
                     "SELECT MAX(id) FROM $this->table;"
                 );
@@ -121,7 +121,8 @@ abstract class DB_Model_ModelDriver
                 "UPDATE $this->table SET $new_values WHERE id = $id"
             );
             $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            $rows_affected = $statement->rowCount();
+            return $id;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();

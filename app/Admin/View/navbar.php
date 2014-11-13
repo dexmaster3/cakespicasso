@@ -121,8 +121,8 @@
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/renderings/rendering") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/renderings/rendering"><i class="fa fa-fw fa-photo"></i> Renderings</a>
             </li>
-            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/message/message") !== false): echo 'class="active"'; endif; ?> >
-                <a href="/message/message"><i class="fa fa-fw fa-envelope"></i> Messages</a>
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/messages/message") !== false): echo 'class="active"'; endif; ?> >
+                <a href="/messages/message"><i class="fa fa-fw fa-envelope"></i> Messages</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile/showall") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/users/profile/showall"><i class="fa fa-fw fa-user"></i> Users</a>

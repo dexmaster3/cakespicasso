@@ -114,5 +114,34 @@ var formsPreview = (function(){
     return pub;
 }());
 
+var pageFormSubmit = (function(){
+   var pub = {};
+
+    var form = $("#pages-form-create");
+
+    form.submit(function(ev){
+        ev.preventDefault();
+        var action = form.attr('action');
+        var method = form.attr('method');
+        var data = form.serializeArray();
+        var info = {
+            url: action,
+            method: method,
+            data: data
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function(){
+                    window.location.href = data.redirect;
+                }, 1500);
+            }
+        });
+    });
+
+    return pub;
+}());
+
+var PageFormSubmit = pageFormSubmit;
 var RenderingsPreview = renderingsPreview;
 var FormsPreview = formsPreview;

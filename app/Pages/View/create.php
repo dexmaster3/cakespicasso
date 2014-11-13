@@ -27,15 +27,15 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/pages/page/index" method="post">
+                    <form id="pages-form-create" action="/pages/page/save" method="post">
                         <div class="form-group">
                             <label for="page_name">Page Name</label>
-                            <input type="text" class="form-control" id="page_name" name="page_name"
+                            <input type="text" class="form-control" id="page_name" name="page_name" required
                                    placeholder="Page name" value="<?= $this->data->page['page_name'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="page_url">Page Url</label>
-                            <input type="text" class="form-control" id="page_url" name="page_url" placeholder="Page url"
+                            <input type="text" class="form-control" id="page_url" name="page_url" placeholder="Page url" required
                                    value="<?= $this->data->page['page_url'] ?>">
                         </div>
                         <div class="form-group">
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label for="page_html">Page Content</label>
-                            <textarea rows="10" class="form-control" id="page_html" name="page_html"
+                            <textarea rows="10" class="form-control" id="page_html" name="page_html" required
                                       placeholder="Page content"><?= $this->data->page['page_html'] ?></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Page</button>
@@ -118,8 +118,10 @@
 <script src="/assets/js/ckeditor/adapters/jquery.js"></script>
 <script src="/assets/js/pages.js"></script>
 <script>
+    //These are for the modals which show rendering options
     RenderingsPreview.contentRenderFrames();
     FormsPreview.contentRenderForms();
+
     $(document).ready(function() {
         var ckedit = $('textarea#page_html').ckeditor();
     });

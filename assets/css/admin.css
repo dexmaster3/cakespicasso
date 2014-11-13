@@ -90,6 +90,10 @@
     top: 0;
     line-height: 1;
 }
+.rendering-delete {
+    position: absolute;
+    top: 120px;
+}
 .rendering-iframe-holder {
     position: relative;
     width: 100%;

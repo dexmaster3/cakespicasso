@@ -24,7 +24,7 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <a href="/forms/form/create" class="btn btn-success">Create +</a>
+                <a style="margin-bottom: 10px;" href="/forms/form/create" class="btn btn-success">Create +</a>
             </div>
         </div>
         <div class="row">
@@ -67,23 +67,19 @@
 {{scripts}}
 <script>
     function deleteForm(form_id) {
-        $.ajax({
+        var info = {
             url: "/Forms/Form/delete?id=" + form_id,
-            type: "DELETE",
-            success: function(data, status, xhr){
-                if (data.success) {
-                    $.notify("Form deleted!", "success");
-                    $("tr#form-item-" + form_id).fadeOut(600, function(){
-                        this.remove();
-                    });
-                } else {
-                    $.notify("Error deleting: " + data.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                $.notify("Error deleting: " + error);
+            method: "DELETE",
+            data: null
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if(data.success) {
+                $("tr#form-item-" + form_id).fadeOut(600, function(){
+                    this.remove();
+                });
             }
-        })
+        });
     }
 </script>
 {{/scripts}}

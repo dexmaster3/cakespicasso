@@ -9,7 +9,7 @@ class Admin_Controller_Admin extends Core_Controller_BaseController
      */
     public function index($query = null)
     {
-        $message_model = new Message_Model_Message();
+        $message_model = new Messages_Model_Message();
         $this->data->messages = $message_model->findAllMessagesForUserId($_SESSION['user']['id']);
         return $this->render(__FUNCTION__);
     }

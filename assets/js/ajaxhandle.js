@@ -1,16 +1,17 @@
 /**
  * Created by dexter on 11/12/14.
  */
-function ajaxhandle(data, method, callback) {
+function ajaxhandle(info, callback) {
     $.ajax({
-        url: '/Forms/Form/save',
-        type: method,
-        data: data,
+        url: info.url,
+        type: info.method,
+        data: info.data,
         success: function (data, status, xhr) {
             callback(data);
         },
         error: function (xhr, status, error) {
-            callback(error);
+            var data = {message: error};
+            callback(data);
         }
     });
 }

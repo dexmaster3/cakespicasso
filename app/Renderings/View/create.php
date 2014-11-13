@@ -51,7 +51,7 @@
             <div class="col-lg-7">
                 <h1>Desired Layout</h1>
                 <hr/>
-                <form action="/renderings/rendering/save" method="post">
+                <form id="renderings-form" action="/renderings/rendering/save" method="post">
                     <div class="form-group">
                         <div id="layout-output">
 

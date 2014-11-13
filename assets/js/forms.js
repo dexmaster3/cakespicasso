@@ -251,29 +251,22 @@ var DragFormHandler = (function () {
 
     form.submit(function(ev){
         ev.preventDefault();
-        var action = form.attr('action');
-        var method = form.attr('method');
         updateHtmlTranslation(function() {
             wrapForm(function () {
-                $.ajax({
-                    url: action,
-                    type: method,
+                var info = {
+                    url: form.attr('action'),
+                    method: form.attr('method'),
                     data: {
                         form_html: pub.htmlData,
                         form_name: pub.formName
-                    },
-                    success: function (data, status, xhr) {
-                        if (data.success) {
-                            $.notify(data.message, "success");
-                            setTimeout(function () {
-                                window.location.href = data.redirect;
-                            }, 1800);
-                        } else {
-                            $.notify("Error processing: " + data.message, "error");
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        $.notify("Ajax Error: " + error, "error");
+                    }
+                };
+                ajaxhandle(info, function(data){
+                    $.notify(data.message, data.type);
+                    if (data.success) {
+                        setTimeout(function () {
+                            window.location.href = data.redirect;
+                        }, 1800);
                     }
                 });
             });

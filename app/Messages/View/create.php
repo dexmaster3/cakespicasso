@@ -39,7 +39,7 @@
                                 <? endif; ?>
                             </div>
                             <div class=" col-md-9 col-lg-9 ">
-                                <form enctype="multipart/form-data" role="form" method="POST" action="/message/message/sendmessage">
+                                <form id="message-send-form" enctype="multipart/form-data" role="form" method="POST" action="/messages/message/sendmessage">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
@@ -113,5 +113,40 @@
 {{/body}}
 
 {{scripts}}
+<script>
+    //ToDo: possible to send multipart/files over ajax?
+    var form = $("#message-send-form");
 
+    form.on('submit', function(ev){
+        ev.preventDefault();
+
+        var ragster = new FormData();
+        $.each($("#attachment")[0].files, function(i, file){
+            ragster.append('file-'+i, file);
+        });
+        console.log(ragster);
+        var info = {
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serializeArray()
+        };
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            contentType: false,
+            data: ragster,
+            success: function(data){
+                console.log(data);
+            }
+        });
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function(){
+                    window.location.href = data.redirect;
+                }, 1500);
+            }
+        });
+    })
+</script>
 {{/scripts}}

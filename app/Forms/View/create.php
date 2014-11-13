@@ -30,7 +30,7 @@
                 <form id="forms-create-form" action="/forms/form/save" method="post">
                     <div class="form-group">
                         <label for="form_name">Form Name</label>
-                        <input type="text" class="form-control" id="form_name" name="form_name"
+                        <input type="text" class="form-control" id="form_name" name="form_name" required
                                value="<?= $this->data->page['form_name'] ?>">
                     </div>
                     <div class="form-group hidden" style="display: none;">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group">
                         <label for="form_html">Form Html Translation</label>
-                        <textarea rows="10" class="form-control" id="form_html"
+                        <textarea rows="10" class="form-control" id="form_html" required
                                   name="form_html"><?= $this->data->page['form_html'] ?></textarea>
                     </div>
                     <button id="form-submitter" type="submit" class="btn btn-primary">Submit Page</button>

@@ -14,13 +14,22 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
     protected function post()
     {
         $post = Core_Request::getRequest()->post;
+        $data_return = new stdClass();
         $layouts = new Layouts_Model_Layout();
         $post['layout_content'] = htmlentities($post['layout_content']);
         $post['layout_author'] = $_SESSION['user']['id'];
-        $layouts->addRow($post);
-        //ToDo: Better way to code these redirects?
-        header("Location: /layouts/layout");
-        return $this->renderString("Post Success");
+        $added = $layouts->addRow($post);
+        if ($added > 0) {
+            $data_return->success = true;
+            $data_return->type = "success";
+            $data_return->message = "Layout :".$added." successfully added";
+            $data_return->redirect = "/Layouts/Layout";
+        } else {
+            $data_return->success = false;
+            $data_return->type = "error";
+            $data_return->message = "Error adding layout";
+        }
+        return $this->returnJson($data_return);
     }
 
     protected function edit($params)
@@ -30,11 +39,20 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
         return $this->render(__FUNCTION__);
     }
 
-    protected function delete($params)
+    protected function delete($params = null)
     {
-        $layout_model = new Layouts_Model_Layout();
-        $rows_deleted = $layout_model->deleteById($params['id']);
-        return $this->index();
+        $return_data = new stdClass();
+        if ($params['id'] > 0) {
+            $layout_model = new Layouts_Model_Layout();
+            $return_data->success = true;
+            $return_data->type = "success";
+            $return_data->message = "Layouts deleted: ".$layout_model->deleteById($params['id']);
+        } else {
+            $return_data->success = false;
+            $return_data->message = "Layout ID not set";
+            $return_data->type = "error";
+        }
+        return $this->returnJson($return_data);
     }
 
     protected function create()

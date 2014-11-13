@@ -42,7 +42,7 @@
                         </tr>
                         </thead>
                         <? foreach ($this->data->pages as $page): ?>
-                            <tr>
+                            <tr id="page-item-<?= $page['id'] ?>">
                                 <td>
                                     <?= $page['page_name'] ?>
                                 </td>
@@ -62,7 +62,7 @@
                                     <a href="/pages/page/edit?id=<?= $page['id'] ?>" class="btn btn-warning">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="/pages/page/delete?id=<?= $page['id'] ?>" class="btn btn-danger">Delete</a>
+                                    <a onclick="deletePage(<?= $page['id'] ?>)" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <? endforeach; ?>
@@ -76,3 +76,24 @@
     </div>
     <!-- /#page-wrapper -->
     {{/body}}
+
+
+{{scripts}}
+<script>
+    function deletePage(page_id) {
+        var info = {
+            url: "/Pages/Page/delete?id=" + page_id,
+            method: "DELETE",
+            data: null
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if(data.success) {
+                $("tr#page-item-" + page_id).fadeOut(600, function(){
+                    this.remove();
+                });
+            }
+        });
+    }
+</script>
+{{/scripts}}

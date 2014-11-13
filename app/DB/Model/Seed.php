@@ -29,7 +29,7 @@ class DB_Model_Seed extends DB_Model_ModelDriver
 
             $config->DB->createdb = false;
             //this is to wrap the json in a named key (module name)
-            $core_config = null;
+            $core_config = new stdClass();
             $core_config->DB = $config->DB;
             $new_core_config_file = json_encode($core_config, JSON_PRETTY_PRINT);
             $write_success = file_put_contents(ROOT . '/app/DB/config.json', $new_core_config_file);

@@ -124,6 +124,26 @@ var renderingHandler = (function(){
     pub.layoutcontent.addEventListener('dragover', layoutDragOver, false);
     pub.layoutcontent.addEventListener('dragleave', layoutDragLeave, false);
 
+    var form =  $("#renderings-form");
+    form.on('submit', function(ev){
+        ev.preventDefault();
+
+        var info = {
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serializeArray()
+        };
+
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function(){
+                    window.location.href = data.redirect;
+                }, 1500);
+            }
+        })
+    });
+
     return pub;
 }());
 

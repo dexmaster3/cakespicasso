@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <?php foreach ($this->data->layouts as $layout): ?>
-                        <tr>
+                        <tr id="layout-item-<?= $layout['id'] ?>">
                             <td>
                                 <a href="/display/display/layout?id=<?= $layout['id'] ?>"
                                    class="btn btn-default"><?= $layout['layout_name'] ?></a>
@@ -58,7 +58,7 @@
                                    class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                                <a href="/layouts/layout/delete?id=<?= $layout['id'] ?>"
+                                <a onclick="deleteLayout(<?= $layout['id'] ?>)"
                                    class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
@@ -74,3 +74,23 @@
 <!-- /#page-wrapper -->
 
 {{/body}}
+
+{{scripts}}
+<script>
+    function deleteLayout(layout_id) {
+        var info = {
+            url: "/Layouts/Layout/delete?id=" + layout_id,
+            method: "DELETE"
+        };
+
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                $("tr#layout-item-" + layout_id).fadeOut(600, function(){
+                    this.remove();
+                })
+            }
+        });
+    }
+</script>
+{{/scripts}}

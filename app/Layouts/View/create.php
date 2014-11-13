@@ -28,16 +28,11 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <form action="/layouts/layout/post" method="post">
+                <form id="layout-form" action="/layouts/layout/post" method="post">
                     <div class="form-group">
                         <label for="page_name">Layout Name</label>
-                        <input type="text" class="form-control" id="layout_name" name="layout_name"
+                        <input type="text" class="form-control" id="layout_name" name="layout_name" required
                                placeholder="Layout name" value="<?= $this->data->page['layout_name'] ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="page_url">Layout Parent</label>
-                        <input type="text" class="form-control" id="layout_parent" name="layout_parent"
-                               placeholder="Layout Parent" value="<?= $this->data->page['layout_parent'] ?>">
                     </div>
                     <div class="form-group hidden" style="display: none;">
                         <input type="text" class="form-control" id="id" name="id"
@@ -45,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="page_html">Layout Content</label>
-                        <textarea rows="20" class="form-control" id="layout_content" name="layout_content"
+                        <textarea rows="20" class="form-control" id="layout_content" name="layout_content" required
                                   placeholder="Layout content"><?= $this->data->page['layout_content'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Page</button>
@@ -55,20 +50,30 @@
 
     </div>
     <!-- /.container-fluid -->
-
 </div>
 <!-- /#page-wrapper -->
 
 {{/body}}
 
 {{scripts}}
-
-<script src="/assets/js/ckeditor/ckeditor.js"></script>
-<script src="/assets/js/ckeditor/adapters/jquery.js"></script>
 <script>
-    $(document).ready(function() {
-        var test = $('textarea#layout_content').ckeditor();
+    var form = $("#layout-form");
+    form.on('submit', function(ev){
+        ev.preventDefault();
+        var info = {
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serializeArray()
+        };
+
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function(){
+                    window.location.href = data.redirect;
+                }, 1800);
+            }
+        });
     });
 </script>
-
 {{/scripts}}

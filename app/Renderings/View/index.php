@@ -28,20 +28,40 @@
 
         <div class="row">
                 <? foreach ($this->data->renderings as $rendering): ?>
-            <div class="col-lg-6">
+            <div class="col-lg-6" id="rendering-column-<?= $rendering['id'] ?>">
                     <div class="rendering-iframe-holder">
                         <iframe class="rendering-iframe"
                                 src="/display/display/rendering?id=<?= $rendering['id'] ?>"></iframe>
                         <div class="rendering-iframe-id"><?= $rendering['id'] ?></div>
+                        <div class="rendering-delete"><a class="btn btn-danger" onclick="deleteRendering(<?= $rendering['id'] ?>)">Delete</a></div>
                     </div>
             </div>
                 <? endforeach; ?>
         </div>
-
     </div>
     <!-- /.container-fluid -->
-
 </div>
 <!-- /#page-wrapper -->
 
 {{/body}}
+
+{{scripts}}
+<script>
+    function deleteRendering(rendering_id) {
+        var info = {
+            url: "/Renderings/Rendering/delete?id=" + rendering_id,
+            method: "DELETE"
+        };
+
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                $("div#rendering-column-" + rendering_id).fadeOut(600, function(){
+                    this.remove();
+                })
+            }
+        })
+    }
+</script>
+
+{{/scripts}}
