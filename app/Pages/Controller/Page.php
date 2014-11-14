@@ -5,7 +5,7 @@ class Pages_Controller_Page extends Users_Controller_BaseAuth
     protected function index()
     {
             $pages = new Pages_Model_Page();
-            $this->data->pages = $pages->getAll();
+            $this->data->pages = $pages->findAllByColumnValue('author_id', $_SESSION['user']['id']);
             return $this->render();
     }
 
@@ -17,6 +17,7 @@ class Pages_Controller_Page extends Users_Controller_BaseAuth
         $save_data = new stdClass();
 
         //This should update or add
+        $post['author_id'] = $_SESSION['user']['id'];
         $page_id = $pages->addRow($post);
         if ($page_id > 0) {
             $found_route = $routes->findAllByColumnValue('remote_id', $page_id);

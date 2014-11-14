@@ -16,7 +16,7 @@
                         <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-envelope-o"></i> <a href="/message/message/create">Message</a>
+                        <i class="fa fa-envelope-o"></i> <a href="/messages/message/create">Message</a>
                     </li>
                 </ol>
             </div>
@@ -24,17 +24,17 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <a style="margin-bottom: 15px;" class="btn btn-success" href="/message/message/create">New Message +</a>
+                <a style="margin-bottom: 15px;" class="btn btn-success" href="/messages/message/create">New Message +</a>
             </div>
         </div>
         <!-- /.row -->
 
         <? foreach($this->data->messages as $message): ?>
-        <div class="row">
+        <div class="row" id="message-row-<?= $message['message_id'] ?>">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 toppad">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <a href="/message/message/view?id=<?= $message['message_id'] ?>"><h3 style="color:white;" class="panel-title">From: <?= $message['username'] ?></h3></a>
+                        <a href="/messages/message/view?id=<?= $message['message_id'] ?>"><h3 style="color:white;" class="panel-title">From: <?= $message['username'] ?></h3></a>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -77,11 +77,11 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary" href="/message/message/create"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip"
+                           class="btn btn-sm btn-primary" href="/messages/message/create"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                               href="/message/message/delete?id=<?= $message['message_id'] ?>"
+                            <a data-original-title="Remove this user" data-toggle="tooltip"
+                               onclick="deleteMessage(<?= $message['message_id'] ?>);"
                                class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
                     </div>
@@ -119,5 +119,20 @@
 {{/body}}
 
 {{scripts}}
-
+<script>
+    function deleteMessage(message_id) {
+        var info = {
+            url: "/Messages/Message/delete?id=" + message_id,
+            method: "DELETE"
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                $("#message-row-" + message_id).fadeOut(600, function(){
+                    this.remove();
+                });
+            }
+        });
+    }
+</script>
 {{/scripts}}

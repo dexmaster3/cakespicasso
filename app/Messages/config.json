@@ -12,7 +12,7 @@
             }
         },
         "model_seeds": {
-            "Message_Model_Message": []
+            "Messages_Model_Message": []
         }
     }
 }

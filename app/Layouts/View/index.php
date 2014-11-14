@@ -51,7 +51,7 @@
                                 <?= $layout['layout_content'] ?>
                             </td>
                             <td>
-                                <?= $layout['layout_author'] ?>
+                                <?= $layout['author_id'] ?>
                             </td>
                             <td>
                                 <a href="/layouts/layout/edit?id=<?= $layout['id'] ?>"

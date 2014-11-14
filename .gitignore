@@ -1,2 +1,9 @@
+#PHPstorm info folder
 .idea
-/assets/upload/*
+
+#user file uploads except for seed images
+assets/upload/*
+!assets/upload/1415984051_behr.jpg
+!assets/upload/1415983477_dex.jpg
+!assets/upload/1415984031_skott.gif
+!assets/upload/1415984068_doug.jpg

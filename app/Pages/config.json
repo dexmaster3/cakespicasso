@@ -29,20 +29,23 @@
                     "page_name": "hosanna",
                     "page_url": "praise-hosanna",
                     "page_html": "Praise our celestial Hosanna, and praise Rang",
+                    "author_id": 1,
                     "rendering_id": 1,
                     "form_id": 1
                 },
                 {
-                    "page_name": "shoes",
-                    "page_url": "my-shoe-prices",
-                    "page_html": "Welcome to my shoe store, with prices!",
+                    "page_name": "brown eggs",
+                    "page_url": "the-animated-adventures-of-forest-gump",
+                    "page_html": "Tom Arnold is the star of the Animated Adventures of Forest Gump",
+                    "author_id": 1,
                     "rendering_id": 1,
                     "form_id": 1
                 },
                 {
-                    "page_name": "pantspage",
-                    "page_url": "my-pants-page",
-                    "page_html": "This page is all about pants"
+                    "page_name": "Doug's page",
+                    "page_url": "djdouggpound",
+                    "page_html": "Welcome to the home of DJ DouggPound",
+                    "author_id": 2
                 }
             ]
         }

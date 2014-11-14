@@ -5,7 +5,7 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
     protected function index()
     {
         $layouts = new Layouts_Model_Layout();
-        $this->data->layouts = $layouts->getAll();
+        $this->data->layouts = $layouts->findAllByColumnValue('author_id', $_SESSION['user']['id']);
 
         $layout_html = $this->render(__FUNCTION__);
         return $layout_html;
@@ -17,7 +17,7 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
         $data_return = new stdClass();
         $layouts = new Layouts_Model_Layout();
         $post['layout_content'] = htmlentities($post['layout_content']);
-        $post['layout_author'] = $_SESSION['user']['id'];
+        $post['author_id'] = $_SESSION['user']['id'];
         $added = $layouts->addRow($post);
         if ($added > 0) {
             $data_return->success = true;

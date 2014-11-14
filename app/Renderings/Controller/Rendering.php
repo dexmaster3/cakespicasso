@@ -5,14 +5,14 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
     protected function index()
     {
         $rendering_model = new Renderings_Model_Rendering();
-        $renderings = $rendering_model->getAll();
+        $renderings = $rendering_model->findAllByColumnValue('author_id', $_SESSION['user']['id']);
         $this->data->renderings = array_reverse($renderings);
         return $this->render();
     }
     protected function create()
     {
         $layout_model = new Layouts_Model_Layout();
-        $layout = $layout_model->getAll();
+        $layout = $layout_model->findAllByColumnValue('author_id', $_SESSION['user']['id']);
         $this->data->layouts = $layout;
         return $this->render();
     }

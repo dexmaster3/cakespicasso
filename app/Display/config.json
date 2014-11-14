@@ -11,7 +11,8 @@
                 "index": "browser.php"
             },
             "Formdata": {
-                "index": "formindex.php"
+                "index": "formindex.php",
+                "post": "thankyou.php"
             }
         },
         "custom_routes": {

@@ -18,6 +18,8 @@ class Users_Controller_BaseAuth extends Core_Controller_BaseController
                 header("Location: /");
                 return $this->renderString("Your session expired: relog");
             }
+        } else {
+            return $this->renderString("Method not found (UserAuth)");
         }
     }
 

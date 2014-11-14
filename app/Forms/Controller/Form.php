@@ -5,7 +5,7 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
     protected function index()
     {
         $form_model = new Forms_Model_Form();
-        $this->data->forms = $form_model->getAll();
+        $this->data->forms = $form_model->findAllByColumnValue('author_id', $_SESSION['user']['id']);
         return $this->render(__FUNCTION__);
     }
 
@@ -35,6 +35,8 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
         $post = Core_Request::getRequest()->post;
         $form_model = new Forms_Model_Form();
         $form = new stdClass();
+        $post['author_id'] = $_SESSION['user']['id'];
+        $post['form_html'] = Forms_FormHelper::preprocessHtml($post['form_html'], $_SESSION['user']['id']);
         $form_id = $form_model->addRow($post);
         if ($form_id) {
             $form->success = true;

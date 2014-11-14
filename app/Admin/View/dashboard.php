@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <a href="/message/message">
+            <a href="/messages/message">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

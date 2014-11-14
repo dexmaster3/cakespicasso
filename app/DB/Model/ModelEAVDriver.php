@@ -79,6 +79,38 @@ abstract class DB_Model_ModelEAVDriver
         }
     }
 
+    public function getAllWhereAttributeIsValue($attrib, $value)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table"
+            );
+            $statement->execute();
+            $entities = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $ret_entities = array();
+            foreach ($entities as $entity) {
+                if (array_key_exists($entity['entity'], $ret_entities)) {
+                    $ret_entities[$entity['entity']][$entity['attribute']] = $entity['value'];
+                } else {
+                    $ret_entities[$entity['entity']] = array(
+                        $entity['attribute'] => $entity['value']
+                    );
+                }
+            }
+            $final_entities = array();
+            foreach ($ret_entities as $ret_entity) {
+                if (isset($ret_entity[$attrib]) && $ret_entity[$attrib] == $value) {
+                    array_push($final_entities, $ret_entity);
+                }
+            }
+            return $final_entities;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
     public function findById($id)
     {
         try {

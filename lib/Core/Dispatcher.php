@@ -23,18 +23,22 @@ class Core_Dispatcher
             $controller = new $controller_loc;
             return $controller;
         } else {
-            echo '<br/>Module->Controller not found<br/>';
-            return false;
+            return array(
+                "success" => false,
+                "message" => "Could not create requested controller"
+            );
         }
     }
-
+//ToDo: Switch to 404 pages
     public function checkValidControllerAction($action, $controller)
     {
         if (method_exists($controller, $action) && is_callable(array($controller, $action))) {
             return true;
         } else {
-            echo '<br/>Module->Controller->action not found<br/>';
-            return false;
+            return array(
+                "success" => false,
+                "message" => "Could not complete action"
+            );
         }
     }
 }

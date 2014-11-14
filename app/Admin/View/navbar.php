@@ -23,7 +23,7 @@
                 <? else: ?>
                 <? foreach($this->data->messages as $message): ?>
                 <li class="message-preview">
-                    <a href="/message/message/view?id=<?= $message['message_id'] ?>">
+                    <a href="/messages/message/view?id=<?= $message['message_id'] ?>">
                         <div class="media">
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
@@ -45,7 +45,7 @@
                 </li>
                 <? endforeach; ?>
                 <li class="message-footer">
-                    <a href="/message/message/all">Read All New Messages</a>
+                    <a href="/messages/message/all">Read All New Messages</a>
                 </li>
                 <? endif; ?>
             </ul>
@@ -85,7 +85,7 @@
                     <a href="/users/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="/message/message"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                    <a href="/messages/message"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                 </li>
                 <li>
                     <a href="/users/profile/edit"><i class="fa fa-fw fa-gear"></i> Edit Profile</a>
@@ -124,20 +124,8 @@
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/messages/message") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/messages/message"><i class="fa fa-fw fa-envelope"></i> Messages</a>
             </li>
-            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile/showall") !== false): echo 'class="active"'; endif; ?> >
+            <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/users/profile/showall"><i class="fa fa-fw fa-user"></i> Users</a>
-            </li>
-            <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
-                    Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo" class="collapse">
-                    <li>
-                        <a href="#">Cakes</a>
-                    </li>
-                    <li>
-                        <a href="#">Picasso</a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </div>

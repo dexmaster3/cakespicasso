@@ -10,4 +10,10 @@ class Forms_FormHelper
         $final_form = str_replace("{{form_id_replace}}", $form_hidden, $form_html);
         return $final_form;
     }
+    static public function preprocessHtml($html, $user_id)
+    {
+        $form_hidden = "<input style='display:none;' class='hidden hide' name='author_id' type='text' value='$user_id'>";
+        $final_form = str_replace("{{form_hidden_author_input}}", $form_hidden, $html);
+        return $final_form;
+    }
 }

@@ -26,7 +26,7 @@ class Messages_Model_Message extends DB_Model_ModelDriver
                 "SELECT *, messages.id as message_id FROM $this->table LEFT JOIN users ON messages.sentfrom = users.id WHERE sentto = $userid;"
             );
             $statement->execute();
-            return $statement->fetchAll();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();

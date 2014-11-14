@@ -36,7 +36,8 @@
                     "gender": "Male",
                     "address": "1450 Whatever Road",
                     "phone": "203-555-4422",
-                    "about": "Currently creating the CakesPicasso CMS"
+                    "about": "Currently creating the CakesPicasso CMS",
+                    "avatar": "1415983477_dex.jpg"
                 },
                 {
                     "username": "shark",
@@ -58,7 +59,8 @@
                     "gender": "Male",
                     "address": "1211 Good Prayer Lane",
                     "phone": "666-666-5666",
-                    "about": "DJ Douggpound in the mix"
+                    "about": "DJ Douggpound in the mix",
+                    "avatar": "1415984068_doug.jpg"
                 },
                 {
                     "username": "skott",
@@ -69,7 +71,8 @@
                     "gender": "Female",
                     "address": "1200 Good Prayer Lane",
                     "phone": "666-666-5666",
-                    "about": "praise hosanna"
+                    "about": "praise hosanna",
+                    "avatar": "1415984031_skott.gif"
                 },
                 {
                     "username": "behr",
@@ -80,7 +83,8 @@
                     "gender": "Female",
                     "address": "1200 Good Prayer Lane",
                     "phone": "666-666-5666",
-                    "about": "praise rang dipkin"
+                    "about": "praise rang dipkin",
+                    "avatar": "1415984051_behr.jpg"
                 }
             ]
         }

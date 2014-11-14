@@ -16,7 +16,7 @@
                         <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-envelope-o"></i> <a href="/message/message/create">Message</a>
+                        <i class="fa fa-envelope-o"></i> <a href="/messages/message/create">Message</a>
                     </li>
                 </ol>
             </div>
@@ -71,10 +71,10 @@
                     </div>
                     <div class="panel-footer">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary" href="/message/message/create"><i class="glyphicon glyphicon-envelope"></i></a>
+                           class="btn btn-sm btn-primary" href="/messages/message/create"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                               href="/message/message/delete?id=<?= $this->data->message['message_id'] ?>"
+                               onclick="deleteMessage(<?= $this->data->message['message_id'] ?>);"
                                class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
                     </div>
@@ -111,5 +111,20 @@
 {{/body}}
 
 {{scripts}}
-
+<script>
+    function deleteMessage(message_id) {
+        var info = {
+            url: "/Messages/Message/delete?id=" + message_id,
+            method: "DELETE"
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                $("#message-row-" + message_id).fadeOut(600, function(){
+                    this.remove();
+                });
+            }
+        });
+    }
+</script>
 {{/scripts}}

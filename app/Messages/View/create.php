@@ -16,7 +16,7 @@
                         <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-envelope-o"></i> <a href="/message/message/create">Message</a>
+                        <i class="fa fa-envelope-o"></i> <a href="/messages/message/create">Message</a>
                     </li>
                 </ol>
             </div>
@@ -45,7 +45,7 @@
                                     <tr>
                                         <td>Send To</td>
                                         <td>
-                                            <select class="form-control" name="sentto">
+                                            <select class="form-control" name="sentto" required>
                                                 <? foreach($this->data->users as $user): ?>
                                                 <option value="<?= $user['id'] ?>"><?= $user['username'] ?></option>
                                                 <? endforeach; ?>
@@ -57,13 +57,13 @@
                                     <tr>
                                         <td>Subject</td>
                                         <td>
-                                            <input class="form-control" type="text" name="subject">
+                                            <input class="form-control" type="text" name="subject" required>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Body</td>
                                         <td>
-                                            <textarea class="form-control" name="body"></textarea>
+                                            <textarea class="form-control" name="body" required></textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -114,37 +114,26 @@
 
 {{scripts}}
 <script>
-    //ToDo: possible to send multipart/files over ajax?
     var form = $("#message-send-form");
 
     form.on('submit', function(ev){
         ev.preventDefault();
 
-        var ragster = new FormData();
-        $.each($("#attachment")[0].files, function(i, file){
-            ragster.append('file-'+i, file);
-        });
-        console.log(ragster);
-        var info = {
-            url: form.attr('action'),
-            method: form.attr('method'),
-            data: form.serializeArray()
-        };
+        var formdata = new FormData(this);
         $.ajax({
             url: form.attr('action'),
             type: form.attr('method'),
+            processData: false,
             contentType: false,
-            data: ragster,
+            data: formdata,
             success: function(data){
-                console.log(data);
-            }
-        });
-        ajaxhandle(info, function(data){
-            $.notify(data.message, data.type);
-            if (data.success) {
+                $.notify(data.message, data.type);
                 setTimeout(function(){
                     window.location.href = data.redirect;
                 }, 1500);
+            },
+            error: function(xhr, status, error) {
+                $.notify(error, "error");
             }
         });
     })

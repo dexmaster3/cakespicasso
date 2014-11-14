@@ -50,7 +50,7 @@ var DragFormHandler = (function () {
     }
 
     function wrapForm(callback) {
-        var formstart = "<form action='/display/formdata/post' method='post'><span style='display:none;'>{{form_id_replace}}</span>";
+        var formstart = "<form action='/display/formdata/post' method='post'><span style='display:none;'>{{form_id_replace}}{{form_hidden_author_input}}</span>";
         var formend = "</form>";
         pub.htmlData = formstart + pub.htmlData + formend;
         if (callback) {

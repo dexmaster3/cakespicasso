@@ -14,6 +14,7 @@ class Pages_Model_Page extends DB_Model_ModelDriver
     page_html TEXT NOT NULL,
     form_id INT,
     rendering_id INT,
+    author_id INT NOT NULL,
     date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );";
     }
