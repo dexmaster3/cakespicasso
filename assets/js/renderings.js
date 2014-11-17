@@ -127,6 +127,8 @@ var renderingHandler = (function(){
     var form =  $("#renderings-form");
     form.on('submit', function(ev){
         ev.preventDefault();
+        $("#form-submitter").attr("disabled", "");
+        $("#form-spinner").css("display", "inline");
 
         var info = {
             url: form.attr('action'),
@@ -140,6 +142,9 @@ var renderingHandler = (function(){
                 setTimeout(function(){
                     window.location.href = data.redirect;
                 }, 1500);
+            } else {
+                $("#form-submitter").removeAttr("disabled");
+                $("#form-spinner").css("display", "none");
             }
         })
     });

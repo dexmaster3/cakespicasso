@@ -21,6 +21,15 @@ class Messages_Controller_Message extends Users_Controller_BaseAuth
             $return_data->type = "success";
             $return_data->message = "Message sent!";
             $return_data->redirect = "/Messages/Message";
+            $activity_model = new DB_Model_ActivityLog();
+            $activity = array(
+                "name" => "Message Sent",
+                "type" => "fa fa-fw fa-envelope",
+                "description" => $_SESSION['user']['username'] . " sent a message",
+                "author_id" => $_SESSION['user']['id'],
+                "note" => "Message ID: ".$added
+            );
+            $activity_model->addRow($activity);
         } else {
             $return_data->success = false;
             $return_data->type = "error";

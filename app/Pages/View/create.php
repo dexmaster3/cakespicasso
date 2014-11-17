@@ -60,7 +60,8 @@
                             <textarea rows="10" class="form-control" id="page_html" name="page_html" required
                                       placeholder="Page content"><?= $this->data->page['page_html'] ?></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit Page</button>
+                        <button type="submit" class="btn btn-primary" id="page-submit-btn">Submit Page</button>
+                        <img id="page-submit-img" style="display: none; margin: 10px;" src="/assets/img/ajax-loader.gif">
                     </form>
                 </div>
             </div>

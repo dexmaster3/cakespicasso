@@ -68,6 +68,15 @@ class Users_Controller_User extends Core_Controller_BaseController
                         "type" => "success",
                         "redirect" => "/"
                     );
+                    $activity_model = new DB_Model_ActivityLog();
+                    $activity = array(
+                        "name" => "New User Registered",
+                        "type" => "fa fa-fw fa-user",
+                        "description" => "A new user has registered",
+                        "author_id" => $user_id,
+                        "note" => "User ID: ".$user_id
+                    );
+                    $activity_model->addRow($activity);
                     if ($post['ajax']) {
                         return $this->returnJson($this->data->message);
                     } else {

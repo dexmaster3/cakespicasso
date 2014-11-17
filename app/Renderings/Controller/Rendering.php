@@ -59,6 +59,15 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
             $return_data->type = "success";
             $return_data->message = "Rendering added";
             $return_data->redirect = "/Renderings/Rendering";
+            $activity_model = new DB_Model_ActivityLog();
+            $activity = array(
+                "name" => "Rendering Added",
+                "type" => "fa fa-fw fa-photo",
+                "description" => $_SESSION['user']['username'] . " added a rendering",
+                "author_id" => $_SESSION['user']['id'],
+                "note" => "Rendering ID: ".$added
+            );
+            $activity_model->addRow($activity);
         } else {
             $return_data->success = false;
             $return_data->type = "error";
@@ -69,7 +78,7 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
     protected function ajaxshow()
     {
         $rendering_model = new Renderings_Model_Rendering();
-        $renderings = $rendering_model->getAll();
+        $renderings = $rendering_model->findAllByColumnValue('author_id', $_SESSION['user']['id']);
         return $this->returnJson($renderings);
     }
 }

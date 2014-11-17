@@ -37,6 +37,15 @@ class Pages_Controller_Page extends Users_Controller_BaseAuth
                 $save_data->type = "success";
                 $save_data->message = "Content Page ".$page_id." added!";
                 $save_data->redirect = "/Pages/Page";
+                $activity_model = new DB_Model_ActivityLog();
+                $activity = array(
+                    "name" => "Content Added",
+                    "type" => "fa fa-fw fa-file-text-o",
+                    "description" => $_SESSION['user']['username'] . " added a content page",
+                    "author_id" => $_SESSION['user']['id'],
+                    "note" => "Form ID: ".$page_id
+                );
+                $activity_model->addRow($activity);
             }
         } else {
             $save_data->success = false;

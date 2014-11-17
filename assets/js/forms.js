@@ -251,6 +251,8 @@ var DragFormHandler = (function () {
 
     form.submit(function(ev){
         ev.preventDefault();
+        $("#form-submitter").attr("disabled", "");
+        $("#form-spinner").css("display", "inline");
         updateHtmlTranslation(function() {
             wrapForm(function () {
                 var info = {
@@ -267,6 +269,9 @@ var DragFormHandler = (function () {
                         setTimeout(function () {
                             window.location.href = data.redirect;
                         }, 1800);
+                    } else {
+                        $("#form-submitter").removeAttr("disabled");
+                        $("#form-spinner").css("display", "none");
                     }
                 });
             });

@@ -24,6 +24,15 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
             $data_return->type = "success";
             $data_return->message = "Layout :".$added." successfully added";
             $data_return->redirect = "/Layouts/Layout";
+            $activity_model = new DB_Model_ActivityLog();
+            $activity = array(
+                "name" => "Layout Added",
+                "type" => "fa fa-fw fa-edit",
+                "description" => $_SESSION['user']['username'] . " added a layout",
+                "author_id" => $_SESSION['user']['id'],
+                "note" => "Layout ID: ".$added
+            );
+            $activity_model->addRow($activity);
         } else {
             $data_return->success = false;
             $data_return->type = "error";

@@ -43,7 +43,8 @@
                         <textarea rows="20" class="form-control" id="layout_content" name="layout_content" required
                                   placeholder="Layout content"><?= $this->data->page['layout_content'] ?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Page</button>
+                    <button id="form-submitter" type="submit" class="btn btn-primary">Submit Page</button>
+                    <img id="form-spinner" style="display: none; margin: 10px;" src="/assets/img/ajax-loader.gif">
                 </form>
             </div>
         </div>
@@ -59,6 +60,8 @@
 <script>
     var form = $("#layout-form");
     form.on('submit', function(ev){
+        $("#form-submitter").attr("disabled", "");
+        $("#form-spinner").css("display", "inline");
         ev.preventDefault();
         var info = {
             url: form.attr('action'),
@@ -72,6 +75,9 @@
                 setTimeout(function(){
                     window.location.href = data.redirect;
                 }, 1800);
+            } else {
+                $("#form-submitter").removeAttr("disabled");
+                $("#form-spinner").css("display", "none");
             }
         });
     });

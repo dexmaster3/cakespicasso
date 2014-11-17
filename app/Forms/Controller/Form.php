@@ -43,6 +43,15 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
             $form->message = "Row added ID: " . $form_id;
             $form->redirect = "/Forms/Form";
             $form->type = "success";
+            $activity_model = new DB_Model_ActivityLog();
+            $activity = array(
+                "name" => "Form Added",
+                "type" => "fa fa-fw fa-pencil",
+                "description" => $_SESSION['user']['username'] . " added a form",
+                "author_id" => $_SESSION['user']['id'],
+                "note" => "Form ID: ".$form_id
+            );
+            $activity_model->addRow($activity);
         } else {
             $form->success = false;
             $form->message = "Error adding form";
@@ -53,7 +62,7 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
     protected function ajaxshow($query = null)
     {
         $form_model = new Forms_Model_Form();
-        $forms = $form_model->getAll();
+        $forms = $form_model->findAllByColumnValue('author_id', $_SESSION['user']['id']);
         return $this->returnJson($forms);
     }
 }

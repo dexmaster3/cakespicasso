@@ -81,6 +81,7 @@
                                   name="form_html"><?= $this->data->page['form_html'] ?></textarea>
                     </div>
                     <button id="form-submitter" type="submit" class="btn btn-primary">Submit Page</button>
+                    <img id="form-spinner" style="display: none; margin: 10px;" src="/assets/img/ajax-loader.gif">
                 </form>
             </div>
         </div>

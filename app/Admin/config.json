@@ -9,7 +9,8 @@
                 "noadmin": "publayout.php"
             },
             "Dashboard": {
-                "index": "dashboard.php"
+                "index": "dashboard.php",
+                "activity": "activity.php"
             }
         }
     }

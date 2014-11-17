@@ -121,6 +121,8 @@ var pageFormSubmit = (function(){
 
     form.submit(function(ev){
         ev.preventDefault();
+        $("#page-submit-btn").attr("disabled", "");
+        $("#page-submit-img").css("display", "inline");
         var action = form.attr('action');
         var method = form.attr('method');
         var data = form.serializeArray();
@@ -135,6 +137,9 @@ var pageFormSubmit = (function(){
                 setTimeout(function(){
                     window.location.href = data.redirect;
                 }, 1500);
+            } else {
+                $("#page-submit-btn").removeAttr("disabled");
+                $("#page-submit-img").css("display", "none");
             }
         });
     });
