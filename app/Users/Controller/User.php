@@ -68,7 +68,7 @@ class Users_Controller_User extends Core_Controller_BaseController
                         "type" => "success",
                         "redirect" => "/"
                     );
-                    $activity_model = new DB_Model_ActivityLog();
+                    $activity_model = new Analytics_Model_ActivityLog();
                     $activity = array(
                         "name" => "New User Registered",
                         "type" => "fa fa-fw fa-user",

@@ -1,6 +1,6 @@
 <?php
 
-class DB_Model_ActivityLog extends DB_Model_ModelDriver
+class Analytics_Model_ActivityLog extends DB_Model_ModelDriver
 {
     protected $table = 'activity';
 

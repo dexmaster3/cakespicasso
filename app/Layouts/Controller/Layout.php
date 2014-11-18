@@ -24,7 +24,7 @@ class Layouts_Controller_Layout extends Users_Controller_BaseAuth
             $data_return->type = "success";
             $data_return->message = "Layout :".$added." successfully added";
             $data_return->redirect = "/Layouts/Layout";
-            $activity_model = new DB_Model_ActivityLog();
+            $activity_model = new Analytics_Model_ActivityLog();
             $activity = array(
                 "name" => "Layout Added",
                 "type" => "fa fa-fw fa-edit",

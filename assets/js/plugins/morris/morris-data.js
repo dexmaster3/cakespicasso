@@ -1,4 +1,4 @@
-// Morris.js Charts sample data for SB Admin template
+// Morris.js Charts data for SB Admin template
 var usageDonutChart;
 function createCharts(data) {
     // Donut Chart

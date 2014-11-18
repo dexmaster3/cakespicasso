@@ -43,7 +43,7 @@ class Forms_Controller_Form extends Users_Controller_BaseAuth
             $form->message = "Row added ID: " . $form_id;
             $form->redirect = "/Forms/Form";
             $form->type = "success";
-            $activity_model = new DB_Model_ActivityLog();
+            $activity_model = new Analytics_Model_ActivityLog();
             $activity = array(
                 "name" => "Form Added",
                 "type" => "fa fa-fw fa-pencil",

@@ -32,8 +32,7 @@
                     "action": "content",
                     "remote_id": 3
                 }
-            ],
-            "DB_Model_ActivityLog": []
+            ]
         }
     }
 }

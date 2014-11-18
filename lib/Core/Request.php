@@ -43,6 +43,9 @@ class Core_Request
                 $post_content[$postk] = $postv;
             }
             return $post_content;
+        } elseif ($json = file_get_contents("php://input")) {
+            $json_dec = json_decode($json, true);
+            return $json_dec;
         } else {
             return null;
         }

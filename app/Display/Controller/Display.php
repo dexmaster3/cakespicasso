@@ -13,7 +13,7 @@ class Display_Controller_Display extends Core_Controller_BaseController
 
     public function content($query)
     {
-        //ToDo: Put analytics information here (my rollout)
+        Analytics_AnalyticsHelper::saveClientInformation();
         $content_model = new Pages_Model_Page();
         $content = $content_model->findById($query);
         $rendering_model = new Renderings_Model_Rendering();

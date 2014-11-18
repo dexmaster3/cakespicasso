@@ -10,7 +10,9 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
         $formdata_model = new Display_Model_Formdata();
         $layouts_model = new Layouts_Model_Layout();
         $renderings_model = new Renderings_Model_Rendering();
-        $activity_model = new DB_Model_ActivityLog();
+        $activity_model = new Analytics_Model_ActivityLog();
+        $tracker_model = new Analytics_Model_Tracker();
+        $click_model = new Analytics_Model_Click();
 
         $user_id = $_SESSION['user']['id'];
         $this->data->messages = $messages_model->findAllMessagesForUserId($user_id);
@@ -20,6 +22,8 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
         $layouts = $layouts_model->findAllByColumnValue('author_id', $user_id);
         $renderings = $renderings_model->findAllByColumnValue('author_id', $user_id);
         $this->data->activities = $activity_model->getAll();
+        $this->data->trackings = $tracker_model->getAll();
+        $this->data->clicks = $click_model->totalCount();
 
         $this->data->donut = new stdClass();
         $this->data->donut->pages = count($pages);
@@ -31,7 +35,7 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
     }
     protected function activity($query = null)
     {
-        $activity_model = new DB_Model_ActivityLog();
+        $activity_model = new Analytics_Model_ActivityLog();
         $users_model = new Users_Model_User();
         $this->data->users = $users_model->getAll();
         if(isset($query['user']) && $query['user'] > 0) {
@@ -40,5 +44,17 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
             $this->data->activities = $activity_model->getAll();
         }
         return $this->render();
+    }
+
+    protected function visitors($query = null)
+    {
+        $tracker_model = new Analytics_Model_Tracker();
+        $this->data->trackings = $tracker_model->getAll();
+        return $this->render();
+    }
+
+    protected function clicks($query = null)
+    {
+        //ToDo: do a clicks ajax pager requester thing
     }
 }

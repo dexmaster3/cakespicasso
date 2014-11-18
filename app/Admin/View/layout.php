@@ -19,6 +19,7 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/ajaxhandle.js"></script>
 <script src="/assets/js/logout.js"></script>
+<script src="/assets/js/clicks.js"></script>
 
 {{scripts_content}}
 

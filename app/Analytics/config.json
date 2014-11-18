@@ -1,0 +1,11 @@
+{
+    "Analytics": {
+        "mission": "to handle tracking things",
+        "date": "Nov 18, 2014",
+        "model_seeds": {
+            "Analytics_Model_Click": [],
+            "Analytics_Model_Tracker": [],
+            "Analytics_Model_ActivityLog": []
+        }
+    }
+}

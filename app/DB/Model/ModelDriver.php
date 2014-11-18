@@ -54,6 +54,40 @@ abstract class DB_Model_ModelDriver
         }
     }
 
+    public function addMultiRow($data)
+    {
+        try {
+            $all_values = array();
+            $all_keys = null;
+            $this->conn = $this->startConnection();
+            foreach ($data as $add_row) {
+                $val_array = array_values($add_row);
+                foreach($val_array as $key => $val_item) {
+                    $val_array[$key] = $this->conn->quote($val_item);
+                }
+                $values = "(".implode(', ', array_values($val_array)).")";
+                array_push($all_values, $values);
+                if (empty($all_keys)) {
+                    $all_keys = "(" . implode(",", array_keys($add_row)) . ")";
+                }
+            }
+            $values_f = implode(", ", $all_values);
+                $statement = $this->conn->prepare(
+                    "INSERT INTO $this->table $all_keys value $values_f;"
+                );
+                $state_ran = $statement->execute();
+                $statement = $this->conn->prepare(
+                    "SELECT MAX(id) FROM $this->table;"
+                );
+                $statement->execute();
+                $row_id = $statement->fetch();
+                return $row_id[0];
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
     public function getAll()
     {
         try {
@@ -153,6 +187,21 @@ abstract class DB_Model_ModelDriver
             );
             $statement->execute();
             return $statement->rowCount();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
+    public function totalCount()
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT COUNT(*) FROM $this->table"
+            );
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_BOTH);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             return $ex->getMessage();

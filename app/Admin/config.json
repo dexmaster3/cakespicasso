@@ -10,7 +10,8 @@
             },
             "Dashboard": {
                 "index": "dashboard.php",
-                "activity": "activity.php"
+                "activity": "activity.php",
+                "visitors": "visitors.php"
             }
         }
     }

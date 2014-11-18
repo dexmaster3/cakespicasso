@@ -21,7 +21,7 @@ class Messages_Controller_Message extends Users_Controller_BaseAuth
             $return_data->type = "success";
             $return_data->message = "Message sent!";
             $return_data->redirect = "/Messages/Message";
-            $activity_model = new DB_Model_ActivityLog();
+            $activity_model = new Analytics_Model_ActivityLog();
             $activity = array(
                 "name" => "Message Sent",
                 "type" => "fa fa-fw fa-envelope",

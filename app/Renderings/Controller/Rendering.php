@@ -59,7 +59,7 @@ class Renderings_Controller_Rendering extends Users_Controller_BaseAuth
             $return_data->type = "success";
             $return_data->message = "Rendering added";
             $return_data->redirect = "/Renderings/Rendering";
-            $activity_model = new DB_Model_ActivityLog();
+            $activity_model = new Analytics_Model_ActivityLog();
             $activity = array(
                 "name" => "Rendering Added",
                 "type" => "fa fa-fw fa-photo",
