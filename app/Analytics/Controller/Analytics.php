@@ -11,6 +11,7 @@ class Analytics_Controller_Analytics extends Core_Controller_BaseController
 
     public function postclicks($query = null)
     {
+        //TODO SAVE USER IF LOGGED< OTHERWISE PUBLIC
         //$_POST ONLY contains form-encoded data, not stuff sent as a JSON string
         $post = Core_Request::getRequest()->post;
         $click_model = new Analytics_Model_Click();

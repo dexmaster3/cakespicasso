@@ -10,10 +10,12 @@ class Users_Model_User extends DB_Model_ModelDriver
 (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(255) NOT NULL,
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
     password VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    about  TEXT,
+    about TEXT,
     avatar VARCHAR(255),
     birthday DATETIME,
     gender VARCHAR(255),

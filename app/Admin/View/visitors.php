@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Activities
-                        <small>Activity for: All</small>
+                    Visitors
+                        <small>Public Pages</small>
                 </h1>
 
                 <ol class="breadcrumb">
@@ -17,7 +17,7 @@
                         <i class="fa fa-tachometer"></i> <a href="/admin/dashboard">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-edit"></i> <a href="/admin/dashboard/activity">Activity</a>
+                        <i class="fa fa-edit"></i> <a href="/admin/dashboard/visitors">Visitors</a>
                     </li>
                 </ol>
             </div>

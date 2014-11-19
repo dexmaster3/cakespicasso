@@ -103,12 +103,86 @@ abstract class DB_Model_ModelDriver
         }
     }
 
+    public function getNumStartingOn($start, $amount)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table LIMIT $start, $amount;"
+            );
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
+    public function getNumStartingOnOrderBy($start, $amount, $order_column)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table ORDER BY $order_column LIMIT $start, $amount;"
+            );
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
     public function findAllByColumnValue($column, $value)
     {
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare(
-                "SELECT * FROM $this->table WHERE $column = '$value'"
+                "SELECT * FROM $this->table WHERE $column = '$value';"
+            );
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
+    public function findAllByAnyValue($value)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
+            $column_list = array();
+            foreach ($columns as $column) {
+                $column_sql = $column['Field'] . " LIKE '%$value%'";
+                array_push($column_list, $column_sql);
+            }
+            $sql_search = "(".implode(" or ", $column_list).")";
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table WHERE $sql_search;"
+            );
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
+
+    public function findAllByAnyValueLimit($value, $start, $limit)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $columns = $this->conn->query("SHOW COLUMNS FROM $this->table");
+            $column_list = array();
+            foreach ($columns as $column) {
+                $column_sql = $column['Field'] . " LIKE '%$value%'";
+                array_push($column_list, $column_sql);
+            }
+            $sql_search = "(".implode(" or ", $column_list).") LIMIT $start, $limit";
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table WHERE $sql_search;"
             );
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -123,7 +197,7 @@ abstract class DB_Model_ModelDriver
         try {
             $this->conn = $this->startConnection();
             $statement = $this->conn->prepare(
-                "DELETE FROM $this->table WHERE $column = '$value'"
+                "DELETE FROM $this->table WHERE $column = '$value';"
             );
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);

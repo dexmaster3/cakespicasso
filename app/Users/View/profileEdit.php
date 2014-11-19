@@ -33,6 +33,14 @@
                         <input type="text" class="form-control" id="username" name="username" value="<?= $this->data->user['username'] ?>">
                     </div>
                     <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="<?= $this->data->user['firstname'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="<?= $this->data->user['lastname'] ?>">
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= $this->data->user['email'] ?>">
                     </div>

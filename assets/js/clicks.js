@@ -5,6 +5,7 @@
 var clickHandler = (function () {
 
     var pub = {totalinfo : []};
+
     function saveClicks() {
         $(document).bind('mousedown.clickmap', function (evt) {
             var info = {
@@ -39,6 +40,27 @@ var clickHandler = (function () {
         $(document).unbind('mousedown.clickmap');
     }
 
+    function displayClicks(dataTable) {
+        $('<div id="clickmap-overlay"></div>').appendTo('body');
+        $('<div id="clickmap-loading"></div>').appendTo('body');
+        $('<div id="clickmap-container"></div>').appendTo('body');
+        var curr_table_data = dataTable.fnGetData();
+        $.each(curr_table_data, function(index, curr_data) {
+            console.log(curr_data);
+            $("#clickmap-container").append("<div style='left:" + curr_data.x + "px;top:"+ curr_data.y + "px;'></div>")
+        });
+        $('#clickmap-loading').remove();
+        $("#clickmap-overlay").on('click', function(){
+            removeClicks();
+        })
+    }
+
+    function removeClicks() {
+        $('#clickmap-overlay').remove();
+        $('#clickmap-container').remove();
+    }
+
+    pub.displayClicks = displayClicks;
     pub.stopSaveClicks = stopSaveClicks;
     pub.postSaveClicks = postSaveClicks;
     pub.saveClicks = saveClicks;
