@@ -35,6 +35,8 @@ var loginHandler = (function () {
         var inputs = $("#login-form input");
         var data = inputs.serializeArray();
         data.push({name: "ajax", value: "true"});
+        $("#btn-login").attr("disabled", "");
+        $("#login-spinner").css("display", "inline");
         $.ajax({
             url: "/users/user/login",
             method: "POST",
@@ -49,6 +51,8 @@ var loginHandler = (function () {
                     $.notify(data.message, data.type);
                     inputs.val('');
                     inputs.first().focus();
+                    $("#btn-login").removeAttr("disabled");
+                    $("#login-spinner").css("display", "none");
                 }
             },
             error: function (xhr, status, error) {
@@ -63,6 +67,8 @@ var loginHandler = (function () {
         var inputs = $("#register-form input");
         var data = inputs.serializeArray();
         data.push({name: "ajax", value: "true"});
+        $("#btn-register").attr("disabled", "");
+        $("#register-spinner").css("display", "inline");
         $.ajax({
             url: "/users/user/register",
             method: "POST",
@@ -77,6 +83,8 @@ var loginHandler = (function () {
                     $.notify(data.message, data.type);
                     inputs.val('');
                     inputs.first().focus();
+                    $("#btn-register").removeAttr("disabled");
+                    $("#register-spinner").css("display", "none");
                 }
             },
             error: function (xhr, status, error) {

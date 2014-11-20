@@ -107,7 +107,7 @@
                 <a href="/browser"><i class="fa fa-fw fa-list-ul"></i> Browser</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/pages/page") !== false): echo 'class="active"'; endif; ?> >
-                <a href="/pages/page"><i class="fa fa-fw fa-file-text-o"></i> Content</a>
+                <a href="/pages/page"><i class="fa fa-fw fa-file-text-o"></i> Pages</a>
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/forms/form") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/forms/form"><i class="fa fa-fw fa-pencil"></i> Forms</a>
@@ -126,6 +126,9 @@
             </li>
             <li <?php if (stripos($_SERVER['REQUEST_URI'], "/users/profile") !== false): echo 'class="active"'; endif; ?> >
                 <a href="/users/profile/showall"><i class="fa fa-fw fa-user"></i> Users</a>
+            </li>
+            <li>
+                <a onclick="clickHandler.displayClickAnyPage();"><i class="fa fa-fw fa-key"></i> Clicks Data</a>
             </li>
         </ul>
     </div>

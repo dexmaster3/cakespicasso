@@ -53,7 +53,8 @@
                             <span class="character-checkbox" onclick="LoginHandler.showPassword()"></span>
                             <span class="label">Show password</span>
                         </div>
-                        <button type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block">Log In</button>
+                        <button type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block">Log In
+                            <img id="login-spinner" style="display: none; width:20px;" src="/assets/img/ajax-loader.gif"></button>
                     </form>
                     <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Free Registration Here</a>
                     </div>
@@ -81,7 +82,8 @@
                             <span class="character-checkbox" onclick="LoginHandler.showPassword()"></span>
                             <span class="label">Show password</span>
                         </div>
-                        <button type="submit" id="btn-register" class="btn btn-custom btn-lg btn-block">Register</button>
+                        <button type="submit" id="btn-register" class="btn btn-custom btn-lg btn-block">Register
+                            <img id="register-spinner" style="display: none; width: 20px;" src="/assets/img/ajax-loader.gif"></button>
                     </form>
                     <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Back to Login</a>
                     </div>
@@ -99,7 +101,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <a href="/browser" style="font-size: 20px;margin: 10px;color: #428bca;">Not a Memeber? Check out our public pages!</a>
+                <a href="/browser" style="font-size: 20px;margin: 10px;color: #428bca;">Not a Member? Check out our public pages!</a>
             </div>
         </div>
         <div class="row">

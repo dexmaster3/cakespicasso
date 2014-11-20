@@ -146,11 +146,15 @@ var renderingHandler = (function(){
                 $("#form-submitter").removeAttr("disabled");
                 $("#form-spinner").css("display", "none");
             }
-        })
+        });
     });
 
     return pub;
 }());
-
+//cheap to get drag-to same height
+$(document).on('ready', function(){
+    var dragheight = $("#drag-layouts").css('height');
+    $("#layout-output").css('height', dragheight);
+});
 
 var RenderingHandler = renderingHandler;

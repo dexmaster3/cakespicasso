@@ -66,7 +66,10 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
         $clicks_model = new Analytics_Model_Click();
         $clicks_count = $clicks_model->totalCount();
 
-        if (!empty($post['search']['value'])) {
+        if ($post['specificpage']) {
+            $clicks = $clicks_model->findAllByAnyValue($post['pageurl']);
+            $records_filtered = $clicks_model->findAllByAnyValueLimitCount($post['pageurl']);
+        } elseif (!empty($post['search']['value'])) {
             $clicks = $clicks_model->findAllByAnyValueLimit($post['search']['value'], $post['start'], $post['length']);
             $records_filtered = $clicks_model->findAllByAnyValueLimitCount($post['search']['value']);
         } elseif (!empty($post['order'][0]['column'])) {

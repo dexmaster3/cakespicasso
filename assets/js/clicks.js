@@ -46,7 +46,6 @@ var clickHandler = (function () {
         $('<div id="clickmap-container"></div>').appendTo('body');
         var curr_table_data = dataTable.fnGetData();
         $.each(curr_table_data, function(index, curr_data) {
-            console.log(curr_data);
             $("#clickmap-container").append("<div style='left:" + curr_data.x + "px;top:"+ curr_data.y + "px;'></div>")
         });
         $('#clickmap-loading').remove();
@@ -54,12 +53,37 @@ var clickHandler = (function () {
             removeClicks();
         })
     }
+    function displayClickAnyPage() {
+        $('<div id="clickmap-overlay"></div>').appendTo('body');
+        $('<div id="clickmap-loading"></div>').appendTo('body');
+        $('<div id="clickmap-container"></div>').appendTo('body');
+        var displayQuery = {
+            specificpage: true,
+            pageurl: window.location.pathname,
+            draw: 1
+        };
+        $.ajax({
+            url: "/Admin/Dashboard/getnextclicks",
+            method: "POST",
+            data: displayQuery,
+            success: function(data, status, xhr) {
+                $.each(data.data, function(index, curr_data) {
+                    $("#clickmap-container").append("<div style='left:" + curr_data.x + "px;top:"+ curr_data.y + "px;'></div>").fadeIn(500);
+                });
+                $('#clickmap-loading').remove();
+                $("#clickmap-overlay").on('click', function(){
+                    removeClicks();
+                });
+            }
+        });
+    }
 
     function removeClicks() {
         $('#clickmap-overlay').remove();
         $('#clickmap-container').remove();
     }
 
+    pub.displayClickAnyPage = displayClickAnyPage;
     pub.displayClicks = displayClicks;
     pub.stopSaveClicks = stopSaveClicks;
     pub.postSaveClicks = postSaveClicks;

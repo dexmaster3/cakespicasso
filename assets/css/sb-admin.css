@@ -173,16 +173,29 @@ ul.alert-dropdown {
     border-color: #5cb85c;
 }
 
+.panel-blue {
+     border-color: #428bca;
+}
+
 .panel-green .panel-heading {
     border-color: #5cb85c;
     color: #fff;
     background-color: #5cb85c;
 }
-
+.panel-blue .panel-heading {
+    border-color: #428bca;
+    color: #fff;
+    background-color: #428bca;
+}
 .panel-green a {
     color: #5cb85c;
 }
-
+.panel-blue a {
+    color: #428bca;
+}
+.panel-blue a:hover {
+    color: #1d77ca;
+}
 .panel-green a:hover {
     color: #3d8b3d;
 }
