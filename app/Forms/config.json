@@ -14,6 +14,11 @@
                     "form_name": "User Cake Prefs",
                     "author_id": 1,
                     "form_html": "<form action='/display/formdata/post' method='post'><span style='display:none;'>{{form_id_replace}}<input style='display:none;' class='hidden hide' name='author_id' type='text' value='1'></span><div class='form-item'><label>Your Name</label><input name='user_name' type='text' class='form-control' placeholder='Name'></div><div class='form-item'><label>About You</label><textarea name='about' class='form-control'></textarea></div><div class='form-item'><label><input name='cake_choice' type='radio' value='Yellow'>Yellow</label><label><input name='cake_choice' type='radio' value='White'>White</label><label><input name='cake_choice' type='radio' value='Chocolate'>Chocolate</label><label><input name='cake_choice' type='radio' value='Almond'>Almond</label><label><input name='cake_choice' type='radio' value='Mango'>Mango</label><label><input name='cake_choice' type='radio' value='Green Tea'>Green Tea</label></div><div class='form-item'><label>Slices Preference</label><select class='form-control' name='slices'><option>None</option><option>1</option><option>2</option><option>3</option><option>4</option><option>Whole Cake</option></select></div><div class='form-item'><button type='submit' class='btn btn-primary'>Submit</button></div></form>"
+                },
+                {
+                    "form_name": "Contact Dex",
+                    "author_id": 1,
+                    "form_html": "<form action='/display/formdata/post' method='post'><span style='display:none;'>{{form_id_replace}}<input style='display:none;' class='hidden hide' name='author_id' type='text' value='1'></span><div class='form-item'><label>Subject</label><input name='subject' type='text' class='form-control'></div><div class='form-item'><label>Message</label><textarea name='message_body' class='form-control'></textarea></div><div class='form-item'><label>Urgency Level</label><select class='form-control' name='urgency'><option>High</option><option>Medium</option><option>Low</option></select></div><div class='form-item'><button type='submit' class='btn btn-primary'>Send</button></div></form>"
                 }
             ]
         }

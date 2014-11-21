@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Content
+                        Pages
                         <small>Edit</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                             <i class="fa fa-lock"></i> <a href="/admin/dashboard">Admin</a>
                         </li>
                         <li>
-                            <i class="fa fa-file-text-o"></i> <a href="/pages/page">Content</a>
+                            <i class="fa fa-file-text-o"></i> <a href="/pages/page">Pages</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-file"></i> Edit

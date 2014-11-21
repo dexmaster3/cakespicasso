@@ -40,25 +40,14 @@
                     "avatar": "1415983477_dex.jpg"
                 },
                 {
-                    "username": "shark",
-                    "password": "3a5494306fa75191d9e61c1237686c373ac092ffddccb450959c3b3cf51f35a5",
-                    "salt": "4c198fff7e0538a7",
-                    "email": "spirit.dancing@shark.com",
-                    "birthday": "1972-07-23 00:00:00",
-                    "gender": "Female",
-                    "address": "1200 Good Prayer Lane",
-                    "phone": "666-666-5666",
-                    "about": "I love to give dancing lessons"
-                },
-                {
                     "username": "doug",
                     "password": "fa4f35b68dd3b1afc76d1b66c2ee7b4a10525b37cdee0598c92474c85010c251",
                     "salt": "7467492b6e57e5ca",
                     "email": "djdouggpound@yahoo.com",
                     "birthday": "2003-02-12 00:00:00",
                     "gender": "Male",
-                    "address": "1211 Good Prayer Lane",
-                    "phone": "666-666-5666",
+                    "address": "2745 Main Street",
+                    "phone": "258-357-8235",
                     "about": "DJ Douggpound in the mix",
                     "avatar": "1415984068_doug.jpg"
                 },
@@ -68,10 +57,10 @@
                     "salt": "21825fd11f3f6f5f",
                     "email": "skott@morningprayer.com",
                     "birthday": "1972-07-23 00:00:00",
-                    "gender": "Female",
+                    "gender": "Male",
                     "address": "1200 Good Prayer Lane",
-                    "phone": "666-666-5666",
-                    "about": "praise hosanna",
+                    "phone": "654-434-4934",
+                    "about": "Morning Prayer Host",
                     "avatar": "1415984031_skott.gif"
                 },
                 {
@@ -80,10 +69,10 @@
                     "salt": "40ca985e31d96379",
                     "email": "behr@morningprayer.com",
                     "birthday": "1972-07-23 00:00:00",
-                    "gender": "Female",
-                    "address": "1200 Good Prayer Lane",
-                    "phone": "666-666-5666",
-                    "about": "praise rang dipkin",
+                    "gender": "Male",
+                    "address": "1200 Prayer Lane",
+                    "phone": "234-376-7359",
+                    "about": "Morning Prayer Co-Host",
                     "avatar": "1415984051_behr.jpg"
                 }
             ]

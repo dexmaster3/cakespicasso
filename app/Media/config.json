@@ -1,0 +1,23 @@
+{
+    "Media": {
+        "mission": "to provide handle user media",
+        "date": "Nov 21, 2014",
+        "views": {
+            "Media": {
+                "index": "index.php",
+                "create": "create.php"
+            }
+        },
+        "model_seeds": {
+            "Media_Model_Media": [
+                {
+                    "original_name": "foreverlazy.jpg",
+                    "file_name": "1416586966_foreverlazy.jpg",
+                    "full_path": "/assets/upload/1416586966_foreverlazy.jpg",
+                    "server_full_path": "/home/dexter/sites/cakespicasso.dev/assets/upload/1416586966_foreverlazy.jpg",
+                    "author_id": 1
+                }
+            ]
+        }
+    }
+}

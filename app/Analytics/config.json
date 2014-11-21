@@ -4,8 +4,272 @@
         "date": "Nov 18, 2014",
         "model_seeds": {
             "Analytics_Model_Click": [],
-            "Analytics_Model_Tracker": [],
-            "Analytics_Model_ActivityLog": []
+            "Analytics_Model_Tracker": [
+                {
+                    "query": "127.0.0.1"
+                }
+            ],
+            "Analytics_Model_ActivityLog": [
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 2",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 7",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 8",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 9",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 10",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 11",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 12",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 13",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 14",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 3",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 1",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 15",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 7",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 4",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 1",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 10",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Form Added",
+                    "description": "dex added a form",
+                    "note": "Form ID: 2",
+                    "type": "fa fa-fw fa-pencil",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 5",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 6",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 7",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 4",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Layout Added",
+                    "description": "dex added a layout",
+                    "note": "Layout ID: 10",
+                    "type": "fa fa-fw fa-edit",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 4",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 5",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 6",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 6",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 1",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 2",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Message Sent",
+                    "description": "dex sent a message",
+                    "note": "Message ID: 1",
+                    "type": "fa fa-fw fa-envelope",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Rendering Added",
+                    "description": "dex added a rendering",
+                    "note": "Rendering ID: 8",
+                    "type": "fa fa-fw fa-photo",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Content Added",
+                    "description": "dex added a content page",
+                    "note": "Form ID: 7",
+                    "type": "fa fa-fw fa-file-text-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Form Added",
+                    "description": "dex added a form",
+                    "note": "Form ID: 3",
+                    "type": "fa fa-fw fa-pencil",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Media Uploaded",
+                    "description": "dex uploaded media",
+                    "note": "Media ID: 1",
+                    "type": "fa fa-fw fa-file-image-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Media Uploaded",
+                    "description": "dex uploaded media",
+                    "note": "Media ID: 1",
+                    "type": "fa fa-fw fa-file-image-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Media Uploaded",
+                    "description": "dex uploaded media",
+                    "note": "Media ID: 2",
+                    "type": "fa fa-fw fa-file-image-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Media Uploaded",
+                    "description": "dex uploaded media",
+                    "note": "Media ID: 3",
+                    "type": "fa fa-fw fa-file-image-o",
+                    "author_id": "1"
+                },
+                {
+                    "name": "Media Uploaded",
+                    "description": "dex uploaded media",
+                    "note": "Media ID: 4",
+                    "type": "fa fa-fw fa-file-image-o",
+                    "author_id": "1"
+                }
+            ]
         }
     }
 }

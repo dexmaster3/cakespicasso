@@ -12,7 +12,15 @@
             }
         },
         "model_seeds": {
-            "Messages_Model_Message": []
+            "Messages_Model_Message": [
+                {
+                    "subject": "Hello",
+                    "attachment": "1416586966_foreverlazy.jpg",
+                    "body": "Attached is your requested document",
+                    "sentfrom": 1,
+                    "sentto": 1
+                }
+            ]
         }
     }
 }

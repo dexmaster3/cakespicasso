@@ -12,21 +12,21 @@
         "model_seeds": {
             "DB_Model_CustomRoutes": [
                 {
-                    "url": "praise-hosanna",
+                    "url": "dex-home",
                     "module": "Display",
                     "controller": "Display",
                     "action": "content",
                     "remote_id": 1
                 },
                 {
-                    "url": "my-shoe-prices",
+                    "url": "dex-about",
                     "module": "Display",
                     "controller": "Display",
                     "action": "content",
                     "remote_id": 2
                 },
                 {
-                    "url": "my-pants-page",
+                    "url": "dex-contact",
                     "module": "Display",
                     "controller": "Display",
                     "action": "content",

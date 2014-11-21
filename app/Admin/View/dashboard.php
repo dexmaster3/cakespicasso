@@ -138,7 +138,7 @@
             <div class="panel-body">
                 <div class="list-group">
                     <? $i = 0; foreach(array_reverse($this->data->activities) as $activity): ?>
-                    <a href="#" class="list-group-item">
+                    <a href="/admin/dashboard/activity" class="list-group-item">
                         <span class="badge"><?= Display_DisplayHelper::friendlyElapsedTime($activity['date_modified']); ?></span>
                         <i class="<?= $activity['type'] ?>"></i> <?= $activity['description'] ?>
                     </a>
@@ -169,7 +169,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <? foreach($this->data->trackings as $tracking): ?>
+                        <? $ti = 0; foreach($this->data->trackings as $tracking): ?>
                         <tr>
                             <td><?= $tracking['id'] ?></td>
                             <td><?= $tracking['country'] ?></td>
@@ -177,6 +177,7 @@
                             <td><?= $tracking['query'] ?></td>
                             <td><span class="badge"><?= Display_DisplayHelper::friendlyElapsedTime($tracking['date_modified']); ?></span></td>
                         </tr>
+                            <? if(++$ti > 10){ break;} ?>
                         <? endforeach; ?>
                         </tbody>
                     </table>

@@ -34,4 +34,13 @@ class Users_UserHelper
             'password' => $password
         );
     }
+    static public function isObjectOwner($object_author)
+    {
+        $user_id = $_SESSION['user']['id'];
+        if ($user_id === $object_author) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
