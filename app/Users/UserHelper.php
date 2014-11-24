@@ -4,12 +4,19 @@ class Users_UserHelper
 {
     static public function checkAuth()
     {
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['user']) && $_SESSION['user']['id'] > 0) {
             return true;
         } else {
             return false;
         }
     }
+
+    /**
+     * Check the password of the provided user object
+     * @param $current_user
+     * @param $password
+     * @return bool password correct or not
+     */
     static public function checkPassword($current_user, $password)
     {
         $pw_check = hash('sha256', $password . $current_user['salt']);
@@ -22,6 +29,12 @@ class Users_UserHelper
             return false;
         }
     }
+
+    /**
+     * Create and get a new password for registering users
+     * @param $new_password
+     * @return array Salt and Password
+     */
     static public function getPassword($new_password)
     {
         $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
@@ -34,10 +47,10 @@ class Users_UserHelper
             'password' => $password
         );
     }
-    static public function isObjectOwner($object_author)
+    static public function isObjectOwner($object_author_id)
     {
         $user_id = $_SESSION['user']['id'];
-        if ($user_id === $object_author) {
+        if ($user_id === $object_author_id) {
             return true;
         } else {
             return false;

@@ -63,7 +63,7 @@ var clickHandler = (function () {
             draw: 1
         };
         $.ajax({
-            url: "/Admin/Dashboard/getnextclicks",
+            url: "/Analytics/Analytics/getnextclicks",
             method: "POST",
             data: displayQuery,
             success: function(data, status, xhr) {

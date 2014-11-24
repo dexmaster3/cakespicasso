@@ -9,7 +9,7 @@ class Core_Dispatcher
         $action = $route['action'];
 
         $controller = $this->createRequestedController($route);
-        if ($controller["success"]) {
+        if ($controller['success']) {
             $ctrl = $controller['controller'];
             $valid_action = $this->checkValidControllerAction($action, $ctrl);
             if ($valid_action['success']) {

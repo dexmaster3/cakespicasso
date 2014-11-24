@@ -59,34 +59,4 @@ class Admin_Controller_Dashboard extends Users_Controller_BaseAuth
         $this->data->clicks = $clicks_model->getAll();
         return $this->render();
     }
-    protected function getNextClicks($query = null)
-    {
-        //TODO Do search boxes by column?
-        $post = Core_Request::getRequest()->post;
-        $clicks_model = new Analytics_Model_Click();
-        $clicks_count = $clicks_model->totalCount();
-
-        if ($post['specificpage']) {
-            $clicks = $clicks_model->findAllByAnyValue($post['pageurl']);
-            $records_filtered = $clicks_model->findAllByAnyValueLimitCount($post['pageurl']);
-        } elseif (!empty($post['search']['value'])) {
-            $clicks = $clicks_model->findAllByAnyValueLimit($post['search']['value'], $post['start'], $post['length']);
-            $records_filtered = $clicks_model->findAllByAnyValueLimitCount($post['search']['value']);
-        } elseif (!empty($post['order'][0]['column'])) {
-            $column_id = $post['order'][0]['column'];
-            $order_column = $post['columns'][$column_id]['data'];
-            $clicks = $clicks_model->getNumStartingOnOrderBy($post['start'], $post['length'], $order_column);
-            $records_filtered = $clicks_model->getNumStartingOnOrderByCount($order_column);
-        } else {
-            $clicks = $clicks_model->getNumStartingOn($post['start'], $post['length']);
-            $records_filtered = $clicks_count;
-        }
-
-        $dt_return = new stdClass();
-        $dt_return->draw = $post['draw'];
-        $dt_return->recordsFiltered = $records_filtered[0];
-        $dt_return->recordsTotal = $clicks_count[0];
-        $dt_return->data = $clicks;
-        return $this->returnJson($dt_return);
-    }
 }

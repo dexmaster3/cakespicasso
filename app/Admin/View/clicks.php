@@ -17,7 +17,7 @@
                         <i class="fa fa-tachometer"></i> <a href="/admin/dashboard">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-edit"></i> <a href="/admin/dashboard/activity">Activity</a>
+                        <i class="fa fa-edit"></i> <a href="/admin/dashboard/clicks">Clicks</a>
                     </li>
                 </ol>
             </div>
@@ -67,7 +67,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "/admin/dashboard/getnextclicks",
+                "url": "/Analytics/Analytics/getnextclicks",
                 "type": "POST"
             },
             "columns": [

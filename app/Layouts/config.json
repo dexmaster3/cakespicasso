@@ -23,7 +23,7 @@
                 {
                     "layout_name": "DexPage head",
                     "author_id": 1,
-                    "layout_content": "&lt;head&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Storystrap Template&lt;/title&gt;&lt;meta name=&quot;generator&quot; content=&quot;Bootply&quot; /&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;&lt;link href=&quot;/assets/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;&lt;/head&gt;"
+                    "layout_content": "&lt;head&gt;&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Dexs Website&lt;/title&gt;&lt;meta name=&quot;generator&quot; content=&quot;Bootply&quot; /&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;&lt;link href=&quot;/assets/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;&lt;/head&gt;"
                 },
                 {
                     "layout_name": "DexPage nav",

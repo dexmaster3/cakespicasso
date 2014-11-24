@@ -3,10 +3,6 @@
         "mission": "to provide cms stuff",
         "date": "Oct 15, 2014",
         "views": {
-            "Admin": {
-                "index": "index.php",
-                "blank": "blank.php"
-            },
             "Page": {
                 "index": "index.php",
                 "create": "create.php",

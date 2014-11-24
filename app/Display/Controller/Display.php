@@ -11,7 +11,7 @@ class Display_Controller_Display extends Core_Controller_BaseController
         return $this->render($return_layout);
     }
 
-    public function content($query)
+    public function content($query = null)
     {
         Analytics_AnalyticsHelper::saveClientInformation();
         $content_model = new Pages_Model_Page();
@@ -25,6 +25,13 @@ class Display_Controller_Display extends Core_Controller_BaseController
         if ($form) {
             $new_form_html = Forms_FormHelper::insertFormId($form);
             $rendering_string = str_replace("{{form_content}}", $new_form_html, $rendering_string);
+        } else {
+            $rendering_string = str_replace("{{form_content}}", "", $rendering_string);
+        }
+        //Add in click script -- using static class in Analytics module better?
+        $rendering_string .= "<link href='/assets/css/admin.css' type='text/css' rel='stylesheet'><script src='https://code.jquery.com/jquery-1.11.1.min.js'></script><script src='/assets/js/clicks.js'></script>";
+        if ($_REQUEST['click'] && Users_UserHelper::isObjectOwner($content['author_id'])) {
+            $rendering_string .= "<script>$(document).on('ready', function(){clickHandler.displayClickAnyPage();});</script>";
         }
         return $this->renderString($rendering_string);
     }
