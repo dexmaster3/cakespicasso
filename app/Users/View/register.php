@@ -18,7 +18,7 @@
     <link href="/assets/css/login.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,11 +32,11 @@
 <section id="login">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-6 col-md-offset-3">
                 <? if(!empty($this->data->message['message'])): ?>
                     <div class="alert alert-danger"><?= $this->data->message['message'] ?></div>
                 <? endif; ?>
-                <div class="form-wrap" id="register-wrap">
+                <div class="form-wrap form-holder" id="register-wrap">
                     <span><img src="/assets/img/cake.jpg" alt="CakesPicasso" /><h1 id="login-title">Registration Form</h1></span>
                     <form role="form" id="register-form" action="/users/user/register" method="POST">
                         <div class="form-group">
@@ -63,6 +63,8 @@
                     <div id="change-form"><a id="change-form-button" onclick="LoginHandler.changeForm()">Back to Login</a>
                     </div>
                     <hr>
+                    <a href="/browser" style="font-size: 20px;margin: 10px;color: #428bca;">Not a Memeber? Check out our public pages!</a>
+                    <p>Cakes Picasso &copy; - 2014</p>
                 </div>
             </div>
             <!-- /.col-md-6 -->
@@ -72,20 +74,6 @@
     <!-- /.container -->
 </section>
 
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <a href="/browser" style="font-size: 20px;margin: 10px;color: #428bca;">Not a Memeber? Check out our public pages!</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <p>Cakes Picasso &copy; - 2014</p>
-            </div>
-        </div>
-    </div>
-</footer>
 <script src="/assets/js/jquery-1.11.0.js"></script>
 <script src="/assets/js/notify.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>

@@ -58,7 +58,7 @@
 {{/body}}
 
 {{scripts}}
-<script src="/assets/js/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/js/plugins/datatables/dataTables.bootstrap.js"></script>
 <script>
     var clickCoordTable;

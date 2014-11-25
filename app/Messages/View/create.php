@@ -136,6 +136,6 @@
                 $.notify(error, "error");
             }
         });
-    })
+    });
 </script>
 {{/scripts}}

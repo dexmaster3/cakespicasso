@@ -3,20 +3,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Welcome to Cakes Picasso AKA YoungFro">
+    <meta name="description" content="Welcome to Cakes Picasso AKA YoungFro a Custom MVC framework and CMS">
     <meta name="author" content="DEX!">
 
     <title>Cakes Picasso</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
     <link href="/assets/css/datepicker.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/plugins/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/plugins/dropzone.css" rel="stylesheet" type="text/css">

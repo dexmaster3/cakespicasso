@@ -5,16 +5,78 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
     protected function index($query = null)
     {
         $user_model = new Users_Model_User();
-        $user = $user_model->findById($_SESSION['user']['id']);
+        $user = $user_model->getUser($_SESSION['user']['id']);
         $this->data->user = $user;
         return $this->render();
     }
     protected function edit($query)
     {
         $user_model = new Users_Model_User();
-        $user = $user_model->findById($_SESSION['user']['id']);
+        $user = $user_model->getUser($_SESSION['user']['id']);
         $this->data->user = $user;
         return $this->render();
+    }
+    protected function avatar($query = null)
+    {
+        $user_model = new Users_Model_User();
+        $this->data->user = $user_model->findById($_SESSION['user']['id']);
+        return $this->render();
+    }
+    protected function deleteavatar($query = null)
+    {
+        $user_model = new Users_Model_User();
+        $user = $user_model->findById($_SESSION['user']['id']);
+        $user['avatar'] = null;
+        $user['avatar_crop'] = null;
+        $sql_run = $user_model->updateById($_SESSION['user']['id'], $user);
+        if ($sql_run) {
+            return $this->returnJson(array(
+                "message" => "Avatar Deleted",
+                "type" => "success",
+                "success" => true
+            ));
+        } else {
+            return $this->returnJson(array(
+                "message" => "Avatar could not be deleted",
+                "type" => "error",
+                "success" => false
+            ));
+        }
+    }
+    protected function postavatar($query = null)
+    {
+        $post = Core_Request::getRequest()->post;
+        $user_model = new Users_Model_User();
+        $user = $user_model->findById($_SESSION['user']['id']);
+        $avatar_name = time() . "_avatar_" . $user['username'] . ".jpg";
+        $file_name = ROOT . "/assets/upload/$avatar_name";
+        $filestream = fopen($file_name, "wb");
+        $data = explode("base64,", $post['image']);
+        fwrite($filestream, base64_decode($data[1]));
+        fclose($filestream);
+        if (is_file($file_name)) {
+            $sql_run = $user_model->updateById($_SESSION['user']['id'], array("avatar_crop" => $avatar_name));
+            if ($sql_run) {
+                return $this->returnJson(array(
+                    "message" => "Avatar Saved",
+                    "type" => "success",
+                    "success" => true,
+                    "redirect" => "/users/profile"
+                ));
+            } else {
+                return $this->returnJson(array(
+                    "message" => "Error sql couldn't save",
+                    "type" => "error",
+                    "success" => false
+                ));
+            }
+        } else {
+            return $this->returnJson(array(
+                "message" => "Error saving Avatar",
+                "type" => "error",
+                "success" => false
+            ));
+        }
     }
     protected function save($query)
     {
@@ -35,21 +97,32 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
         }
         $post['birthday'] = date("Y-m-d", strtotime($post['birthday']));
         $user_model = new Users_Model_User();
-        $user_model->updateById($post['id'], $post);
-
-        header("Location: /users/profile");
-        return $this->renderString("Post Success");
+        $sql_run = $user_model->updateById($post['id'], $post);
+        if ($sql_run) {
+            return $this->returnJson(array(
+                "message" => "Profile Updated",
+                "type" => "success",
+                "success" => true,
+                "redirect" => "/users/profile"
+            ));
+        } else {
+            return $this->returnJson(array(
+                "message" => "Error saving profile",
+                "type" => "error",
+                "success" => false
+            ));
+        }
     }
     protected function showAll($query)
     {
         $users_model = new Users_Model_User();
-        $this->data->users = $users_model->getAll();
+        $this->data->users = $users_model->getAllUsers();
         return $this->render();
     }
     protected function show($query = null)
     {
         $user_model = new Users_Model_User();
-        $this->data->user = $user_model->findById($query['id']);
+        $this->data->user = $user_model->getUser($query['id']);
         return $this->render();
     }
 }

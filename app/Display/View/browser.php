@@ -31,8 +31,9 @@
                                         View Clicks
                                     </a>
                                 </td>
-                            <? else: ?>
+                            <? elseif($_SESSION['user']['id'] > 0): ?>
                                 <td>
+                                    <button disabled class="btn btn-default">View Clicks</button>
                                 </td>
                             <? endif; ?>
                             <td>

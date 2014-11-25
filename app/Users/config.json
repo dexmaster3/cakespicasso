@@ -15,7 +15,8 @@
                 "index": "profileIndex.php",
                 "edit": "profileEdit.php",
                 "showall": "profileShow.php",
-                "show": "profileIndex.php"
+                "show": "profileIndex.php",
+                "avatar": "profileAvatar.php"
             }
         },
         "custom_routes": {

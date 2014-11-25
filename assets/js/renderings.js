@@ -146,7 +146,7 @@ var renderingHandler = (function(){
                 $("#form-submitter").removeAttr("disabled");
                 $("#form-spinner").css("display", "none");
             }
-        });
+        })
     });
 
     return pub;

@@ -1,13 +1,19 @@
 /*    --------------------------------------------------
 	:: Login Section
 	-------------------------------------------------- */
+body {
+    background: url("/assets/img/banner-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
 #login {
     padding-top: 50px
 }
 
-#login .form-wrap {
-    width: 30%;
-    margin: 0 auto;
+.form-holder {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 30px;
 }
 
 #login img {
@@ -99,19 +105,3 @@
     color: #fff;
 }
 
-/*    --------------------------------------------------
-    :: Footer
-	-------------------------------------------------- */
-#footer {
-    color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-}
-
-#footer p {
-    margin-bottom: 0;
-}
-
-#footer a {
-    color: inherit;
-}

@@ -34,6 +34,12 @@
                         <input type="text" class="form-control" id="layout_name" name="layout_name" required
                                placeholder="Layout name" value="<?= $this->data->page['layout_name'] ?>">
                     </div>
+                    <div class="form-group">
+                        <label for="page_name">Tag Names</label>
+                        <p class="tag-drag" draggable="true" data-text="{{content_content}}"> {{content_content}} </p>
+                        <p class="tag-drag" draggable="true" data-text="{{form_content}}"> {{form_content}} </p>
+                        <p class="tag-drag" draggable="true" data-text="{{drag_content}}"> {{drag_content}} </p>
+                    </div>
                     <div class="form-group hidden" style="display: none;">
                         <input type="text" class="form-control" id="id" name="id"
                                value="<?= $this->data->page['id'] ?>">
@@ -57,6 +63,7 @@
 {{/body}}
 
 {{scripts}}
+<script src="/assets/js/layout.js"></script>
 <script>
     var form = $("#layout-form");
     form.on('submit', function(ev){

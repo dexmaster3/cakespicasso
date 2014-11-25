@@ -27,7 +27,7 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <form enctype="multipart/form-data" action="/users/profile/save" method="post">
+                <form id="profile-form" enctype="multipart/form-data" action="/users/profile/save" method="post">
                     <div class="form-group">
                         <label for="username">User Name</label>
                         <input type="text" class="form-control" id="username" name="username" value="<?= $this->data->user['username'] ?>">
@@ -45,9 +45,14 @@
                         <input type="email" class="form-control" id="email" name="email" value="<?= $this->data->user['email'] ?>">
                     </div>
                     <div class="form-group">
-                        <label for="avatar">Upload Avatar</label>
+                        <label for="avatar" style="display: block;">Avatar</label>
+                        <? if(empty($this->data->user['avatar'])): ?>
                         <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
                         <input type="file" class="form-control" id="avatar" name="avatar">
+                        <? else: ?>
+                            <a class="btn btn-warning" href="/users/profile/avatar">Edit Avatar</a>
+                            <a class="btn btn-danger" href="#" onclick="deleteAvatar();">Delete Avatar</a>
+                        <? endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
@@ -96,7 +101,8 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" cl
+ass="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                     </div>
                     <div class="modal-body" id="renderings-modal-body">
@@ -123,5 +129,39 @@
 <script src="/assets/js/bootstrap-datepicker.js"></script>
 <script>
     $(".form-control#birthday").datepicker({});
+    function deleteAvatar() {
+        var info = {
+            url: "/users/profile/deleteavatar",
+            method: "DELETE"
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                location.reload();
+            }
+        })
+    }
+    var form = $("#profile-form");
+    form.on('submit', function(ev){
+        ev.preventDefault();
+
+        var formdata = new FormData(this);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function(data){
+                $.notify(data.message, data.type);
+                setTimeout(function(){
+                    window.location.href = data.redirect;
+                }, 1500);
+            },
+            error: function(xhr, status, error) {
+                $.notify(error, "error");
+            }
+        });
+    });
 </script>
 {{/scripts}}

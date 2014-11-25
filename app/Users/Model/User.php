@@ -17,6 +17,7 @@ class Users_Model_User extends DB_Model_ModelDriver
     email VARCHAR(255) NOT NULL,
     about TEXT,
     avatar VARCHAR(255),
+    avatar_crop VARCHAR(255),
     birthday DATETIME,
     gender VARCHAR(255),
     address VARCHAR(255),
@@ -25,5 +26,35 @@ class Users_Model_User extends DB_Model_ModelDriver
     UNIQUE (username),
     UNIQUE (email)
 );";
+    }
+
+    //Need to extend standard Get methods to always populate the right avatar
+    public function getAllUsers()
+    {
+        $ret_users = array();
+        $users = $this->getAll();
+        foreach ($users as $user) {
+            if (!empty($user['avatar_crop'])) {
+                $user['avatar'] = $user['avatar_crop'];
+            } elseif (!empty($user['avatar'])) {
+
+            } else {
+                $user['avatar'] = "";
+            }
+            array_push($ret_users, $user);
+        }
+        return $ret_users;
+    }
+    public function getUser($user_id)
+    {
+        $user = $this->findById($user_id);
+        if (!empty($user['avatar_crop'])) {
+            $user['avatar'] = $user['avatar_crop'];
+        } elseif (!empty($user['avatar'])) {
+
+        } else {
+            $user['avatar'] = "";
+        }
+        return $user;
     }
 }
