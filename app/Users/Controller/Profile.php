@@ -122,7 +122,30 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
     protected function show($query = null)
     {
         $user_model = new Users_Model_User();
+        $note_model = new Users_Model_Note();
+        $this->data->notes = $note_model->findAllByColumnValue("profile_id", $query['id']);
         $this->data->user = $user_model->getUser($query['id']);
         return $this->render();
+    }
+    protected function postcomment($query = null)
+    {
+        $post = Core_Request::getRequest()->post;
+        $note_model = new Users_Model_Note();
+        $post['author_id'] = $_SESSION['user']['id'];
+        $post['parent_note'] = 0;
+        $sql_run = $note_model->addRow($post);
+        if ($sql_run) {
+            return $this->returnJson(array(
+                "success" => true,
+                "type" => "success",
+                "message" => "Comment posted"
+            ));
+        } else {
+            return $this->returnJson(array(
+                "success" => false,
+                "type" => "error",
+                "message" => "Comment save error"
+            ));
+        }
     }
 }

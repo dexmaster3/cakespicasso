@@ -28,13 +28,14 @@ class Core_Request
 
     private static function requestUri()
     {
-        //Using redirect url because request uri keeps whole query string in
-        //Cant have this for late parsed query strings (they will show up as page not found) ex: public clicks page
-        $uri = ltrim($_SERVER['REDIRECT_URL'], '/');
-        if (empty($uri)) {
+        $uri = ltrim($_SERVER['REQUEST_URI'], '/');
+        $uri = explode("?", $uri);
+        if (empty($uri[0])) {
             $uri = "ROOT_REQUEST";
+            return $uri;
+        } else {
+            return $uri[0];
         }
-        return $uri;
     }
 
     private static function parsePost()

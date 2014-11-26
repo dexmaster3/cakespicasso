@@ -75,25 +75,23 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="renderings-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body" id="renderings-modal-body">
-                        <nav>
-                            <ul class="pagination">
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary save">Select Rendering</button>
-                    </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <form id="comment-form" action="/users/profile/postcomment" method="post" style="margin: 10px 0;">
+                <h2>Write <?= ucfirst($this->data->user['username']) ?> a note:
+                    <button class="btn btn-primary pull-right" type="submit">Post
+                    <img src="/assets/img/ajax-loader.gif" style="display: none;"> </button>
+                </h2>
+                    <textarea class="form-control" name="body" placeholder="What are you thinking?"></textarea>
+                    <input type="hidden" class="hidden hide" name="profile_id" value="<?= $this->data->user['id'] ?>">
+                    </form>
+                <? foreach($this->data->notes as $note): ?>
+                <div class="well">
+                    <div class="note-body"><?= $note['body'] ?></div>
+                    <div class="note-date"><?= $note['date_modified'] ?></div>
                 </div>
+                <? endforeach; ?>
             </div>
         </div>
     </div>
@@ -104,5 +102,24 @@
 {{/body}}
 
 {{scripts}}
+<script>
+    var commentform = $("#comment-form");
 
+    commentform.on('submit', function(ev){
+        ev.preventDefault();
+        var info = {
+            url: commentform.attr('action'),
+            method: commentform.attr('method'),
+            data: commentform.serializeArray()
+        };
+        ajaxhandle(info, function(data){
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function(){
+                    window.location.reload();
+                }, 1500);
+            }
+        })
+    })
+</script>
 {{/scripts}}

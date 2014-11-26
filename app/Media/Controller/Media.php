@@ -57,24 +57,28 @@ class Media_Controller_Media extends Users_Controller_BaseAuth
                     );
                     $activity_model->addRow($activity);
                     return $this->returnJson(array(
+                        "type" => "success",
                         "success" => true,
                         "message" => "File uploaded"
                     ));
                 } else {
-                    header("HTTP/1.1 500 SQL add error");
                     return $this->returnJson(array(
+                        "type" => "error",
+                        "success" => false,
                         "error" => "SQL add error"
                     ));
                 }
             } else {
-                header("HTTP/1.1 500 File save error");
                 return $this->returnJson(array(
+                    "type" => "error",
+                    "success" => false,
                     "error" => "File save error"
                 ));
             }
         } else {
-            header("HTTP/1.1 500 File transfer fail");
             return $this->returnJson(array(
+                "type" => "error",
+                "success" => false,
                 "error" => "File transfer fail"
             ));
         }

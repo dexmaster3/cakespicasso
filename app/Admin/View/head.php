@@ -15,7 +15,6 @@
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/plugins/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/plugins/dropzone.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -27,6 +27,7 @@
             }
         },
         "model_seeds": {
+            "Users_Model_Note": [],
             "Users_Model_User": [
                 {
                     "username": "dex",

@@ -56,4 +56,14 @@ class Users_UserHelper
             return false;
         }
     }
+    //ToDo: find better recursion method of building note comment tree (view my site?)
+    static public function noteHasChildren($parent_note)
+    {
+        $note_model = new Users_Model_Note();
+        $return_notes = array();
+        $note_children = $note_model->findAllByColumnValue('parent_note', $parent_note['id']);
+        foreach ($note_children as $note_item) {
+
+        }
+    }
 }

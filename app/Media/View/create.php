@@ -27,11 +27,12 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <form action="/media/media/upload" class="dropzone">
-                    <div class="fallback">
-                        <input name="file" type="file" multiple />
+                <div class="media-upload row" id="media-upload">
+                    <div class="backtext">
+                        Drag or Click to Upload
                     </div>
-                </form>
+                </div>
+                    <input id="fallback-upload" name="file" type="file" multiple />
             </div>
         </div>
 
@@ -50,5 +51,5 @@
 
 
 {{scripts}}
-<script src="/assets/js/plugins/dropzone/dropzone.js"></script>
+<script src="/assets/js/mediaupload.js"></script>
 {{/scripts}}
