@@ -47,6 +47,7 @@ class Users_UserHelper
             'password' => $password
         );
     }
+
     static public function isObjectOwner($object_author_id)
     {
         $user_id = $_SESSION['user']['id'];
@@ -56,14 +57,33 @@ class Users_UserHelper
             return false;
         }
     }
-    //ToDo: find better recursion method of building note comment tree (view my site?)
-    static public function noteHasChildren($parent_note)
-    {
-        $note_model = new Users_Model_Note();
-        $return_notes = array();
-        $note_children = $note_model->findAllByColumnValue('parent_note', $parent_note['id']);
-        foreach ($note_children as $note_item) {
 
+    //These were used for recursive notes -- not needed for comment system now
+    static public function getNoteChildren($all_notes, $parent_id = 0)
+    {
+        $final_tree = array();
+        foreach ($all_notes as $note) {
+            if ($note['parent_note'] == $parent_id) {
+                $children = self::getNoteChildren($all_notes, $note['id']);
+                if ($children) {
+                    $note['children'] = $children;
+                }
+                $final_tree[] = $note;
+            }
+        }
+        return $final_tree;
+    }
+
+    static public function displayNoteChildren($all_notes, $level = 0)
+    {
+        foreach ($all_notes as $key => $val) {
+            if(is_array($val)) {
+                echo "<ul>";
+                self::displayNoteChildren($val);
+                echo "</ul>";
+            } else {
+                echo "<li>$key ==== $val</li>";
+            }
         }
     }
 }

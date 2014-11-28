@@ -16,4 +16,18 @@ class Users_Model_Note extends DB_Model_ModelDriver
     date_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );";
     }
+    public function findAllByColumnValueWhereNoParent($column, $value)
+    {
+        try {
+            $this->conn = $this->startConnection();
+            $statement = $this->conn->prepare(
+                "SELECT * FROM $this->table WHERE $column = '$value' AND parent_note = 0;"
+            );
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return $ex->getMessage();
+        }
+    }
 }

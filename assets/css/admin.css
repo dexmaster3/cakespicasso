@@ -39,6 +39,33 @@
     cursor: pointer;
 }
 
+.note {
+    border-left: 5px solid cadetblue;
+    background-color: #e8e8e8;
+    padding: 10px;
+    margin: 10px 0;
+}
+.note-comment {
+    border-left: 5px solid cadetblue;
+    background-color: #dcdcdc;
+    padding: 10px;
+    margin: 10px 5px 5px 5px;
+
+}
+.note-body {
+    float: left !important;
+}
+.note-user {
+    float: right !important;
+}
+.note-timestamp {
+    color: #a2a2a2;
+    clear: both;
+}
+.note-comment-input {
+    margin-top: 10px;
+}
+
 #media-upload {
     min-height: 400px;
     background-color: #DCEBFF;

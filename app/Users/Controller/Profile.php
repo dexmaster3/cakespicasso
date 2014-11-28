@@ -4,10 +4,10 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
 {
     protected function index($query = null)
     {
-        $user_model = new Users_Model_User();
-        $user = $user_model->getUser($_SESSION['user']['id']);
-        $this->data->user = $user;
-        return $this->render();
+        $query = array(
+            "id" => $_SESSION['user']['id']
+        );
+        return $this->show($query);
     }
     protected function edit($query)
     {
@@ -123,16 +123,22 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
     {
         $user_model = new Users_Model_User();
         $note_model = new Users_Model_Note();
-        $this->data->notes = $note_model->findAllByColumnValue("profile_id", $query['id']);
+        $this->data->user_notes = $note_model->findAllByColumnValueWhereNoParent("profile_id", $query['id']);
+        foreach ($this->data->user_notes as $key => $val) {
+            $this->data->user_notes[$key]['sub_notes'] = $note_model->findAllByColumnValue('parent_note', $val['id']);
+        }
         $this->data->user = $user_model->getUser($query['id']);
-        return $this->render();
+        $this->data->all_users = $user_model->getAllUsers();
+        return $this->render(__FUNCTION__);
     }
-    protected function postcomment($query = null)
+    protected function postnote($query = null)
     {
         $post = Core_Request::getRequest()->post;
         $note_model = new Users_Model_Note();
         $post['author_id'] = $_SESSION['user']['id'];
-        $post['parent_note'] = 0;
+        if(!isset($post['parent_note']) && !$post['parent_note'] > 0) {
+            $post['parent_note'] = 0;
+        }
         $sql_run = $note_model->addRow($post);
         if ($sql_run) {
             return $this->returnJson(array(

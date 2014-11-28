@@ -32,10 +32,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-lg-3" align="center">
-                                <? if(empty($this->data->user['avatar'])): ?>
-                                <img alt="User Pic" src="http://placehold.it/150x150" class="profile-image img-circle">
+                                <? if (empty($this->data->user['avatar'])): ?>
+                                    <img alt="User Pic" src="http://placehold.it/150x150"
+                                         class="profile-image img-circle">
                                 <? else: ?>
-                                <img alt="User Pic" src="/assets/upload/<?= $this->data->user['avatar'] ?>" class="profile-image img-circle">
+                                    <img alt="User Pic" src="/assets/upload/<?= $this->data->user['avatar'] ?>"
+                                         class="profile-image img-circle">
                                 <? endif; ?>
                             </div>
                             <div class=" col-md-9 col-lg-9 ">
@@ -78,20 +80,59 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <form id="comment-form" action="/users/profile/postcomment" method="post" style="margin: 10px 0;">
-                <h2>Write <?= ucfirst($this->data->user['username']) ?> a note:
-                    <button class="btn btn-primary pull-right" type="submit">Post
-                    <img src="/assets/img/ajax-loader.gif" style="display: none;"> </button>
-                </h2>
+                <form id="note-form" action="/users/profile/postnote" method="post" style="margin: 10px 0;">
+                    <h2>Write <?= ucfirst($this->data->user['username']) ?> a note:
+                        <button class="btn btn-primary pull-right" type="submit">Post
+                            <img src="/assets/img/ajax-loader.gif" style="display: none;"></button>
+                    </h2>
                     <textarea class="form-control" name="body" placeholder="What are you thinking?"></textarea>
                     <input type="hidden" class="hidden hide" name="profile_id" value="<?= $this->data->user['id'] ?>">
-                    </form>
-                <? foreach($this->data->notes as $note): ?>
-                <div class="well">
-                    <div class="note-body"><?= $note['body'] ?></div>
-                    <div class="note-date"><?= $note['date_modified'] ?></div>
+                </form>
+                <div class="notes-section">
+                    <? foreach ($this->data->user_notes as $note): ?>
+                        <div class="note">
+                            <div class="note-body">
+                                <?= $note['body']; ?>
+                            </div>
+                            <div class="note-user">
+                                <? foreach ($this->data->all_users as $user): ?>
+                                    <? if ($user['id'] == $note['author_id']): ?>
+                                        <?= $user['username'] ?>
+                                        <img src="/assets/upload/<?= $user['avatar'] ?>" style="width: 30px;"/>
+                                    <? endif; ?>
+                                <? endforeach; ?>
+                            </div>
+                            <div class="note-timestamp">
+                                <?= Display_DisplayHelper::friendlyElapsedTime($note['date_modified']); ?>
+                            </div>
+                            <? if (!empty($note['sub_notes'])): ?>
+                                <? foreach ($note['sub_notes'] as $subnote): ?>
+                                    <div class="note-comment">
+                                        <div class="note-body">
+                                            <?= $subnote['body']; ?>
+                                        </div>
+                                        <div class="note-user">
+                                            <? foreach ($this->data->all_users as $user): ?>
+                                                <? if ($user['id'] == $subnote['author_id']): ?>
+                                                    <?= $user['username'] ?>
+                                                    <img src="/assets/upload/<?= $user['avatar'] ?>" style="width: 30px;"/>
+                                                <? endif; ?>
+                                            <? endforeach; ?>
+                                        </div>
+                                        <div class="note-timestamp">
+                                            <?= Display_DisplayHelper::friendlyElapsedTime($subnote['date_modified']); ?>
+                                        </div>
+                                    </div>
+                                <? endforeach; ?>
+                            <? endif; ?>
+                            <form class="comment-form" action="/users/profile/postnote" method="post">
+                            <input name="body" class="form-control note-comment-input" type="text" placeholder="Comment on note" />
+                                <input class="hide hidden" type="hidden" name="parent_note" value="<?= $note['id'] ?>" />
+                                <input type="hidden" class="hidden hide" name="profile_id" value="<?= $this->data->user['id'] ?>">
+                            </form>
+                        </div>
+                    <? endforeach; ?>
                 </div>
-                <? endforeach; ?>
             </div>
         </div>
     </div>
@@ -103,23 +144,51 @@
 
 {{scripts}}
 <script>
-    var commentform = $("#comment-form");
+    var noteform = $("#note-form");
+    var commentforms = $(".comment-form");
 
-    commentform.on('submit', function(ev){
+    noteform.on('submit', function (ev) {
         ev.preventDefault();
         var info = {
-            url: commentform.attr('action'),
-            method: commentform.attr('method'),
-            data: commentform.serializeArray()
+            url: noteform.attr('action'),
+            method: noteform.attr('method'),
+            data: noteform.serializeArray()
+        };
+        ajaxhandle(info, function (data) {
+            $.notify(data.message, data.type);
+            if (data.success) {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1000);
+            }
+        });
+    });
+
+    commentforms.on('submit', function(ev){
+        ev.preventDefault();
+        var appendto = $(this);
+        var info = {
+            url: appendto.attr('action'),
+            method: appendto.attr('method'),
+            data: appendto.serializeArray()
         };
         ajaxhandle(info, function(data){
             $.notify(data.message, data.type);
+            $(".note-comment-input").val("");
             if (data.success) {
-                setTimeout(function(){
-                    window.location.reload();
-                }, 1500);
+                var sentbody;
+                $.each(info.data, function(index, value){
+                    if(value['name'] === "body") {
+                        sentbody = value['value'];
+                    }
+                });
+                var eletoadd = '<div class="note-comment"><div class="note-body">' + sentbody +
+                    '</div><div class="note-user"> <?= $_SESSION['user']['username'] ?> <img src="/assets/upload/' +
+                    '<?= $_SESSION['user']['avatar'] ?>' + '" style="width: 30px;"/>' +
+                    '</div><div class="note-timestamp">Now</div></div>';
+                $(appendto).before(eletoadd);
             }
-        })
-    })
+        });
+    });
 </script>
 {{/scripts}}

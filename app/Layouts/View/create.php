@@ -63,6 +63,8 @@
 {{/body}}
 
 {{scripts}}
+<script src="/assets/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="/assets/js/plugins/ckeditor/adapters/jquery.js"></script>
 <script src="/assets/js/layout.js"></script>
 <script>
     var form = $("#layout-form");
@@ -86,6 +88,11 @@
                 $("#form-submitter").removeAttr("disabled");
                 $("#form-spinner").css("display", "none");
             }
+        });
+    });
+    $(document).ready(function() {
+        var ckedit = $('textarea#layout_content').ckeditor({
+            startupMode: "source"
         });
     });
 </script>
