@@ -40,8 +40,8 @@ class Messages_Controller_Message extends Users_Controller_BaseAuth
     protected function create()
     {
         $users_model = new Users_Model_User();
-        $this->data->users = $users_model->getAll();
-        $this->data->currentuser = $users_model->findById($_SESSION['user']['id']);
+        $this->data->users = $users_model->getAllUsers();
+        $this->data->currentuser = $users_model->getUser($_SESSION['user']['id']);
         return $this->render();
     }
     protected function view($query = null)

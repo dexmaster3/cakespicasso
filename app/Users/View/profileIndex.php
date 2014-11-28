@@ -32,11 +32,15 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-lg-3" align="center">
-                                <? if (empty($this->data->user['avatar'])): ?>
+                                <? if (empty($this->data->user['avatar']) && empty($this->data->user['avatar_crop'])): ?>
                                     <img alt="User Pic" src="http://placehold.it/150x150"
                                          class="profile-image img-circle">
-                                <? else: ?>
+                                <? elseif (empty($this->data->user['avatar_crop'])): ?>
                                     <img alt="User Pic" src="/assets/upload/<?= $this->data->user['avatar'] ?>"
+                                         class="profile-image img-circle">
+                                <? else: ?>
+
+                                    <img alt="User Pic" src="/assets/upload/<?= $this->data->user['avatar_crop'] ?>"
                                          class="profile-image img-circle">
                                 <? endif; ?>
                             </div>
@@ -115,7 +119,8 @@
                                             <? foreach ($this->data->all_users as $user): ?>
                                                 <? if ($user['id'] == $subnote['author_id']): ?>
                                                     <?= $user['username'] ?>
-                                                    <img src="/assets/upload/<?= $user['avatar'] ?>" style="width: 30px;"/>
+                                                    <img src="/assets/upload/<?= $user['avatar'] ?>"
+                                                         style="width: 30px;"/>
                                                 <? endif; ?>
                                             <? endforeach; ?>
                                         </div>
@@ -126,9 +131,11 @@
                                 <? endforeach; ?>
                             <? endif; ?>
                             <form class="comment-form" action="/users/profile/postnote" method="post">
-                            <input name="body" class="form-control note-comment-input" type="text" placeholder="Comment on note" />
-                                <input class="hide hidden" type="hidden" name="parent_note" value="<?= $note['id'] ?>" />
-                                <input type="hidden" class="hidden hide" name="profile_id" value="<?= $this->data->user['id'] ?>">
+                                <input name="body" class="form-control note-comment-input" type="text"
+                                       placeholder="Comment on note"/>
+                                <input class="hide hidden" type="hidden" name="parent_note" value="<?= $note['id'] ?>"/>
+                                <input type="hidden" class="hidden hide" name="profile_id"
+                                       value="<?= $this->data->user['id'] ?>">
                             </form>
                         </div>
                     <? endforeach; ?>
@@ -164,7 +171,7 @@
         });
     });
 
-    commentforms.on('submit', function(ev){
+    commentforms.on('submit', function (ev) {
         ev.preventDefault();
         var appendto = $(this);
         var info = {
@@ -172,19 +179,18 @@
             method: appendto.attr('method'),
             data: appendto.serializeArray()
         };
-        ajaxhandle(info, function(data){
+        ajaxhandle(info, function (data) {
             $.notify(data.message, data.type);
             $(".note-comment-input").val("");
             if (data.success) {
                 var sentbody;
-                $.each(info.data, function(index, value){
-                    if(value['name'] === "body") {
+                $.each(info.data, function (index, value) {
+                    if (value['name'] === "body") {
                         sentbody = value['value'];
                     }
                 });
                 var eletoadd = '<div class="note-comment"><div class="note-body">' + sentbody +
-                    '</div><div class="note-user"> <?= $_SESSION['user']['username'] ?> <img src="/assets/upload/' +
-                    '<?= $_SESSION['user']['avatar'] ?>' + '" style="width: 30px;"/>' +
+                    '</div><div class="note-user"> <?= $_SESSION['user']['username'] ?> <img src="/assets/upload/<?= empty($_SESSION['user']['avatar_crop']) ? $_SESSION['user']['avatar'] : $_SESSION['user']['avatar_crop'] ?>" style="width: 30px;"/>' +
                     '</div><div class="note-timestamp">Now</div></div>';
                 $(appendto).before(eletoadd);
             }

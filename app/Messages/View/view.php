@@ -32,10 +32,15 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-lg-3" align="center">
-                                <? if(empty($this->data->message['avatar'])): ?>
-                                    <img alt="User Pic" src="http://placehold.it/150x150" class="profile-image img-circle">
+                                <? if (empty($this->data->message['avatar_crop']) && empty($this->data->message['avatar'])): ?>
+                                    <img alt="User Pic" src="http://placehold.it/150x150"
+                                         class="profile-image img-circle">
+                                <? elseif (empty($this->data->message['avatar_crop'])): ?>
+                                    <img alt="User Pic" src="/assets/upload/<?= $this->data->message['avatar'] ?>"
+                                         class="profile-image img-circle">
                                 <? else: ?>
-                                    <img alt="User Pic" src="/assets/upload/<?= $this->data->message['avatar'] ?>" class="profile-image img-circle">
+                                    <img alt="User Pic" src="/assets/upload/<?= $this->data->message['avatar_crop'] ?>"
+                                         class="profile-image img-circle">
                                 <? endif; ?>
                             </div>
                             <div class=" col-md-9 col-lg-9 ">

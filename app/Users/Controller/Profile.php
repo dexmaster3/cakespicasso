@@ -57,6 +57,7 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
         if (is_file($file_name)) {
             $sql_run = $user_model->updateById($_SESSION['user']['id'], array("avatar_crop" => $avatar_name));
             if ($sql_run) {
+                $_SESSION['user']['avatar_crop'] = $avatar_name;
                 return $this->returnJson(array(
                     "message" => "Avatar Saved",
                     "type" => "success",
@@ -80,11 +81,13 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
     }
     protected function save($query)
     {
+        $avatar_change = false;
         $post = Core_Request::getRequest()->post;
         $uploaddir = ROOT . "/assets/upload/";
         $uploadfile = time() . "_" . basename($_FILES['avatar']['name']);
         if(move_uploaded_file($_FILES['avatar']['tmp_name'], $uploaddir . $uploadfile)) {
             $post['avatar'] = $uploadfile;
+            $avatar_change = true;
         }
         if (!empty($post['old_password']) && !empty($post['new_password']) && !empty($post['new_password_confirm'])
         && ($post['new_password'] === $post['new_password_confirm'])) {
@@ -99,12 +102,23 @@ class Users_Controller_Profile extends Users_Controller_BaseAuth
         $user_model = new Users_Model_User();
         $sql_run = $user_model->updateById($post['id'], $post);
         if ($sql_run) {
-            return $this->returnJson(array(
-                "message" => "Profile Updated",
-                "type" => "success",
-                "success" => true,
-                "redirect" => "/users/profile"
-            ));
+            if ($avatar_change) {
+                //Change so we dont have to log them out to refresh session
+                $_SESSION['user']['avatar'] = $uploadfile;
+                return $this->returnJson(array(
+                    "message" => "Profile Updated",
+                    "type" => "success",
+                    "success" => true,
+                    "redirect" => "/users/profile/avatar"
+                ));
+            } else {
+                return $this->returnJson(array(
+                    "message" => "Profile Updated",
+                    "type" => "success",
+                    "success" => true,
+                    "redirect" => "/users/profile"
+                ));
+            }
         } else {
             return $this->returnJson(array(
                 "message" => "Error saving profile",
